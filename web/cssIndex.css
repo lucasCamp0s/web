@@ -1,8 +1,51 @@
 body{
     width: 99.8%;
-    height: 3000px;
+    height: 2000px;
     font-family: arial,helvetica,sans-serif;
     font-size: 12px;
+}
+.forma{
+  
+    position:absolute;
+    width:100%;
+}
+.carrinho{
+    width:40%;
+    position: relative;
+    display: block;
+    margin-top: 10px;
+    border-bottom: 50px solid #68c3a3;
+    border-left: 25px solid transparent;
+    left: 60%;
+}
+.carrinho ul{
+    position: relative;
+    list-style: none;
+    float:left;
+    padding: 10px 50px ;
+    margin-left: 40%;
+}
+.carrinho li{
+    padding: 1px 6px;
+    position: relative;
+    float: left;
+}
+.borda_img{
+    border-right:2px solid #336600;
+}
+.btn_login{
+   
+
+    background-color: #336600;
+    color: #fff;
+    border-radius: 20px;
+    border: 1px solid #336600;
+    width: 100px;
+}
+.btn_login:hover{
+    cursor: pointer;
+    background-color :#438302;
+    border: 1px solid #438302;
 }
 .menu {
     
@@ -36,8 +79,8 @@ body{
     position: relative;
     top: -10px;
     height: 808px;
-    background: url(img/fundo3.jpg);
-    opacity: 0.8;
+    background: url(img/fundo4.jpg);
+   
 }
 .menu li a{
     background-color: black;
@@ -119,7 +162,10 @@ body{
     color: white;
   
 }
-
+#textMonaco{
+    color: white;
+    background-color:black;
+}
 .ulContegem {
     position: relative;
     width: 100%;

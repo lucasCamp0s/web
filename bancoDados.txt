@@ -1,0 +1,38 @@
+banco de dados 
+-=-=-=--=--=-=-=-=
+
+-> colocar uma tabela de proximas corridas
+     .data
+     .lugar(pais,estado)
+
+--> tabela de bancada
+     .total de acentos
+     .preco por igresso
+
+---> tabela de cadastro(fisica ou juridica)
+	(dependera se a pessoa é fisica ou juridica, e se ela 	reside ou não no brasil )
+   *pessoa fisica
+       	 .nome completo
+       	  .cpf
+        	.rg
+         	.dataNascimento
+ 	.telefone
+ 	.celular
+	.email.
+	.confirmar email
+	.senha
+	.confirmarSenha
+	/*box-radius*/. reside ou não no brasil
+	.cep
+	.endereco
+	.numero
+	.complemento
+	.bairro
+	.uf
+	.cidade
+
+  /*******************  IMPORTANTE ******************************/
+
+Informamos que os assentos são demarcados com o número correspondente ao ingresso. A numeração dos assentos está localizada no verso do ingresso.
+
+A ocupação de assento com numeração diferente daquela marcada em seu ingresso pode ensejar a adoção das medidas cabíveis pelas autoridades competentes.
