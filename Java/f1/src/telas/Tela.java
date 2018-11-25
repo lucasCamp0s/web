@@ -6,8 +6,12 @@
 package telas;
 
 import conexao.ConexaoBanco;
+import f1.Autodromo;
+import f1.BDAutodromo;
 import f1.BDCircuito;
 import f1.Circuito;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,8 +34,7 @@ public class Tela extends javax.swing.JFrame {
     public Tela() {
         initComponents();
         
-      
-        readJTable();
+       
     }
 
     /**
@@ -43,15 +46,30 @@ public class Tela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tab_Abas = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        txt_nomeAutodromo = new javax.swing.JTextField();
+        txt_cidadeAutodromo = new javax.swing.JTextField();
+        txt_paisAutodromo = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        JTAutodromo = new javax.swing.JTable();
+        btn_AdicionarAutodromo = new javax.swing.JButton();
+        btn_alterarAutodromo = new javax.swing.JButton();
+        btn_excluirAutodromo = new javax.swing.JButton();
+        btn_pesquisarAutodromo = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel15 = new javax.swing.JLabel();
+        txt_idAutodromo = new javax.swing.JTextField();
+        btn_listarAutodromo = new javax.swing.JButton();
+        txt_enderecoAutodromo = new javax.swing.JTextField();
+        txt_descricaoAutodromo = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -74,6 +92,12 @@ public class Tela extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        tab_Abas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tab_AbasMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -85,54 +109,234 @@ public class Tela extends javax.swing.JFrame {
             .addGap(0, 607, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("tab1", jPanel1);
+        tab_Abas.addTab("tab1", jPanel1);
 
-        jLabel5.setText("Id_Autodromo");
+        jLabel5.setText("Nome");
 
-        jLabel6.setText("Nome");
+        jLabel12.setText("Cidade");
 
-        jLabel7.setText("Endereco");
+        jLabel13.setText("Endereço");
 
-        jLabel8.setText("Cidade");
+        jLabel14.setText("Pais");
 
-        jLabel9.setText("Pais");
+        txt_nomeAutodromo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nomeAutodromoActionPerformed(evt);
+            }
+        });
+        txt_nomeAutodromo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nomeAutodromoKeyTyped(evt);
+            }
+        });
 
-        jLabel10.setText("Descrição");
+        txt_cidadeAutodromo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_cidadeAutodromoActionPerformed(evt);
+            }
+        });
+        txt_cidadeAutodromo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_cidadeAutodromoKeyTyped(evt);
+            }
+        });
+
+        txt_paisAutodromo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_paisAutodromoKeyTyped(evt);
+            }
+        });
+
+        JTAutodromo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id_Autodromo", "nome_Autodromo", "Endereco", "Cidade", "Pais", "Descrição"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(JTAutodromo);
+
+        btn_AdicionarAutodromo.setText("Adicionar");
+        btn_AdicionarAutodromo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AdicionarAutodromoActionPerformed(evt);
+            }
+        });
+
+        btn_alterarAutodromo.setText("Alterar");
+        btn_alterarAutodromo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_alterarAutodromoActionPerformed(evt);
+            }
+        });
+
+        btn_excluirAutodromo.setText("Excluir");
+        btn_excluirAutodromo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluirAutodromoActionPerformed(evt);
+            }
+        });
+
+        btn_pesquisarAutodromo.setText("Pesquisar");
+        btn_pesquisarAutodromo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pesquisarAutodromoActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setText("Id para Ações");
+
+        btn_listarAutodromo.setText("Listar");
+        btn_listarAutodromo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listarAutodromoActionPerformed(evt);
+            }
+        });
+
+        txt_enderecoAutodromo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_enderecoAutodromoKeyTyped(evt);
+            }
+        });
+
+        txt_descricaoAutodromo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_descricaoAutodromoKeyTyped(evt);
+            }
+        });
+
+        jLabel16.setText("Descrição");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(txt_idAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btn_AdicionarAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_alterarAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_excluirAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(btn_listarAutodromo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btn_pesquisarAutodromo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 22, Short.MAX_VALUE)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel13))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_enderecoAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                    .addComponent(txt_nomeAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(90, 90, 90))
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(txt_cidadeAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txt_descricaoAutodromo, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txt_paisAutodromo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)))
+                                    .addGap(22, 22, 22)))))))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_nomeAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_enderecoAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel12)
+                            .addComponent(txt_cidadeAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_paisAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_descricaoAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(182, 182, 182)
+                                .addComponent(jLabel15))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(btn_AdicionarAutodromo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_alterarAutodromo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_excluirAutodromo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_pesquisarAutodromo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_listarAutodromo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_idAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(161, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(884, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5))
-                .addGap(121, 121, 121))
+            .addGap(0, 1074, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 7, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 8, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel10)
-                .addContainerGap(415, Short.MAX_VALUE))
+            .addGap(0, 607, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("Autódromo", jPanel2);
+        tab_Abas.addTab("Autódromo", jPanel2);
 
         jLabel1.setText("Nome");
 
@@ -310,26 +514,26 @@ public class Tela extends javax.swing.JFrame {
                 .addContainerGap(161, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Circuito", jPanel3);
+        tab_Abas.addTab("Circuito", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tab_Abas)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(tab_Abas)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //criando metodo para ler valores do banco de dados e colocar na Jtable
+    //criando metodo para ler valores do banco de dados(table circuito) e colocar na Jtable
     public void readJTable(){
           DefaultTableModel modelo =(DefaultTableModel) JTcircuito.getModel();
           modelo.setNumRows(0);
@@ -347,26 +551,45 @@ public class Tela extends javax.swing.JFrame {
           
     }
     
+    //criando metodo para ler valores do banco de dados(table autodromo) e colocar na Jtable
+       public void readJTableAutodromo(){
+          DefaultTableModel modelo =(DefaultTableModel) JTAutodromo.getModel();
+          modelo.setNumRows(0);
+          Connection c = ConexaoBanco.criaConexao();
+          
+          for(Autodromo a : BDAutodromo.ListarAutodromo(c)){
+              
+              modelo.addRow(new Object[]{a.getId_autodromo(),
+                                         a.getNome(),
+                                         a.getEndereco(),
+                                         a.getCidade(),
+                                         a.getPais(),
+                                         a.getDescricao()});
+          }
+          
+    }
+    
+    
     private void txt_TotalCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_TotalCorredoresActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_TotalCorredoresActionPerformed
 
     private void txt_nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nomeKeyTyped
 
-        int totalCharacter = 25;
+        int totalCaracter = 25;
         
-        if(txt_nome.getText().length() >= totalCharacter){
-            JOptionPane.showMessageDialog(null,"Excedeu o limite de characteres");
+        if(txt_nome.getText().length() >= totalCaracter){
+            JOptionPane.showMessageDialog(null,"Excedeu o limite de caracteres");
             evt.consume();
         }
         
     }//GEN-LAST:event_txt_nomeKeyTyped
 
     private void txt_DescricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_DescricaoKeyTyped
-         int totalCharacter = 200;
+         int totalCaracter = 200;
         
-        if(txt_Descricao.getText().length() >= totalCharacter){
-            JOptionPane.showMessageDialog(null,"Excedeu o limite de characteres");
+        if(txt_Descricao.getText().length() >= totalCaracter){
+            JOptionPane.showMessageDialog(null,"Excedeu o limite de caracteres");
             evt.consume();
             
         }
@@ -641,6 +864,303 @@ public class Tela extends javax.swing.JFrame {
         readJTable();
     }//GEN-LAST:event_btn_listarActionPerformed
 
+    private void txt_nomeAutodromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nomeAutodromoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nomeAutodromoActionPerformed
+
+    private void txt_nomeAutodromoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nomeAutodromoKeyTyped
+       int totalChar=25;
+       
+       if(txt_nomeAutodromo.getText().length() >= totalChar){
+           JOptionPane.showMessageDialog(null, "Excedeu o limite de caracteres");
+           evt.consume();//não deixar digitar
+       }
+    }//GEN-LAST:event_txt_nomeAutodromoKeyTyped
+
+    private void txt_cidadeAutodromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cidadeAutodromoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_cidadeAutodromoActionPerformed
+
+    private void txt_cidadeAutodromoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cidadeAutodromoKeyTyped
+        // TODO add your handling code here:
+          int totalchar=40;
+           if(txt_cidadeAutodromo.getText().length()>=totalchar){
+               JOptionPane.showMessageDialog(null, "Excedeu o limite de caracteres");
+               evt.consume();//nao deixa digitar
+           }
+    }//GEN-LAST:event_txt_cidadeAutodromoKeyTyped
+
+    private void txt_paisAutodromoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_paisAutodromoKeyTyped
+        // TODO add your handling code here:
+          int totalchar=20;
+           if(txt_paisAutodromo.getText().length()>=totalchar){
+               JOptionPane.showMessageDialog(null, "Excedeu o limite de caracteres");
+               evt.consume();//nao deixa digitar
+           }
+    }//GEN-LAST:event_txt_paisAutodromoKeyTyped
+
+    private void btn_AdicionarAutodromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AdicionarAutodromoActionPerformed
+         if(txt_nomeAutodromo.getText().equals("")){
+             JOptionPane.showMessageDialog(null, "Digite o nome do autódromo");
+         } if(txt_paisAutodromo.getText().equals("")){
+             JOptionPane.showMessageDialog(null, "Digite o pais do autódromo");
+         } if(txt_cidadeAutodromo.getText().equals("")){
+             JOptionPane.showMessageDialog(null, "Digite a cidade do autódromo");
+         } if(txt_enderecoAutodromo.getText().equals("")){
+             JOptionPane.showMessageDialog(null, "Digite o endereço do autódromo");
+         } else if(txt_descricaoAutodromo.getText().equals("")){
+             JOptionPane.showMessageDialog(null, "Digite a descrição do autódromo");
+         }else{
+            Connection connection;
+            
+            connection = ConexaoBanco.criaConexao();//criando conexão 
+            //criando objeto da classe autodromo para ser passada como objeto e em seguida ser mandada para o banco de dados
+            Autodromo a = new Autodromo(txt_nomeAutodromo.getText(),txt_enderecoAutodromo.getText(),txt_cidadeAutodromo.getText(),txt_paisAutodromo.getText(),txt_descricaoAutodromo.getText());
+            
+            //inserindo dados no banco de dados
+            BDAutodromo.InserirAutodromo(a, connection);
+            readJTableAutodromo();
+            
+            txt_nomeAutodromo.setText("");
+            txt_paisAutodromo.setText("");
+            txt_cidadeAutodromo.setText("");
+            txt_enderecoAutodromo.setText("");
+            txt_descricaoAutodromo.setText("");
+            
+            
+             try {
+                 connection.close();
+             } catch (SQLException ex) {
+                 Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+             }
+         }
+    }//GEN-LAST:event_btn_AdicionarAutodromoActionPerformed
+
+    private void btn_alterarAutodromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterarAutodromoActionPerformed
+        // TODO add your handling code here:
+        if(txt_nomeAutodromo.getText().equals("") && txt_idAutodromo.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite um nome ou um id para alterar");
+        }
+        if(!txt_idAutodromo.getText().equals("")){
+                if(txt_nomeAutodromo.getText().equals("")){
+                  JOptionPane.showMessageDialog(null, "Digite o nome do autódromo");
+              } if(txt_paisAutodromo.getText().equals("")){
+                  JOptionPane.showMessageDialog(null, "Digite o pais do autódromo");
+              } if(txt_cidadeAutodromo.getText().equals("")){
+                  JOptionPane.showMessageDialog(null, "Digite a cidade do autódromo");
+              } if(txt_enderecoAutodromo.getText().equals("")){
+                  JOptionPane.showMessageDialog(null, "Digite o endereço do autódromo");
+              } else if(txt_descricaoAutodromo.getText().equals("")){
+                  JOptionPane.showMessageDialog(null, "Digite a descrição do autódromo");
+              }else{
+                   Connection c;
+                try{
+                    c = ConexaoBanco.criaConexao();
+
+                    BDAutodromo.alterarId(txt_idAutodromo.getText(), txt_nomeAutodromo.getText(), txt_enderecoAutodromo.getText(), txt_cidadeAutodromo.getText(), txt_paisAutodromo.getText(), txt_descricaoAutodromo.getText(), c);
+
+
+                    c.close();//fechando conexão
+                    readJTableAutodromo();
+                    txt_nomeAutodromo.setText("");
+                    txt_idAutodromo.setText("");
+                    txt_paisAutodromo.setText("");
+                    txt_cidadeAutodromo.setText("");
+                    txt_enderecoAutodromo.setText("");
+                    txt_descricaoAutodromo.setText("");
+                }catch(Exception ex){
+                        System.out.println(ex.getMessage());
+                } 
+              }
+        }
+        //
+        if(!txt_nomeAutodromo.getText().equals("")){
+                if(txt_paisAutodromo.getText().equals("")){
+                  JOptionPane.showMessageDialog(null, "Digite o pais do autódromo");
+              } if(txt_cidadeAutodromo.getText().equals("")){
+                  JOptionPane.showMessageDialog(null, "Digite a cidade do autódromo");
+              } if(txt_enderecoAutodromo.getText().equals("")){
+                  JOptionPane.showMessageDialog(null, "Digite o endereço do autódromo");
+              } else if(txt_descricaoAutodromo.getText().equals("")){
+                  JOptionPane.showMessageDialog(null, "Digite a descrição do autódromo");
+              }else{
+                   Connection c;
+                try{
+                    c = ConexaoBanco.criaConexao();
+
+                    BDAutodromo.alterar(txt_nomeAutodromo.getText(), txt_enderecoAutodromo.getText(), txt_cidadeAutodromo.getText(), txt_paisAutodromo.getText(), txt_descricaoAutodromo.getText(), c);
+
+
+                    c.close();//fechando conexão
+                    readJTableAutodromo();
+                    txt_nomeAutodromo.setText("");
+                    txt_idAutodromo.setText("");
+                    txt_paisAutodromo.setText("");
+                    txt_cidadeAutodromo.setText("");
+                    txt_enderecoAutodromo.setText("");
+                    txt_descricaoAutodromo.setText("");
+                }catch(Exception ex){
+                        System.out.println(ex.getMessage());
+                } 
+              }
+        }
+    }//GEN-LAST:event_btn_alterarAutodromoActionPerformed
+
+    private void btn_excluirAutodromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirAutodromoActionPerformed
+        // TODO add your handling code here:
+            if(txt_nomeAutodromo.getText().equals("") && txt_idAutodromo.getText().equals("")){//deletar pelo nome do circuito
+            JOptionPane.showMessageDialog(null, "Digite o nome ou o id que deseja excluir:");
+        }if(!txt_nomeAutodromo.getText().equals("")) {
+              Connection connection = null;
+            try {
+              
+                connection = ConexaoBanco.criaConexao();
+            
+                BDAutodromo.deletar(txt_nomeAutodromo.getText(), connection);
+                   readJTableAutodromo();
+                   txt_idAutodromo.setText("");
+                   txt_nomeAutodromo.setText("");
+                 
+            } catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null, "Erro ao deletar");
+            }finally{
+                  try {
+                      connection.close();
+                  } catch (SQLException ex) {
+                      Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+            }
+          
+        }else if(!txt_idAutodromo.getText().equals("")){//caso queira deletar pelo id do circuito
+             try {
+                Connection connection;
+                connection = ConexaoBanco.criaConexao();
+            
+                BDAutodromo.deletarId(txt_idAutodromo.getText(), connection);
+                readJTableAutodromo();
+                
+                   txt_idAutodromo.setText("");
+                   txt_nomeAutodromo.setText("");
+                   
+            } catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null, "Erro ao deletar");
+            }
+            
+        }
+    }//GEN-LAST:event_btn_excluirAutodromoActionPerformed
+
+    private void btn_pesquisarAutodromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisarAutodromoActionPerformed
+        // TODO add your handling code here:
+          PreparedStatement ps;
+         Connection connection = null;
+        if(txt_nomeAutodromo.getText().equals("")&&txt_idAutodromo.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite um nome ou um id para consultar");
+        }
+        if(!txt_nomeAutodromo.getText().equals("")){
+            
+            ResultSet rs = null;
+            try {
+               
+                connection = ConexaoBanco.criaConexao();
+               rs =  BDAutodromo.consultarNome(txt_nomeAutodromo.getText(), connection);
+               DefaultTableModel modelo =(DefaultTableModel) JTAutodromo.getModel();
+               modelo.setNumRows(0);
+               
+               while(rs.next()){
+                 
+                   //passando os dados para dentro da tabela 
+                    modelo.addRow(new Object[]{rs.getString("id_autodromo"),//.getId_autodromo(),
+                                         rs.getString("nome"),//getNome(),
+                                         rs.getString("endereco"),
+                                         rs.getString("cidade"),
+                                         rs.getString("pais"),
+                                         rs.getString("descricao")
+                                         });
+                    
+                   
+               }
+                   txt_idAutodromo.setText("");
+                   txt_nomeAutodromo.setText("");
+                  
+                
+                   
+            } catch (SQLException ex) {
+                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                try {
+                    connection.close();
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               
+
+            }
+        }else if(!txt_idAutodromo.getText().equals("")){
+             ResultSet rs = null;
+            try {
+               
+                connection = ConexaoBanco.criaConexao();
+                rs =  BDAutodromo.consultar(txt_idAutodromo.getText(), connection);
+                //colocando dados dentro da tabela visual
+                DefaultTableModel modelo =(DefaultTableModel) JTAutodromo.getModel();
+               modelo.setNumRows(0);
+               while(rs.next()){
+                  modelo.addRow(new Object[]{rs.getString("id_autodromo"),
+                                         rs.getString("nome"),
+                                         rs.getString("endereco"),
+                                         rs.getString("cidade"),
+                                         rs.getString("pais"),
+                                         rs.getString("descricao")
+                                         });
+               }
+                   txt_idAutodromo.setText("");
+                   txt_nomeAutodromo.setText("");
+                   
+                   
+            } catch (SQLException ex) {
+                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                try {
+                    connection.close();
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               
+             }
+        
+        }
+        
+    }//GEN-LAST:event_btn_pesquisarAutodromoActionPerformed
+
+    private void btn_listarAutodromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listarAutodromoActionPerformed
+        // TODO add your handling code here:
+        readJTableAutodromo();
+    }//GEN-LAST:event_btn_listarAutodromoActionPerformed
+
+    private void txt_enderecoAutodromoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_enderecoAutodromoKeyTyped
+        // TODO add your handling code here:
+           int totalchar=200;
+           if(txt_enderecoAutodromo.getText().length()>=totalchar){
+               JOptionPane.showMessageDialog(null, "Excedeu o limite de caracteres");
+               evt.consume();//nao deixa digitar
+           }
+    }//GEN-LAST:event_txt_enderecoAutodromoKeyTyped
+
+    private void txt_descricaoAutodromoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descricaoAutodromoKeyTyped
+        // TODO add your handling code here:
+          int totalchar=200;
+           if(txt_descricaoAutodromo.getText().length()>=totalchar){
+               JOptionPane.showMessageDialog(null, "Excedeu o limite de caracteres");
+               evt.consume();//nao deixa digitar
+           }
+    }//GEN-LAST:event_txt_descricaoAutodromoKeyTyped
+
+    private void tab_AbasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_AbasMouseClicked
+    
+    }//GEN-LAST:event_tab_AbasMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -677,33 +1197,48 @@ public class Tela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JTAutodromo;
     private javax.swing.JTable JTcircuito;
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPresquisar;
+    private javax.swing.JButton btn_AdicionarAutodromo;
+    private javax.swing.JButton btn_alterarAutodromo;
+    private javax.swing.JButton btn_excluirAutodromo;
     private javax.swing.JButton btn_listar;
+    private javax.swing.JButton btn_listarAutodromo;
+    private javax.swing.JButton btn_pesquisarAutodromo;
     private datechooser.beans.DateChooserCombo cmb_Data;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTabbedPane tab_Abas;
     private javax.swing.JTextField txt_Descricao;
     private javax.swing.JTextField txt_TotalCorredores;
+    private javax.swing.JTextField txt_cidadeAutodromo;
+    private javax.swing.JTextField txt_descricaoAutodromo;
+    private javax.swing.JTextField txt_enderecoAutodromo;
     private javax.swing.JTextField txt_id;
+    private javax.swing.JTextField txt_idAutodromo;
     private javax.swing.JTextField txt_nome;
+    private javax.swing.JTextField txt_nomeAutodromo;
+    private javax.swing.JTextField txt_paisAutodromo;
     // End of variables declaration//GEN-END:variables
 }

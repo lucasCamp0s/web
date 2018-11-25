@@ -166,15 +166,15 @@ public class BDCircuito {
     public static ResultSet consultar(String id, Connection c )throws SQLException{
        String sql =  "SELECT * from circuito WHERE id_circuito=?";
        PreparedStatement cmd = c.prepareStatement(sql);
-       cmd.setString(1, id);
+       cmd.setString(1,id);
        
        return cmd.executeQuery();
     }
     public static ResultSet consultarNome(String Nome, Connection c )throws SQLException{
         
-       String sql =  "SELECT * from circuito WHERE nome_circuito=?";
+       String sql =  "SELECT * from circuito WHERE nome_circuito LIKE ?";
        PreparedStatement cmd = c.prepareStatement(sql);
-       cmd.setString(1, Nome);
+       cmd.setString(1, '%' + Nome + '%');
        
        return cmd.executeQuery();
     }
