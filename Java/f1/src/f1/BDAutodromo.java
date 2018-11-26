@@ -128,7 +128,6 @@ public class BDAutodromo {
        String sql =  "DELETE FROM autodromo where id_autodromo=?";
        PreparedStatement cmd = c.prepareStatement(sql);
        cmd.setString(1, id);
-       
        cmd.execute();
        cmd.close();
     }

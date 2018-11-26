@@ -4,10 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/f1/src/telas/Tela.java</file>
-            <file>file:/D:/f1/src/f1/BDAutodromo.java</file>
-            <file>file:/D:/f1/src/f1/Circuito.java</file>
-            <file>file:/D:/f1/src/f1/BDCircuito.java</file>
-            <file>file:/D:/f1/src/f1/Autodromo.java</file>
+            <file>file:/D:/f1/src/f1/BDArquibancada.java</file>
+            <file>file:/D:/f1/src/f1/Arquibancada.java</file>
         </group>
     </open-files>
 </project-private>

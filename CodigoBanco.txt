@@ -48,6 +48,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `formula1`.`ingresso` (
   `id_ingresso` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
   `data_evento` DATETIME NOT NULL,
   `cidade` VARCHAR(45) NOT NULL,
   `pais` VARCHAR(45) NOT NULL,
@@ -99,8 +100,7 @@ CREATE TABLE IF NOT EXISTS `formula1`.`autodromo` (
   `cidade` VARCHAR(40) NOT NULL,
   `pais` VARCHAR(20) NOT NULL,
   `descricao` VARCHAR(200) NULL,
-  PRIMARY KEY (`id_autodromo`),
-  UNIQUE INDEX `nome_UNIQUE` (`nome` ASC))
+  PRIMARY KEY (`id_autodromo`))
 ENGINE = InnoDB;
 
 
@@ -114,8 +114,7 @@ CREATE TABLE IF NOT EXISTS `formula1`.`circuito` (
   `data` DATETIME NOT NULL,
   `descricao` VARCHAR(200) NOT NULL,
   `imagem` MEDIUMBLOB NULL,
-  PRIMARY KEY (`id_circuito`),
-  UNIQUE INDEX `nome_circuito_UNIQUE` (`nome_circuito` ASC))
+  PRIMARY KEY (`id_circuito`))
 ENGINE = InnoDB;
 
 
