@@ -14,15 +14,22 @@ import f1.BDCircuito;
 import f1.BDIngresso;
 import f1.Circuito;
 import f1.Ingresso;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -38,6 +45,10 @@ public class Tela extends javax.swing.JFrame {
     public Tela() {
         initComponents();
         
+       //carregando o banco para listar as arquibancadas cadastradas no banco
+       // * na parte dos ingressos
+       Connection c = ConexaoBanco.criaConexao();
+       ReadComboBox(c);
        
     }
 
@@ -50,33 +61,19 @@ public class Tela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
+        buttonGroup5 = new javax.swing.ButtonGroup();
+        buttonGroup6 = new javax.swing.ButtonGroup();
+        buttonGroup7 = new javax.swing.ButtonGroup();
+        buttonGroup8 = new javax.swing.ButtonGroup();
+        buttonGroup9 = new javax.swing.ButtonGroup();
+        buttonGroup10 = new javax.swing.ButtonGroup();
+        buttonGroup11 = new javax.swing.ButtonGroup();
+        buttonGroup12 = new javax.swing.ButtonGroup();
         tab_Abas = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        txt_nomeIngresso = new javax.swing.JTextField();
-        txt_cidadeIngresso = new javax.swing.JTextField();
-        txt_Pais = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        JTIngresso = new javax.swing.JTable();
-        btn_AdicionarIngresso = new javax.swing.JButton();
-        btn_alterarIngresso = new javax.swing.JButton();
-        btn_excluirIngresso = new javax.swing.JButton();
-        btn_pesquisarIngresso = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JSeparator();
-        jLabel20 = new javax.swing.JLabel();
-        txt_idIngresso = new javax.swing.JTextField();
-        btn_listarIngresso = new javax.swing.JButton();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        cmb_dataIngresso = new datechooser.beans.DateChooserCombo();
-        txt_precoIngresso = new javax.swing.JTextField();
-        txt_descricaoIngresso = new javax.swing.JTextField();
-        txt_ArquibancadaIngresso = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -89,35 +86,27 @@ public class Tela extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         JTAutodromo = new javax.swing.JTable();
         btn_AdicionarAutodromo = new javax.swing.JButton();
-        btn_alterarAutodromo = new javax.swing.JButton();
-        btn_excluirAutodromo = new javax.swing.JButton();
-        btn_pesquisarAutodromo = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
         jLabel15 = new javax.swing.JLabel();
-        txt_idAutodromo = new javax.swing.JTextField();
         btn_listarAutodromo = new javax.swing.JButton();
         txt_enderecoAutodromo = new javax.swing.JTextField();
         txt_descricaoAutodromo = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txt_nome = new javax.swing.JTextField();
-        txt_TotalCorredores = new javax.swing.JTextField();
-        cmb_Data = new datechooser.beans.DateChooserCombo();
-        txt_Descricao = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        JTcircuito = new javax.swing.JTable();
-        btnAdicionar = new javax.swing.JButton();
-        btnAlterar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
-        btnPresquisar = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel11 = new javax.swing.JLabel();
-        txt_id = new javax.swing.JTextField();
-        btn_listar = new javax.swing.JButton();
+        jPanel25 = new javax.swing.JPanel();
+        rb_IngressoIdAutodromo = new javax.swing.JRadioButton();
+        rd_nomeAutodromoExcluir = new javax.swing.JRadioButton();
+        btn_excluirAutodromo = new javax.swing.JButton();
+        jPanel26 = new javax.swing.JPanel();
+        rb_CidadeAutodromo = new javax.swing.JRadioButton();
+        rb_nomeAutodromo = new javax.swing.JRadioButton();
+        rb_enderecoAutodromo = new javax.swing.JRadioButton();
+        rb_paisAutodromo = new javax.swing.JRadioButton();
+        rb_descricaoAutodromo = new javax.swing.JRadioButton();
+        btn_alterarAutodromo = new javax.swing.JButton();
+        jPanel27 = new javax.swing.JPanel();
+        rb_AutodromoidPesquisar = new javax.swing.JRadioButton();
+        rb_nomePesquisaAutodromo = new javax.swing.JRadioButton();
+        btn_pesquisarAutodromo = new javax.swing.JButton();
+        txt_idAutodromo = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -127,12 +116,91 @@ public class Tela extends javax.swing.JFrame {
         txt_totalAssentos = new javax.swing.JTextField();
         txt_idArquibancada = new javax.swing.JTextField();
         btnAdicionar_Arq = new javax.swing.JButton();
-        btnAlterar_Arq = new javax.swing.JButton();
-        btnExcluir_Arq = new javax.swing.JButton();
-        btnPresquisar_Arq = new javax.swing.JButton();
         btn_listar_Arq = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         JTArquibancada = new javax.swing.JTable();
+        jPanel31 = new javax.swing.JPanel();
+        rb_ArquibancadaId = new javax.swing.JRadioButton();
+        rb_nomeArquibancadaExcluir = new javax.swing.JRadioButton();
+        btnExcluir_Arq = new javax.swing.JButton();
+        jPanel32 = new javax.swing.JPanel();
+        rb_TotalAssentosArquibancada = new javax.swing.JRadioButton();
+        rb_setorArquibancada = new javax.swing.JRadioButton();
+        btnAlterar_Arq = new javax.swing.JButton();
+        jPanel33 = new javax.swing.JPanel();
+        rb_ArquibancadaidPesquisar = new javax.swing.JRadioButton();
+        rb_nomeArquibancadaPesq = new javax.swing.JRadioButton();
+        btnPresquisar_Arq = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        JTIngresso = new javax.swing.JTable();
+        btn_AdicionarIngresso = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        txt_idIngresso = new javax.swing.JTextField();
+        btn_listarIngresso = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        txt_nomeIngresso = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        txt_dataIngresso = new javax.swing.JFormattedTextField();
+        jLabel17 = new javax.swing.JLabel();
+        txt_cidadeIngresso = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        txt_Pais = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        txt_precoIngresso = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txt_descricaoIngresso = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        cb_Arquibancadas = new javax.swing.JComboBox<>();
+        jPanel9 = new javax.swing.JPanel();
+        rb_IngressoId = new javax.swing.JRadioButton();
+        btn_excluirIngresso = new javax.swing.JButton();
+        rd_nomeIngressoExcluir = new javax.swing.JRadioButton();
+        jPanel10 = new javax.swing.JPanel();
+        rb_CidadeIngresso = new javax.swing.JRadioButton();
+        rb_dataIngresso = new javax.swing.JRadioButton();
+        btn_alterarIngresso = new javax.swing.JButton();
+        rb_nomeIngresso = new javax.swing.JRadioButton();
+        rb_paisIngresso = new javax.swing.JRadioButton();
+        rb_precoIngresso = new javax.swing.JRadioButton();
+        rb_idArquibancadaIngresso = new javax.swing.JRadioButton();
+        rb_descricao = new javax.swing.JRadioButton();
+        jPanel12 = new javax.swing.JPanel();
+        rb_IngressoidPesquisar = new javax.swing.JRadioButton();
+        rb_nomeIngressoPesq = new javax.swing.JRadioButton();
+        btn_pesquisarIngresso = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txt_nome = new javax.swing.JTextField();
+        txt_Descricao = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JTcircuito = new javax.swing.JTable();
+        btnAdicionar = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
+        btn_listar = new javax.swing.JButton();
+        txt_dataCircuito = new javax.swing.JFormattedTextField();
+        jPanel28 = new javax.swing.JPanel();
+        rb_IngressoIdCircuito = new javax.swing.JRadioButton();
+        rd_nomeCircuitoExcluir = new javax.swing.JRadioButton();
+        btnExcluir = new javax.swing.JButton();
+        jPanel29 = new javax.swing.JPanel();
+        rb_dataCircuito = new javax.swing.JRadioButton();
+        rb_nomeCircuito = new javax.swing.JRadioButton();
+        rb_descricaoCircuito = new javax.swing.JRadioButton();
+        btnAlterar = new javax.swing.JButton();
+        rb_imagemCircuito = new javax.swing.JRadioButton();
+        jPanel30 = new javax.swing.JPanel();
+        rb_CircuitoidPesquisar = new javax.swing.JRadioButton();
+        rb_nomePesquisaCircuito = new javax.swing.JRadioButton();
+        btnPresquisar = new javax.swing.JButton();
+        jLabel41 = new javax.swing.JLabel();
+        txt_pathImg = new javax.swing.JTextField();
+        btn_imagem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,273 +210,26 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingresso"));
-
-        jLabel6.setText("Nome");
-
-        jLabel17.setText("Cidade");
-
-        jLabel18.setText("Data Evento");
-
-        jLabel19.setText("Pais");
-
-        txt_nomeIngresso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nomeIngressoActionPerformed(evt);
-            }
-        });
-        txt_nomeIngresso.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_nomeIngressoKeyTyped(evt);
-            }
-        });
-
-        txt_cidadeIngresso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_cidadeIngressoActionPerformed(evt);
-            }
-        });
-        txt_cidadeIngresso.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_cidadeIngressoKeyTyped(evt);
-            }
-        });
-
-        txt_Pais.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_PaisKeyTyped(evt);
-            }
-        });
-
-        JTIngresso.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Id_ingresso", "Nome", "Data_evento", "Cidade", "Pais", "Preco", "Descrição", "Arquibancada_Id"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(JTIngresso);
-
-        btn_AdicionarIngresso.setText("Adicionar");
-        btn_AdicionarIngresso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AdicionarIngressoActionPerformed(evt);
-            }
-        });
-
-        btn_alterarIngresso.setText("Alterar");
-        btn_alterarIngresso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_alterarIngressoActionPerformed(evt);
-            }
-        });
-
-        btn_excluirIngresso.setText("Excluir");
-        btn_excluirIngresso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_excluirIngressoActionPerformed(evt);
-            }
-        });
-
-        btn_pesquisarIngresso.setText("Pesquisar");
-        btn_pesquisarIngresso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_pesquisarIngressoActionPerformed(evt);
-            }
-        });
-
-        jLabel20.setText("Id para Ações");
-
-        txt_idIngresso.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_idIngressoKeyTyped(evt);
-            }
-        });
-
-        btn_listarIngresso.setText("Listar");
-        btn_listarIngresso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_listarIngressoActionPerformed(evt);
-            }
-        });
-
-        jLabel21.setText("Preco");
-
-        jLabel7.setText("Descrição");
-
-        jLabel8.setText("Id da Arquibancada");
-
-        cmb_dataIngresso.setNothingAllowed(false);
-        cmb_dataIngresso.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
-
-        txt_precoIngresso.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_precoIngressoKeyTyped(evt);
-            }
-        });
-
-        txt_descricaoIngresso.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_descricaoIngressoKeyTyped(evt);
-            }
-        });
-
-        txt_ArquibancadaIngresso.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_ArquibancadaIngressoKeyTyped(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGap(0, 22, Short.MAX_VALUE)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel21)
-                                    .addComponent(jLabel18)
-                                    .addComponent(jLabel19))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                                        .addComponent(txt_nomeIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(17, 17, 17))
-                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txt_cidadeIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txt_Pais, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cmb_dataIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txt_precoIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txt_descricaoIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txt_ArquibancadaIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_idIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_AdicionarIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_alterarIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_excluirIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btn_listarIngresso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_pesquisarIngresso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_nomeIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel18)
-                                .addGap(13, 13, 13))
-                            .addComponent(cmb_dataIngresso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(4, 4, 4)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel17)
-                            .addComponent(txt_cidadeIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_Pais, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6))
-                            .addComponent(txt_precoIngresso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel7))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_descricaoIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(txt_ArquibancadaIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addComponent(btn_AdicionarIngresso)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_alterarIngresso)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_excluirIngresso)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_pesquisarIngresso)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_listarIngresso)
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20)
-                            .addComponent(txt_idIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(129, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        tab_Abas.addTab("Ingresso", jPanel1);
+        jPanel2.setLayout(null);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Autódromo"));
+        jPanel4.setLayout(null);
 
         jLabel5.setText("Nome");
+        jPanel4.add(jLabel5);
+        jLabel5.setBounds(683, 41, 295, 14);
 
         jLabel12.setText("Cidade");
+        jPanel4.add(jLabel12);
+        jLabel12.setBounds(680, 110, 79, 14);
 
         jLabel13.setText("Endereço");
+        jPanel4.add(jLabel13);
+        jLabel13.setBounds(680, 70, 295, 14);
 
         jLabel14.setText("Pais");
+        jPanel4.add(jLabel14);
+        jLabel14.setBounds(680, 140, 79, 14);
 
         txt_nomeAutodromo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -420,6 +241,8 @@ public class Tela extends javax.swing.JFrame {
                 txt_nomeAutodromoKeyTyped(evt);
             }
         });
+        jPanel4.add(txt_nomeAutodromo);
+        txt_nomeAutodromo.setBounds(980, 20, 340, 30);
 
         txt_cidadeAutodromo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -431,12 +254,16 @@ public class Tela extends javax.swing.JFrame {
                 txt_cidadeAutodromoKeyTyped(evt);
             }
         });
+        jPanel4.add(txt_cidadeAutodromo);
+        txt_cidadeAutodromo.setBounds(980, 96, 340, 30);
 
         txt_paisAutodromo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_paisAutodromoKeyTyped(evt);
             }
         });
+        jPanel4.add(txt_paisAutodromo);
+        txt_paisAutodromo.setBounds(980, 130, 340, 30);
 
         JTAutodromo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -456,19 +283,59 @@ public class Tela extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(JTAutodromo);
 
+        jPanel4.add(jScrollPane2);
+        jScrollPane2.setBounds(24, 35, 641, 402);
+
         btn_AdicionarAutodromo.setText("Adicionar");
         btn_AdicionarAutodromo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_AdicionarAutodromoActionPerformed(evt);
             }
         });
+        jPanel4.add(btn_AdicionarAutodromo);
+        btn_AdicionarAutodromo.setBounds(683, 210, 120, 30);
 
-        btn_alterarAutodromo.setText("Alterar");
-        btn_alterarAutodromo.addActionListener(new java.awt.event.ActionListener() {
+        jLabel15.setText("Id para Ações");
+        jPanel4.add(jLabel15);
+        jLabel15.setBounds(1150, 210, 90, 27);
+
+        btn_listarAutodromo.setText("Listar");
+        btn_listarAutodromo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_alterarAutodromoActionPerformed(evt);
+                btn_listarAutodromoActionPerformed(evt);
             }
         });
+        jPanel4.add(btn_listarAutodromo);
+        btn_listarAutodromo.setBounds(858, 210, 120, 30);
+
+        txt_enderecoAutodromo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_enderecoAutodromoKeyTyped(evt);
+            }
+        });
+        jPanel4.add(txt_enderecoAutodromo);
+        txt_enderecoAutodromo.setBounds(980, 60, 340, 30);
+
+        txt_descricaoAutodromo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_descricaoAutodromoKeyTyped(evt);
+            }
+        });
+        jPanel4.add(txt_descricaoAutodromo);
+        txt_descricaoAutodromo.setBounds(980, 170, 340, 30);
+
+        jLabel16.setText("Descrição");
+        jPanel4.add(jLabel16);
+        jLabel16.setBounds(680, 180, 79, 14);
+
+        jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Excluir", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel25.setInheritsPopupMenu(true);
+
+        buttonGroup4.add(rb_IngressoIdAutodromo);
+        rb_IngressoIdAutodromo.setText("Id para Ações");
+
+        buttonGroup4.add(rd_nomeAutodromoExcluir);
+        rd_nomeAutodromoExcluir.setText("Nome");
 
         btn_excluirAutodromo.setText("Excluir");
         btn_excluirAutodromo.addActionListener(new java.awt.event.ActionListener() {
@@ -477,6 +344,120 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addGap(0, 15, Short.MAX_VALUE)
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
+                        .addComponent(rd_nomeAutodromoExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rb_IngressoIdAutodromo)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
+                        .addComponent(btn_excluirAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rb_IngressoIdAutodromo)
+                    .addComponent(rd_nomeAutodromoExcluir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
+                .addComponent(btn_excluirAutodromo)
+                .addGap(20, 20, 20))
+        );
+
+        jPanel4.add(jPanel25);
+        jPanel25.setBounds(675, 277, 179, 333);
+
+        jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alterar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel26.setInheritsPopupMenu(true);
+        jPanel26.setPreferredSize(new java.awt.Dimension(179, 117));
+
+        buttonGroup5.add(rb_CidadeAutodromo);
+        rb_CidadeAutodromo.setText("Cidade");
+
+        buttonGroup5.add(rb_nomeAutodromo);
+        rb_nomeAutodromo.setText("Nome");
+
+        buttonGroup5.add(rb_enderecoAutodromo);
+        rb_enderecoAutodromo.setText("Endereço");
+
+        buttonGroup5.add(rb_paisAutodromo);
+        rb_paisAutodromo.setText("Pais");
+
+        buttonGroup5.add(rb_descricaoAutodromo);
+        rb_descricaoAutodromo.setText("Descrição");
+
+        btn_alterarAutodromo.setText("Alterar");
+        btn_alterarAutodromo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_alterarAutodromoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+        jPanel26.setLayout(jPanel26Layout);
+        jPanel26Layout.setHorizontalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addComponent(btn_alterarAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 45, Short.MAX_VALUE))
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rb_descricaoAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rb_paisAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel26Layout.createSequentialGroup()
+                                .addComponent(rb_nomeAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(rb_CidadeAutodromo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel26Layout.createSequentialGroup()
+                                .addComponent(rb_enderecoAutodromo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
+        );
+        jPanel26Layout.setVerticalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rb_nomeAutodromo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rb_enderecoAutodromo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rb_CidadeAutodromo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_paisAutodromo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rb_descricaoAutodromo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addComponent(btn_alterarAutodromo)
+                .addGap(24, 24, 24))
+        );
+
+        jPanel4.add(jPanel26);
+        jPanel26.setBounds(872, 277, 203, 333);
+
+        jPanel27.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel27.setInheritsPopupMenu(true);
+        jPanel27.setPreferredSize(new java.awt.Dimension(179, 117));
+
+        buttonGroup6.add(rb_AutodromoidPesquisar);
+        rb_AutodromoidPesquisar.setText("Id para Ações");
+
+        buttonGroup6.add(rb_nomePesquisaAutodromo);
+        rb_nomePesquisaAutodromo.setText("Nome");
+
         btn_pesquisarAutodromo.setText("Pesquisar");
         btn_pesquisarAutodromo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -484,337 +465,49 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setText("Id para Ações");
+        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
+        jPanel27.setLayout(jPanel27Layout);
+        jPanel27Layout.setHorizontalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel27Layout.createSequentialGroup()
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel27Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(rb_nomePesquisaAutodromo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rb_AutodromoidPesquisar))
+                    .addGroup(jPanel27Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(btn_pesquisarAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        jPanel27Layout.setVerticalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel27Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rb_nomePesquisaAutodromo)
+                    .addComponent(rb_AutodromoidPesquisar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_pesquisarAutodromo)
+                .addGap(22, 22, 22))
+        );
 
-        btn_listarAutodromo.setText("Listar");
-        btn_listarAutodromo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_listarAutodromoActionPerformed(evt);
-            }
-        });
+        jPanel4.add(jPanel27);
+        jPanel27.setBounds(1093, 277, 195, 333);
 
-        txt_enderecoAutodromo.addKeyListener(new java.awt.event.KeyAdapter() {
+        txt_idAutodromo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_enderecoAutodromoKeyTyped(evt);
+                txt_idAutodromoKeyTyped(evt);
             }
         });
+        jPanel4.add(txt_idAutodromo);
+        txt_idAutodromo.setBounds(1260, 210, 63, 30);
 
-        txt_descricaoAutodromo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_descricaoAutodromoKeyTyped(evt);
-            }
-        });
-
-        jLabel16.setText("Descrição");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(txt_idAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_AdicionarAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_alterarAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_excluirAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(btn_listarAutodromo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btn_pesquisarAutodromo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 22, Short.MAX_VALUE)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel13))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_enderecoAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                    .addComponent(txt_nomeAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(90, 90, 90))
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txt_cidadeAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txt_descricaoAutodromo, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txt_paisAutodromo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)))
-                                    .addGap(22, 22, 22)))))))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_nomeAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_enderecoAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel12)
-                            .addComponent(txt_cidadeAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_paisAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_descricaoAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(182, 182, 182)
-                                .addComponent(jLabel15))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(btn_AdicionarAutodromo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_alterarAutodromo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_excluirAutodromo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_pesquisarAutodromo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_listarAutodromo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_idAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(161, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1154, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 670, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
+        jPanel2.add(jPanel4);
+        jPanel4.setBounds(30, 0, 1351, 628);
 
         tab_Abas.addTab("Autódromo", jPanel2);
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Circuito"));
-        jPanel3.setPreferredSize(new java.awt.Dimension(100, 627));
-
-        jLabel1.setText("Nome");
-
-        jLabel2.setText("Total Corredores");
-
-        jLabel3.setText("Data");
-
-        jLabel4.setText("Descrição");
-
-        txt_nome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nomeActionPerformed(evt);
-            }
-        });
-        txt_nome.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_nomeKeyTyped(evt);
-            }
-        });
-
-        txt_TotalCorredores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_TotalCorredoresActionPerformed(evt);
-            }
-        });
-        txt_TotalCorredores.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_TotalCorredoresKeyTyped(evt);
-            }
-        });
-
-        cmb_Data.setNothingAllowed(false);
-        cmb_Data.setBehavior(datechooser.model.multiple.MultyModelBehavior.SELECT_SINGLE);
-
-        txt_Descricao.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_DescricaoKeyTyped(evt);
-            }
-        });
-
-        JTcircuito.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Id_Circuito", "nome_Circuito", "Total Corredores", "Data", "Descrição", "Imagem"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(JTcircuito);
-
-        btnAdicionar.setText("Adicionar");
-        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdicionarActionPerformed(evt);
-            }
-        });
-
-        btnAlterar.setText("Alterar");
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarActionPerformed(evt);
-            }
-        });
-
-        btnExcluir.setText("Excluir");
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
-            }
-        });
-
-        btnPresquisar.setText("Pesquisar");
-        btnPresquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPresquisarActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setText("Id para Ações");
-
-        txt_id.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_idKeyTyped(evt);
-            }
-        });
-
-        btn_listar.setText("Listar");
-        btn_listar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_listarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txt_TotalCorredores, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                                        .addComponent(txt_Descricao)))
-                                .addGap(90, 90, 90))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(btn_listar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnPresquisar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
-                                    .addComponent(cmb_Data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(29, 29, 29))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(txt_TotalCorredores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(cmb_Data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(txt_Descricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(49, 49, 49)
-                        .addComponent(btnAdicionar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAlterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPresquisar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_listar)
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(201, Short.MAX_VALUE))
-        );
-
-        tab_Abas.addTab("Circuito", jPanel3);
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Arquibancada"));
 
@@ -849,27 +542,6 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
-        btnAlterar_Arq.setText("Alterar");
-        btnAlterar_Arq.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterar_ArqActionPerformed(evt);
-            }
-        });
-
-        btnExcluir_Arq.setText("Excluir");
-        btnExcluir_Arq.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluir_ArqActionPerformed(evt);
-            }
-        });
-
-        btnPresquisar_Arq.setText("Pesquisar");
-        btnPresquisar_Arq.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPresquisar_ArqActionPerformed(evt);
-            }
-        });
-
         btn_listar_Arq.setText("Listar");
         btn_listar_Arq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -895,6 +567,136 @@ public class Tela extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(JTArquibancada);
 
+        jPanel31.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Excluir", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel31.setInheritsPopupMenu(true);
+
+        buttonGroup10.add(rb_ArquibancadaId);
+        rb_ArquibancadaId.setText("Id para Ações");
+
+        buttonGroup10.add(rb_nomeArquibancadaExcluir);
+        rb_nomeArquibancadaExcluir.setText("Nome");
+
+        btnExcluir_Arq.setText("Excluir");
+        btnExcluir_Arq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluir_ArqActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel31Layout = new javax.swing.GroupLayout(jPanel31);
+        jPanel31.setLayout(jPanel31Layout);
+        jPanel31Layout.setHorizontalGroup(
+            jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel31Layout.createSequentialGroup()
+                .addGap(0, 15, Short.MAX_VALUE)
+                .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel31Layout.createSequentialGroup()
+                        .addComponent(rb_nomeArquibancadaExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rb_ArquibancadaId)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel31Layout.createSequentialGroup()
+                        .addComponent(btnExcluir_Arq, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
+        );
+        jPanel31Layout.setVerticalGroup(
+            jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel31Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rb_ArquibancadaId)
+                    .addComponent(rb_nomeArquibancadaExcluir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnExcluir_Arq)
+                .addContainerGap())
+        );
+
+        jPanel32.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alterar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel32.setInheritsPopupMenu(true);
+        jPanel32.setPreferredSize(new java.awt.Dimension(179, 117));
+
+        buttonGroup11.add(rb_TotalAssentosArquibancada);
+        rb_TotalAssentosArquibancada.setText("Total Assentos");
+
+        buttonGroup11.add(rb_setorArquibancada);
+        rb_setorArquibancada.setText("Setor");
+
+        btnAlterar_Arq.setText("Alterar");
+        btnAlterar_Arq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterar_ArqActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel32Layout = new javax.swing.GroupLayout(jPanel32);
+        jPanel32.setLayout(jPanel32Layout);
+        jPanel32Layout.setHorizontalGroup(
+            jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel32Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAlterar_Arq, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(rb_setorArquibancada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rb_TotalAssentosArquibancada, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+        jPanel32Layout.setVerticalGroup(
+            jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel32Layout.createSequentialGroup()
+                .addComponent(rb_setorArquibancada)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rb_TotalAssentosArquibancada)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAlterar_Arq)
+                .addContainerGap())
+        );
+
+        jPanel33.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel33.setInheritsPopupMenu(true);
+        jPanel33.setPreferredSize(new java.awt.Dimension(179, 117));
+
+        buttonGroup12.add(rb_ArquibancadaidPesquisar);
+        rb_ArquibancadaidPesquisar.setText("Id para Ações");
+
+        buttonGroup12.add(rb_nomeArquibancadaPesq);
+        rb_nomeArquibancadaPesq.setText("Nome");
+
+        btnPresquisar_Arq.setText("Pesquisar");
+        btnPresquisar_Arq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPresquisar_ArqActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
+        jPanel33.setLayout(jPanel33Layout);
+        jPanel33Layout.setHorizontalGroup(
+            jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel33Layout.createSequentialGroup()
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel33Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(rb_nomeArquibancadaPesq)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rb_ArquibancadaidPesquisar))
+                    .addGroup(jPanel33Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(btnPresquisar_Arq, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        jPanel33Layout.setVerticalGroup(
+            jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel33Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rb_nomeArquibancadaPesq)
+                    .addComponent(rb_ArquibancadaidPesquisar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addComponent(btnPresquisar_Arq)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -902,33 +704,45 @@ public class Tela extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnAdicionar_Arq, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAlterar_Arq, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnExcluir_Arq, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btn_listar_Arq, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnPresquisar_Arq, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel22))
-                        .addGap(61, 61, 61)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_setor)
-                            .addComponent(txt_totalAssentos)
-                            .addComponent(txt_idArquibancada, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))))
-                .addGap(140, 140, 140))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(btnAdicionar_Arq, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_listar_Arq, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_idArquibancada, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(158, 158, 158))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10))
+                                .addGap(61, 61, 61)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_setor)
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addComponent(txt_totalAssentos, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(41, 41, 41))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(60, 60, 60)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(txt_setor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -936,24 +750,18 @@ public class Tela extends javax.swing.JFrame {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
                             .addComponent(txt_totalAssentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
+                        .addGap(48, 48, 48)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22)
-                            .addComponent(txt_idArquibancada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(84, 84, 84)
-                        .addComponent(btnAdicionar_Arq)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAlterar_Arq)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExcluir_Arq)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPresquisar_Arq)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_listar_Arq))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(160, Short.MAX_VALUE))
+                            .addComponent(txt_idArquibancada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAdicionar_Arq)
+                            .addComponent(btn_listar_Arq))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel32, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                            .addComponent(jPanel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -961,8 +769,9 @@ public class Tela extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -971,21 +780,753 @@ public class Tela extends javax.swing.JFrame {
 
         tab_Abas.addTab("Arquibancada", jPanel6);
 
+        jPanel1.setLayout(null);
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingresso"));
+        jPanel5.setMinimumSize(new java.awt.Dimension(1350, 630));
+
+        JTIngresso.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id_ingresso", "Nome", "Data_evento", "Cidade", "Pais", "Preco", "Descrição", "Arquibancada_Id"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(JTIngresso);
+
+        btn_AdicionarIngresso.setText("Adicionar");
+        btn_AdicionarIngresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AdicionarIngressoActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setText("Id para Ações");
+
+        txt_idIngresso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_idIngressoKeyTyped(evt);
+            }
+        });
+
+        btn_listarIngresso.setText("Listar");
+        btn_listarIngresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listarIngressoActionPerformed(evt);
+            }
+        });
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel8.setInheritsPopupMenu(true);
+
+        jLabel6.setText("Nome");
+
+        txt_nomeIngresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nomeIngressoActionPerformed(evt);
+            }
+        });
+        txt_nomeIngresso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nomeIngressoKeyTyped(evt);
+            }
+        });
+
+        jLabel18.setText("Data Evento");
+
+        try {
+            txt_dataIngresso.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel17.setText("Cidade");
+
+        txt_cidadeIngresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_cidadeIngressoActionPerformed(evt);
+            }
+        });
+        txt_cidadeIngresso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_cidadeIngressoKeyTyped(evt);
+            }
+        });
+
+        jLabel19.setText("Pais");
+
+        txt_Pais.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_PaisKeyTyped(evt);
+            }
+        });
+
+        jLabel21.setText("Preco");
+
+        txt_precoIngresso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_precoIngressoKeyTyped(evt);
+            }
+        });
+
+        jLabel7.setText("Descrição");
+
+        txt_descricaoIngresso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_descricaoIngressoKeyTyped(evt);
+            }
+        });
+
+        jLabel8.setText("Id da Arquibancada");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(cb_Arquibancadas, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_Pais)
+                            .addComponent(txt_descricaoIngresso)
+                            .addComponent(txt_cidadeIngresso, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txt_nomeIngresso, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_dataIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_precoIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(21, 21, 21))))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_nomeIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(txt_dataIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel17)
+                    .addComponent(txt_cidadeIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_Pais, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
+                    .addComponent(txt_precoIngresso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_descricaoIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(cb_Arquibancadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Excluir", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel9.setInheritsPopupMenu(true);
+
+        buttonGroup1.add(rb_IngressoId);
+        rb_IngressoId.setText("Id para Ações");
+
+        btn_excluirIngresso.setText("Excluir");
+        btn_excluirIngresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluirIngressoActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(rd_nomeIngressoExcluir);
+        rd_nomeIngressoExcluir.setText("Nome");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(0, 15, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addComponent(rd_nomeIngressoExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rb_IngressoId)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addComponent(btn_excluirIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rb_IngressoId)
+                    .addComponent(rd_nomeIngressoExcluir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_excluirIngresso)
+                .addContainerGap())
+        );
+
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alterar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel10.setInheritsPopupMenu(true);
+        jPanel10.setPreferredSize(new java.awt.Dimension(179, 117));
+
+        buttonGroup2.add(rb_CidadeIngresso);
+        rb_CidadeIngresso.setText("Cidade");
+
+        buttonGroup2.add(rb_dataIngresso);
+        rb_dataIngresso.setText("Data Evento");
+
+        btn_alterarIngresso.setText("Alterar");
+        btn_alterarIngresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_alterarIngressoActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(rb_nomeIngresso);
+        rb_nomeIngresso.setText("Nome");
+
+        buttonGroup2.add(rb_paisIngresso);
+        rb_paisIngresso.setText("Pais");
+
+        buttonGroup2.add(rb_precoIngresso);
+        rb_precoIngresso.setText("Preco");
+
+        buttonGroup2.add(rb_idArquibancadaIngresso);
+        rb_idArquibancadaIngresso.setText("Id Arquibancada");
+
+        buttonGroup2.add(rb_descricao);
+        rb_descricao.setText("descricao");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(rb_paisIngresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rb_precoIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(rb_nomeIngresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rb_CidadeIngresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rb_dataIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(rb_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rb_idArquibancadaIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btn_alterarIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(rb_nomeIngresso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rb_dataIngresso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rb_CidadeIngresso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_paisIngresso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rb_precoIngresso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rb_descricao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rb_idArquibancadaIngresso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(btn_alterarIngresso)
+                .addContainerGap())
+        );
+
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel12.setInheritsPopupMenu(true);
+        jPanel12.setPreferredSize(new java.awt.Dimension(179, 117));
+
+        buttonGroup3.add(rb_IngressoidPesquisar);
+        rb_IngressoidPesquisar.setText("Id para Ações");
+
+        buttonGroup3.add(rb_nomeIngressoPesq);
+        rb_nomeIngressoPesq.setText("Nome");
+
+        btn_pesquisarIngresso.setText("Pesquisar");
+        btn_pesquisarIngresso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pesquisarIngressoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(rb_nomeIngressoPesq)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rb_IngressoidPesquisar))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(btn_pesquisarIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rb_nomeIngressoPesq)
+                    .addComponent(rb_IngressoidPesquisar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_pesquisarIngresso)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(btn_AdicionarIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_listarIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel20)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_idIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_AdicionarIngresso)
+                            .addComponent(btn_listarIngresso)
+                            .addComponent(txt_idIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 45, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))))
+                .addGap(25, 25, 25))
+        );
+
+        jPanel1.add(jPanel5);
+        jPanel5.setBounds(0, 0, 1410, 630);
+
+        tab_Abas.addTab("Ingresso", jPanel1);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Circuito"));
+        jPanel3.setPreferredSize(new java.awt.Dimension(100, 627));
+
+        jLabel1.setText("Nome");
+
+        jLabel3.setText("Data");
+
+        jLabel4.setText("Descrição");
+
+        txt_nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nomeActionPerformed(evt);
+            }
+        });
+        txt_nome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nomeKeyTyped(evt);
+            }
+        });
+
+        txt_Descricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_DescricaoKeyTyped(evt);
+            }
+        });
+
+        JTcircuito.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id_Circuito", "nome_Circuito", "Total Corredores", "Data", "Descrição", "Imagem"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(JTcircuito);
+
+        btnAdicionar.setText("Adicionar");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Id para Ações");
+
+        txt_id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_idKeyTyped(evt);
+            }
+        });
+
+        btn_listar.setText("Listar");
+        btn_listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listarActionPerformed(evt);
+            }
+        });
+
+        try {
+            txt_dataCircuito.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jPanel28.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Excluir", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel28.setInheritsPopupMenu(true);
+
+        buttonGroup7.add(rb_IngressoIdCircuito);
+        rb_IngressoIdCircuito.setText("Id para Ações");
+
+        buttonGroup7.add(rd_nomeCircuitoExcluir);
+        rd_nomeCircuitoExcluir.setText("Nome");
+
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
+        jPanel28.setLayout(jPanel28Layout);
+        jPanel28Layout.setHorizontalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel28Layout.createSequentialGroup()
+                .addGap(0, 15, Short.MAX_VALUE)
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
+                        .addComponent(rd_nomeCircuitoExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rb_IngressoIdCircuito)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))))
+        );
+        jPanel28Layout.setVerticalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel28Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rb_IngressoIdCircuito)
+                    .addComponent(rd_nomeCircuitoExcluir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnExcluir)
+                .addGap(22, 22, 22))
+        );
+
+        jPanel29.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alterar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel29.setInheritsPopupMenu(true);
+        jPanel29.setPreferredSize(new java.awt.Dimension(179, 117));
+
+        buttonGroup8.add(rb_dataCircuito);
+        rb_dataCircuito.setText("Data");
+
+        buttonGroup8.add(rb_nomeCircuito);
+        rb_nomeCircuito.setText("Nome");
+
+        buttonGroup8.add(rb_descricaoCircuito);
+        rb_descricaoCircuito.setText("Descrição");
+
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
+
+        buttonGroup8.add(rb_imagemCircuito);
+        rb_imagemCircuito.setText("Imagem");
+
+        javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
+        jPanel29.setLayout(jPanel29Layout);
+        jPanel29Layout.setHorizontalGroup(
+            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel29Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel29Layout.createSequentialGroup()
+                        .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel29Layout.createSequentialGroup()
+                                .addComponent(rb_nomeCircuito, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(rb_dataCircuito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(jPanel29Layout.createSequentialGroup()
+                        .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rb_descricaoCircuito, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rb_imagemCircuito, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel29Layout.createSequentialGroup()
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
+        );
+        jPanel29Layout.setVerticalGroup(
+            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel29Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rb_nomeCircuito)
+                .addGap(5, 5, 5)
+                .addComponent(rb_dataCircuito)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_descricaoCircuito)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_imagemCircuito)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAlterar)
+                .addGap(22, 22, 22))
+        );
+
+        jPanel30.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel30.setInheritsPopupMenu(true);
+        jPanel30.setPreferredSize(new java.awt.Dimension(179, 117));
+
+        buttonGroup9.add(rb_CircuitoidPesquisar);
+        rb_CircuitoidPesquisar.setText("Id para Ações");
+
+        buttonGroup9.add(rb_nomePesquisaCircuito);
+        rb_nomePesquisaCircuito.setText("Nome");
+
+        btnPresquisar.setText("Pesquisar");
+        btnPresquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPresquisarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
+        jPanel30.setLayout(jPanel30Layout);
+        jPanel30Layout.setHorizontalGroup(
+            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel30Layout.createSequentialGroup()
+                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel30Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(rb_nomePesquisaCircuito)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rb_CircuitoidPesquisar))
+                    .addGroup(jPanel30Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(btnPresquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        jPanel30Layout.setVerticalGroup(
+            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel30Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rb_nomePesquisaCircuito)
+                    .addComponent(rb_CircuitoidPesquisar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addComponent(btnPresquisar)
+                .addGap(20, 20, 20))
+        );
+
+        jLabel41.setText("Imagem");
+
+        txt_pathImg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_pathImgKeyTyped(evt);
+            }
+        });
+
+        btn_imagem.setText("Imagem");
+        btn_imagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_imagemActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel41))
+                        .addGap(181, 181, 181)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_Descricao)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(txt_pathImg, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_imagem)))
+                        .addContainerGap())
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
+                                .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(btn_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(188, 188, 188)
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txt_dataCircuito, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(308, 308, 308))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txt_dataCircuito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(txt_Descricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel41))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_pathImg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_imagem)))
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAdicionar)
+                            .addComponent(btn_listar)
+                            .addComponent(jLabel11)
+                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel29, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(125, Short.MAX_VALUE))
+        );
+
+        tab_Abas.addTab("Circuito", jPanel3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tab_Abas, javax.swing.GroupLayout.DEFAULT_SIZE, 1159, Short.MAX_VALUE)
+            .addComponent(tab_Abas)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tab_Abas, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
+                .addComponent(tab_Abas, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1405, 702));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     //criando metodo para ler valores do banco de dados(table circuito) e colocar na Jtable
@@ -1023,7 +1564,7 @@ public class Tela extends javax.swing.JFrame {
           }
           
     }
-      public void readJTableIngresso(){
+       public void readJTableIngresso(){
           DefaultTableModel modelo =(DefaultTableModel) JTIngresso.getModel();
           modelo.setNumRows(0);
           Connection c = ConexaoBanco.criaConexao();
@@ -1041,7 +1582,7 @@ public class Tela extends javax.swing.JFrame {
               });
           }
       }
-           public void readJTableArquibancada(){
+       public void readJTableArquibancada(){
           DefaultTableModel modelo =(DefaultTableModel) JTArquibancada.getModel();
           modelo.setNumRows(0);
           Connection c = ConexaoBanco.criaConexao();
@@ -1053,223 +1594,35 @@ public class Tela extends javax.swing.JFrame {
             }  
     }
     
-    
-    private void txt_TotalCorredoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_TotalCorredoresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_TotalCorredoresActionPerformed
-
-    private void txt_nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nomeKeyTyped
-
-        int totalCaracter = 25;
-        
-        if(txt_nome.getText().length() >= totalCaracter){
-            JOptionPane.showMessageDialog(null,"Excedeu o limite de caracteres");
-            evt.consume();
-        }
-        
-    }//GEN-LAST:event_txt_nomeKeyTyped
-
-    private void txt_DescricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_DescricaoKeyTyped
-         int totalCaracter = 200;
-        
-        if(txt_Descricao.getText().length() >= totalCaracter){
-            JOptionPane.showMessageDialog(null,"Excedeu o limite de caracteres");
-            evt.consume();
-            
-        }
-        
-        
-    }//GEN-LAST:event_txt_DescricaoKeyTyped
-
-    private void txt_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nomeActionPerformed
-
-    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        // TODO add your handling code here:
-        //adicionando um novo circuito ao banco de dados
-        
-        if(txt_nome.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Digite um nome");
-        }
-        if(txt_TotalCorredores.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Digite Total de Corredores");
-        }
-        else if(txt_Descricao.getText().equals("")){
-               JOptionPane.showMessageDialog(this,"Digite uma Descrição");
-        }
-        else{
-           try{
-                   Connection conection = ConexaoBanco.criaConexao();
-                   Circuito circuito;
+    //crianção de uma função para listar o dado pesquisado pelo usario
+      public void JTableInserirPesquisa(ResultSet rs){
+                DefaultTableModel modelo =(DefaultTableModel) JTIngresso.getModel();
+                modelo.setNumRows(0);     
+        try {
+            while(rs.next()){
+                //passando os dados para dentro da tabela
                 
-                   //criando um novo circuito para ser adicionado no bd
-                   circuito = new Circuito(txt_nome.getText(),
-                        Integer.parseInt(txt_TotalCorredores.getText()),
-                        cmb_Data.getText(),
-                        txt_Descricao.getText()
-                );
-                
-                   BDCircuito.InserirCircuito(circuito, conection);
-                   readJTable();
-                  
-                   //deixando os campos das tabela limpo
-                   txt_id.setText("");
-                   txt_nome.setText("");
-                   txt_TotalCorredores.setText("");
-                   txt_Descricao.setText("");
-                   cmb_Data.setText("");
-           }catch(Exception ex){
-               ex.getMessage();
-           }    
-            
+                modelo.addRow(new Object[]{rs.getInt("id_ingresso"),//i.getId_ingresso(),
+                    rs.getString("nome"),  //i.getNome(),
+                    rs.getString("data_evento"),// i.getData(),
+                    rs.getString("cidade"),// i.getCidade(),
+                    rs.getString("pais"),//i.getPais(),
+                    rs.getFloat("preco"),//i.getPreco(),
+                    rs.getString("descricao"), //i.getDescricao(),
+                    rs.getInt("arquibancada_id_arquibancada") //i.getArquibancada()
+                });
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnAdicionarActionPerformed
-
-    private void txt_TotalCorredoresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_TotalCorredoresKeyTyped
-        // TODO add your handling code here:
-        //Deixando digitar apenas numeros;
-        String caracteres="0987654321";
-        if(!caracteres.contains(evt.getKeyChar()+"")){
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "Digitar apenas numeros");
         }
-    }//GEN-LAST:event_txt_TotalCorredoresKeyTyped
-
-    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
-        //botao caso o usuario queira modificar algum dados
-        if(txt_nome.getText().equals("") && txt_id.getText().equals("")){
-             JOptionPane.showMessageDialog(null, "Digite o nome ou o id que deseja Alterar:");
-           
-        }if(!txt_id.getText().equals("")){
-            if(txt_Descricao.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Digite uma descrição");
-            }if(txt_TotalCorredores.getText().equals("")){
-               JOptionPane.showMessageDialog(null, "Digite total de corredores");  
-            }
-            if(txt_nome.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Digite um nome");  
-            }
-            if(cmb_Data.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite uma data");  
-            }
-            else{
-                Connection c;
-                try{
-                    c = ConexaoBanco.criaConexao();
-
-                    BDCircuito.alterarId(txt_id.getText(), txt_nome.getText(), txt_TotalCorredores.getText(), cmb_Data.getText(), txt_Descricao.getText(), c);
-
-
-                    c.close();//fechando conexão
-                    readJTable();
-                    txt_id.setText("");
-                    txt_nome.setText("");
-                    txt_TotalCorredores.setText("");
-                    txt_Descricao.setText("");
-                }catch(Exception ex){
-                        System.out.println(ex.getMessage());
-                } 
-            }  
-            
-        }
-        else if(!txt_nome.getText().equals("")){
-            if(txt_Descricao.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Digite uma descrição");
-            }if(txt_TotalCorredores.getText().equals("")){
-               JOptionPane.showMessageDialog(null, "Digite total de corredores");  
-            }
-            if(cmb_Data.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Digite um nome");  
-            }
-            else{
-                Connection c;
-                try{
-                    c = ConexaoBanco.criaConexao();
-
-                   BDCircuito.alterar(txt_nome.getText(),txt_TotalCorredores.getText(),txt_Descricao.getText(), cmb_Data.getText(), c);
-
-
-                    c.close();//fechando conexão
-                    readJTable();
-                    txt_id.setText("");
-                    txt_nome.setText("");
-                    txt_TotalCorredores.setText("");
-                    txt_Descricao.setText("");
-                }catch(Exception ex){
-                        System.out.println(ex.getMessage());
-                } 
-            }  
-        }
-    }//GEN-LAST:event_btnAlterarActionPerformed
-
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
-        
-        if(txt_nome.getText().equals("") && txt_id.getText().equals("")){//deletar pelo nome do circuito
-            JOptionPane.showMessageDialog(null, "Digite o nome ou o id que deseja excluir:");
-        }if(!txt_nome.getText().equals("")) {
-              Connection connection = null;
-            try {
-              
-                connection = ConexaoBanco.criaConexao();
-            
-                BDCircuito.deletar(txt_nome.getText(), connection);
-                readJTable();
-                   txt_id.setText("");
-                   txt_nome.setText("");
-                   txt_TotalCorredores.setText("");
-                   txt_Descricao.setText("");
-                   cmb_Data.setText("");
-            } catch (SQLException ex) {
-               JOptionPane.showMessageDialog(null, "Erro ao deletar");
-            }finally{
-                  try {
-                      connection.close();
-                  } catch (SQLException ex) {
-                      Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-                  }
-            }
-          
-        }else if(!txt_id.getText().equals("")){//caso queira deletar pelo id do circuito
+      //crianção de uma função para listar o dado pesquisado pelo usario *Circuito
+      public void JTablePesquisaCircuito(ResultSet rs){
+             
+             DefaultTableModel modelo =(DefaultTableModel) JTcircuito.getModel();
+             modelo.setNumRows(0);
              try {
-                Connection connection;
-                connection = ConexaoBanco.criaConexao();
-            
-                BDCircuito.deletarId(txt_id.getText(), connection);
-                readJTable();
-                
-                   txt_id.setText("");
-                   txt_nome.setText("");
-                   txt_TotalCorredores.setText("");
-                   txt_Descricao.setText("");
-                   cmb_Data.setText("");
-            } catch (SQLException ex) {
-               JOptionPane.showMessageDialog(null, "Erro ao deletar");
-            }
-            
-        }
-    }//GEN-LAST:event_btnExcluirActionPerformed
-
-    private void btnPresquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPresquisarActionPerformed
-        // TODO add your handling code here:
-        PreparedStatement ps;
-         Connection connection = null;
-        if(txt_nome.getText().equals("")&&txt_id.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Digite um nome ou um id para consultar");
-        }
-        if(!txt_nome.getText().equals("")){
-            
-            ResultSet rs = null;
-            try {
-               
-                connection = ConexaoBanco.criaConexao();
-               rs =  BDCircuito.consultarNome(txt_nome.getText(), connection);
-               DefaultTableModel modelo =(DefaultTableModel) JTcircuito.getModel();
-               modelo.setNumRows(0);
-               
-               while(rs.next()){
+             while(rs.next()){
                  
                    //passando os dados para dentro da tabela 
                    
@@ -1280,65 +1633,324 @@ public class Tela extends javax.swing.JFrame {
                         rs.getString("total_corredores"),
                          rs.getString("data"),
                          rs.getString("descricao"),
-                         rs.getBytes("imagem")
+                         rs.getString("imagem")
                     });
                }
-                   txt_id.setText("");
-                   txt_nome.setText("");
-                   txt_TotalCorredores.setText("");
-                   txt_Descricao.setText("");
-                   cmb_Data.setText("");
-            } catch (SQLException ex) {
-                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
-                try {
-                    connection.close();
-                    rs.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               
-
-            }
-        }else if(!txt_id.getText().equals("")){
-             ResultSet rs = null;
-            try {
-               
-                connection = ConexaoBanco.criaConexao();
-                rs =  BDCircuito.consultar(txt_id.getText(), connection);
-                //colocando dados dentro da tabela visual
-                DefaultTableModel modelo =(DefaultTableModel) JTcircuito.getModel();
-               modelo.setNumRows(0);
-               while(rs.next()){
-                  modelo.addRow(new Object[]{
-                        rs.getString("id_circuito"),
-                         rs.getString("nome_circuito"),
-                        rs.getString("total_corredores"),
-                         rs.getString("data"),
-                         rs.getString("descricao"),
-                         rs.getBytes("imagem")
-                    });
-               }
-                   txt_id.setText("");
-                   txt_nome.setText("");
-                   txt_TotalCorredores.setText("");
-                   txt_Descricao.setText("");
-                   cmb_Data.setText("");
-                   
-                   
-            } catch (SQLException ex) {
-                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
-                try {
-                    connection.close();
-                    rs.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               
-             }
-        
+          
+        } catch (SQLException ex) {
+            Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }
+              
+      public void JTablePesquisaArquibancada(ResultSet rs){
+             DefaultTableModel modelo =(DefaultTableModel) JTArquibancada.getModel();
+               modelo.setNumRows(0);
+               
+        try {
+            while(rs.next()){
+                 
+                   //passando os dados para dentro da tabela 
+                   
+                    
+                    modelo.addRow(new Object[]{
+                        rs.getString("id_arquibancada"),
+                         rs.getString("setor"),
+                        rs.getString("totalAssentos"),
+                         
+                    });
+                    
+               }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+      
+      public void JTablePesquisaAutodromo(ResultSet rs){
+             DefaultTableModel modelo =(DefaultTableModel) JTAutodromo.getModel();
+               modelo.setNumRows(0);
+               
+        try {
+            while(rs.next()){
+                
+                //passando os dados para dentro da tabela
+                modelo.addRow(new Object[]{rs.getString("id_autodromo"),//.getId_autodromo(),
+                    rs.getString("nome"),//getNome(),
+                    rs.getString("endereco"),
+                    rs.getString("cidade"),
+                    rs.getString("pais"),
+                    rs.getString("descricao")
+                });
+                
+                
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+      
+      //criando um método para colocar dados dentro de um combo box ao escolher 
+    //uma arquibancada
+      public void ReadComboBox(Connection c){
+          
+          ResultSet rs = BDArquibancada.retornaArquibancada(c);
+        try {
+            while(rs.next()){
+                cb_Arquibancadas.addItem(rs.getString("id_arquibancada"));
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro ao colocar no combo box");
+        }
+          
+      }
+    private void txt_nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nomeKeyTyped
+
+        int totalCaracter =300;
+        
+        if(txt_nome.getText().length() >= totalCaracter){
+            JOptionPane.showMessageDialog(null,"Excedeu o limite de caracteres");
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_txt_nomeKeyTyped
+
+    private void txt_DescricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_DescricaoKeyTyped
+        
+    }//GEN-LAST:event_txt_DescricaoKeyTyped
+
+    
+    private void txt_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nomeActionPerformed
+
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        // TODO add your handling code here:
+        //adicionando um novo circuito ao banco de dados
+        
+        if(txt_nome.getText().equals("")){
+            JOptionPane.showMessageDialog(this,"Digite um nome");
+            txt_nome.requestFocus();
+        }if(txt_dataCircuito.getText().equals("")){
+          JOptionPane.showMessageDialog(this,"Digite uma data válida"); 
+           txt_dataCircuito.requestFocus();
+        }if(txt_pathImg.getText().equals("")){
+            JOptionPane.showMessageDialog(this,"Digite uma imagem válida"); 
+            txt_pathImg.requestFocus();
+        }
+        else if(txt_Descricao.getText().equals("")){
+               JOptionPane.showMessageDialog(this,"Digite uma Descrição");
+                txt_Descricao.requestFocus();
+        }
+        else{
+           try{
+                   Connection conection = ConexaoBanco.criaConexao();
+                   Circuito circuito;
+                
+                   //criando um novo circuito para ser adicionado no bd
+                   circuito = new Circuito(txt_nome.getText(),20,
+                        txt_dataCircuito.getText(),
+                        txt_Descricao.getText(),txt_pathImg.getText()
+                );
+                
+                   BDCircuito.InserirCircuito(circuito, conection);
+                   readJTable();
+                  
+                   //deixando os campos das tabela limpo
+                   txt_id.setText("");
+                   txt_nome.setText("");
+                   txt_pathImg.setText("");
+                   txt_Descricao.setText("");
+                    txt_dataCircuito.setText("");
+           }catch(Exception ex){
+               ex.getMessage();
+           }    
+            
+        }
+    }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+        //botao caso o usuario queira modificar algum dados
+        if(rb_nomeCircuito.isSelected()){
+            if(!txt_nome.getText().equals("") && !txt_id.getText().equals("")){
+                Connection c;
+                try{
+                    c = ConexaoBanco.criaConexao();
+
+                    BDCircuito.alterarNome(txt_id.getText(), txt_nome.getText(), c);
+
+
+                    c.close();//fechando conexão
+                    readJTable(); //chama tabela que irá listar na frame todos os dados 
+                }catch (SQLException ex) {
+                    Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+             JOptionPane.showMessageDialog(null, "Digite um nome ou id válido");    
+             txt_id.requestFocus();
+            }
+        }
+           if(rb_dataCircuito.isSelected()){
+            if(!txt_nome.getText().equals("") && !txt_dataCircuito.getText().equals("")){
+                Connection c;
+                try{
+                    c = ConexaoBanco.criaConexao();
+
+                    BDCircuito.alterarData(txt_nome.getText(),txt_dataCircuito.getText(), c);
+
+
+                    c.close();//fechando conexão
+                    readJTable(); 
+                }catch (SQLException ex) {
+                    Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+             JOptionPane.showMessageDialog(null, "Digite um nome e data válida");    
+             txt_dataCircuito.requestFocus();
+            }
+        }
+          if(rb_descricaoCircuito.isSelected()){
+            if(!txt_nome.getText().equals("") && !txt_Descricao.getText().equals("")){
+                Connection c;
+                try{
+                    c = ConexaoBanco.criaConexao();
+
+                    BDCircuito.alterarDescricao(txt_nome.getText(),txt_Descricao.getText(), c);
+
+
+                    c.close();//fechando conexão
+                    readJTable(); 
+                }catch (SQLException ex) {
+                    Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+             JOptionPane.showMessageDialog(null, "Digite um nome e descrição válida");    
+             txt_Descricao.requestFocus();
+            }
+        }
+       if(rb_imagemCircuito.isSelected()){
+            if(!txt_nome.getText().equals("") && !txt_pathImg.getText().equals("")){
+                Connection c;
+                try{
+                    c = ConexaoBanco.criaConexao();
+
+                    BDCircuito.alterarImgem(txt_nome.getText(),txt_pathImg.getText(), c);
+
+
+                    c.close();//fechando conexão
+                    readJTable(); 
+                }catch (SQLException ex) {
+                    Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+             JOptionPane.showMessageDialog(null, "Digite um nome e imagem válida");    
+             txt_pathImg.requestFocus();
+            }
+        }
+
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        
+        if(rd_nomeCircuitoExcluir.isSelected()){//deletar pelo nome do circuito
+         
+         if(!txt_nome.getText().equals("")) {
+              Connection connection = null;
+            try {
+              
+                connection = ConexaoBanco.criaConexao();
+            
+                BDCircuito.deletar(txt_nome.getText(), connection);
+                readJTable();
+                  
+                   txt_nome.setText("");
+                 
+            } catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null, "Erro ao deletar");
+            }finally{
+                  try {
+                      connection.close();
+                  } catch (SQLException ex) {
+                      Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+            }
+          
+            }else{
+             JOptionPane.showMessageDialog(null, "Digite um nome válido");
+             txt_nome.requestFocus();
+         }
+        }
+         if(rb_IngressoIdCircuito.isSelected()){//deletar pelo nome do circuito
+         
+         if(!txt_id.getText().equals("")) {
+              Connection connection = null;
+            try {
+              
+                connection = ConexaoBanco.criaConexao();
+            
+                BDCircuito.deletarId(txt_id.getText(), connection);
+                readJTable();
+                  
+                   txt_id.setText("");
+                 
+            } catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null, "Erro ao deletar");
+            }finally{
+                  try {
+                      connection.close();
+                  } catch (SQLException ex) {
+                      Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+            }
+          
+            }else{
+             JOptionPane.showMessageDialog(null, "Digite um id para ação válido");
+             txt_nome.requestFocus();
+         }
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnPresquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPresquisarActionPerformed
+        // TODO add your handling code here:
+        if(rb_nomePesquisaCircuito.isSelected()){
+             if(!txt_nome.getText().equals("")){
+                PreparedStatement ps;
+                Connection connection = null;
+                connection = ConexaoBanco.criaConexao();
+                ResultSet rs;
+                 try {
+                     rs =  BDCircuito.consultarNome(txt_nome.getText(), connection);
+                     JTablePesquisaCircuito(rs);
+                     
+                 } catch (SQLException ex) {
+                     Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+        }else{
+                 JOptionPane.showMessageDialog(null,"Entre com um nome válido");
+             }
+        } 
+        if(rb_CircuitoidPesquisar.isSelected()){
+             if(!txt_id.getText().equals("")){
+                PreparedStatement ps;
+                Connection connection = null;
+                connection = ConexaoBanco.criaConexao();
+                ResultSet rs;
+                 try {
+                     rs =  BDCircuito.consultar(txt_id.getText(), connection);
+                     JTablePesquisaCircuito(rs);
+                     
+                 } catch (SQLException ex) {
+                     Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+        }else{
+                 JOptionPane.showMessageDialog(null,"Entre com um id válido");
+             }
+        }
+      
+       
+      
        
     }//GEN-LAST:event_btnPresquisarActionPerformed
 
@@ -1352,7 +1964,7 @@ public class Tela extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_nomeAutodromoActionPerformed
 
     private void txt_nomeAutodromoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nomeAutodromoKeyTyped
-       int totalChar=25;
+       int totalChar=100;
        
        if(txt_nomeAutodromo.getText().length() >= totalChar){
            JOptionPane.showMessageDialog(null, "Excedeu o limite de caracteres");
@@ -1421,200 +2033,183 @@ public class Tela extends javax.swing.JFrame {
 
     private void btn_alterarAutodromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterarAutodromoActionPerformed
         // TODO add your handling code here:
-        if(txt_nomeAutodromo.getText().equals("") && txt_idAutodromo.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Digite um nome ou um id para alterar");
+        if(rb_nomeAutodromo.isSelected()){
+             if(!txt_nomeAutodromo.getText().equals("") && !txt_idAutodromo.getText().equals("")){
+                 Connection c;
+                 c = ConexaoBanco.criaConexao();
+                 try {
+                     BDAutodromo.alterarNome(Integer.parseInt(txt_idAutodromo.getText()),txt_nomeAutodromo.getText(), c);
+                    
+                     c.close();//fechando conexão
+                     readJTableAutodromo();
+                 } catch (SQLException ex) {
+                     Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+        }else{
+                 JOptionPane.showMessageDialog(null,"nome ou id para ação inválidos");
+                  txt_nomeAutodromo.requestFocus();
+             }
         }
-        if(!txt_idAutodromo.getText().equals("")){
-                if(txt_nomeAutodromo.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite o nome do autódromo");
-              } if(txt_paisAutodromo.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite o pais do autódromo");
-              } if(txt_cidadeAutodromo.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite a cidade do autódromo");
-              } if(txt_enderecoAutodromo.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite o endereço do autódromo");
-              } else if(txt_descricaoAutodromo.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite a descrição do autódromo");
-              }else{
-                   Connection c;
-                try{
-                    c = ConexaoBanco.criaConexao();
-
-                    BDAutodromo.alterarId(txt_idAutodromo.getText(), txt_nomeAutodromo.getText(), txt_enderecoAutodromo.getText(), txt_cidadeAutodromo.getText(), txt_paisAutodromo.getText(), txt_descricaoAutodromo.getText(), c);
-
-
-                    c.close();//fechando conexão
-                    readJTableAutodromo();
-                    txt_nomeAutodromo.setText("");
-                    txt_idAutodromo.setText("");
-                    txt_paisAutodromo.setText("");
-                    txt_cidadeAutodromo.setText("");
-                    txt_enderecoAutodromo.setText("");
-                    txt_descricaoAutodromo.setText("");
-                }catch(Exception ex){
-                        System.out.println(ex.getMessage());
-                } 
-              }
+        if(rb_enderecoAutodromo.isSelected()){
+             if(!txt_nomeAutodromo.getText().equals("") && !txt_enderecoAutodromo.getText().equals("")){
+                 Connection c;
+                 c = ConexaoBanco.criaConexao();
+                 try {
+                     BDAutodromo.alterarEndereco(txt_nomeAutodromo.getText(),txt_enderecoAutodromo.getText(), c);
+                    
+                     c.close();//fechando conexão
+                     readJTableAutodromo();
+                 } catch (SQLException ex) {
+                     Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+        }else{
+                 JOptionPane.showMessageDialog(null,"nome ou endereço inválido");
+                 txt_enderecoAutodromo.requestFocus();
+             }   
         }
-        //
-        if(!txt_nomeAutodromo.getText().equals("")){
-                if(txt_paisAutodromo.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite o pais do autódromo");
-              } if(txt_cidadeAutodromo.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite a cidade do autódromo");
-              } if(txt_enderecoAutodromo.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite o endereço do autódromo");
-              } else if(txt_descricaoAutodromo.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite a descrição do autódromo");
-              }else{
-                   Connection c;
-                try{
-                    c = ConexaoBanco.criaConexao();
-
-                    BDAutodromo.alterar(txt_nomeAutodromo.getText(), txt_enderecoAutodromo.getText(), txt_cidadeAutodromo.getText(), txt_paisAutodromo.getText(), txt_descricaoAutodromo.getText(), c);
-
-
-                    c.close();//fechando conexão
-                    readJTableAutodromo();
-                    txt_nomeAutodromo.setText("");
-                    txt_idAutodromo.setText("");
-                    txt_paisAutodromo.setText("");
-                    txt_cidadeAutodromo.setText("");
-                    txt_enderecoAutodromo.setText("");
-                    txt_descricaoAutodromo.setText("");
-                }catch(Exception ex){
-                        System.out.println(ex.getMessage());
-                } 
-              }
+        if(rb_CidadeAutodromo.isSelected()){
+            if(!txt_nomeAutodromo.getText().equals("") && !txt_cidadeAutodromo.getText().equals("")){
+                 Connection c;
+                 c = ConexaoBanco.criaConexao();
+            try {
+                BDAutodromo.alterarCidade(txt_nomeAutodromo.getText(),txt_cidadeAutodromo.getText(), c);
+                    
+                c.close();//fechando conexão
+                readJTableAutodromo();
+                } catch (SQLException ex) {
+                     Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                }
+       }else{
+               JOptionPane.showMessageDialog(null,"nome ou cidade inválido");
+                 txt_cidadeAutodromo.requestFocus();
+            }   
         }
+    if(rb_paisAutodromo.isSelected()){
+         if(!txt_nomeAutodromo.getText().equals("") && !txt_paisAutodromo.getText().equals("")){
+        Connection c;
+        c = ConexaoBanco.criaConexao();
+         try {
+          BDAutodromo.alterarPais(txt_nomeAutodromo.getText(),txt_paisAutodromo.getText(), c);
+
+       c.close();//fechando conexão
+       readJTableAutodromo();
+       } catch (SQLException ex) {
+            Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }else{
+      JOptionPane.showMessageDialog(null,"nome ou pais inválido");
+        txt_paisAutodromo.requestFocus();
+     }
+
+    }
+    if(rb_descricaoAutodromo.isSelected()){
+      if(!txt_nomeAutodromo.getText().equals("") && !txt_descricaoAutodromo.getText().equals("")){
+     Connection c;
+     c = ConexaoBanco.criaConexao();
+      try {
+       BDAutodromo.alterarDescricao(txt_nomeAutodromo.getText(),txt_descricaoAutodromo.getText(), c);
+
+    c.close();//fechando conexão
+    readJTableAutodromo();
+    } catch (SQLException ex) {
+         Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+    }
+ }else{
+   JOptionPane.showMessageDialog(null,"nome ou descriçao inválido");
+   txt_descricaoAutodromo.requestFocus();
+  }
+
+ }
+
     }//GEN-LAST:event_btn_alterarAutodromoActionPerformed
 
     private void btn_excluirAutodromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirAutodromoActionPerformed
         // TODO add your handling code here:
-            if(txt_nomeAutodromo.getText().equals("") && txt_idAutodromo.getText().equals("")){//deletar pelo nome do circuito
-            JOptionPane.showMessageDialog(null, "Digite o nome ou o id que deseja excluir:");
-        }if(!txt_nomeAutodromo.getText().equals("")) {
-              Connection connection = null;
-            try {
-              
+        if(rd_nomeAutodromoExcluir.isSelected()){
+             if(!txt_nomeAutodromo.getText().equals("")){//deletar pelo nome do circuito
+          //  JOptionPane.showMessageDialog(null, "Digite o nome ou o id que deseja excluir:");
+          try {
+                 Connection connection;
                 connection = ConexaoBanco.criaConexao();
             
                 BDAutodromo.deletar(txt_nomeAutodromo.getText(), connection);
-                   readJTableAutodromo();
-                   txt_idAutodromo.setText("");
-                   txt_nomeAutodromo.setText("");
+                
+                readJTableAutodromo();
+                connection.close();
                  
             } catch (SQLException ex) {
                JOptionPane.showMessageDialog(null, "Erro ao deletar");
-            }finally{
-                  try {
-                      connection.close();
-                  } catch (SQLException ex) {
-                      Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-                  }
             }
-          
-        }else if(!txt_idAutodromo.getText().equals("")){//caso queira deletar pelo id do circuito
-             try {
-                Connection connection;
+        }else{
+                  JOptionPane.showMessageDialog(null, "nome inválido");
+                  txt_nomeAutodromo.requestFocus();
+                  
+             }
+        }
+                if(rb_IngressoIdAutodromo.isSelected()){
+             if(!txt_idAutodromo.getText().equals("")){//deletar pelo nome do circuito
+          //  JOptionPane.showMessageDialog(null, "Digite o nome ou o id que deseja excluir:");
+          try {
+                 Connection connection;
                 connection = ConexaoBanco.criaConexao();
             
                 BDAutodromo.deletarId(txt_idAutodromo.getText(), connection);
-                readJTableAutodromo();
                 
-                   txt_idAutodromo.setText("");
-                   txt_nomeAutodromo.setText("");
-                   
+                readJTableAutodromo();
+                connection.close();
+                 
             } catch (SQLException ex) {
                JOptionPane.showMessageDialog(null, "Erro ao deletar");
             }
-            
+        }else{
+                  JOptionPane.showMessageDialog(null, "idAutodromo inválido");
+                  txt_idAutodromo.requestFocus();
+                  
+             }
         }
+
+       
     }//GEN-LAST:event_btn_excluirAutodromoActionPerformed
 
     private void btn_pesquisarAutodromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisarAutodromoActionPerformed
         // TODO add your handling code here:
-          PreparedStatement ps;
-         Connection connection = null;
-        if(txt_nomeAutodromo.getText().equals("")&&txt_idAutodromo.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Digite um nome ou um id para consultar");
-        }
-        if(!txt_nomeAutodromo.getText().equals("")){
-            
-            ResultSet rs = null;
-            try {
-               
-                connection = ConexaoBanco.criaConexao();
-               rs =  BDAutodromo.consultarNome(txt_nomeAutodromo.getText(), connection);
-               DefaultTableModel modelo =(DefaultTableModel) JTAutodromo.getModel();
-               modelo.setNumRows(0);
-               
-               while(rs.next()){
-                 
-                   //passando os dados para dentro da tabela 
-                    modelo.addRow(new Object[]{rs.getString("id_autodromo"),//.getId_autodromo(),
-                                         rs.getString("nome"),//getNome(),
-                                         rs.getString("endereco"),
-                                         rs.getString("cidade"),
-                                         rs.getString("pais"),
-                                         rs.getString("descricao")
-                                         });
-                    
-                   
-               }
-                   txt_idAutodromo.setText("");
-                   txt_nomeAutodromo.setText("");
-                  
-                
-                   
-            } catch (SQLException ex) {
-                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
+        if(rb_nomePesquisaAutodromo.isSelected()){//fazendo pesquisa pelo nome
+            if(!txt_nomeAutodromo.getText().equals("")){
+             PreparedStatement ps;
+             Connection connection = null;
+             ResultSet rs;
+              connection = ConexaoBanco.criaConexao();
                 try {
-                    connection.close();
-                    rs.close();
+                 rs =   BDAutodromo.consultarNome(txt_nomeAutodromo.getText(), connection);//chamando método que rotornará um ResultSet
+                    JTablePesquisaAutodromo(rs);//Listando a pesquisa na JTable
+                    connection.close();//Fechando conexão
                 } catch (SQLException ex) {
                     Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
-
+           }else{
+                JOptionPane.showMessageDialog(null, "Entre como o nome");
+                txt_nomeAutodromo.requestFocus();
             }
-        }else if(!txt_idAutodromo.getText().equals("")){
-             ResultSet rs = null;
-            try {
-               
-                connection = ConexaoBanco.criaConexao();
-                rs =  BDAutodromo.consultar(txt_idAutodromo.getText(), connection);
-                //colocando dados dentro da tabela visual
-                DefaultTableModel modelo =(DefaultTableModel) JTAutodromo.getModel();
-               modelo.setNumRows(0);
-               while(rs.next()){
-                  modelo.addRow(new Object[]{rs.getString("id_autodromo"),
-                                         rs.getString("nome"),
-                                         rs.getString("endereco"),
-                                         rs.getString("cidade"),
-                                         rs.getString("pais"),
-                                         rs.getString("descricao")
-                                         });
-               }
-                   txt_idAutodromo.setText("");
-                   txt_nomeAutodromo.setText("");
-                   
-                   
-            } catch (SQLException ex) {
-                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
+        }
+             if(rb_AutodromoidPesquisar.isSelected()){//fazendo pesquisa pelo nome
+            if(!txt_idAutodromo.getText().equals("")){
+             PreparedStatement ps;
+             Connection connection = null;
+             ResultSet rs;
+              connection = ConexaoBanco.criaConexao();
                 try {
-                    connection.close();
-                    rs.close();
+                 rs =   BDAutodromo.consultar(txt_idAutodromo.getText(), connection);//chamando método que rotornará um ResultSet
+                    JTablePesquisaAutodromo(rs);//Listando a pesquisa na JTable
+                    connection.close();//Fechando conexão
                 } catch (SQLException ex) {
                     Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
-             }
-        
+           }else{
+                JOptionPane.showMessageDialog(null, "Entre como o id");
+                txt_idAutodromo.requestFocus();
+            }
         }
-        
+
     }//GEN-LAST:event_btn_pesquisarAutodromoActionPerformed
 
     private void btn_listarAutodromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listarAutodromoActionPerformed
@@ -1624,7 +2219,7 @@ public class Tela extends javax.swing.JFrame {
 
     private void txt_enderecoAutodromoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_enderecoAutodromoKeyTyped
         // TODO add your handling code here:
-           int totalchar=200;
+           int totalchar=300;
            if(txt_enderecoAutodromo.getText().length()>=totalchar){
                JOptionPane.showMessageDialog(null, "Excedeu o limite de caracteres");
                evt.consume();//nao deixa digitar
@@ -1644,322 +2239,6 @@ public class Tela extends javax.swing.JFrame {
     
     }//GEN-LAST:event_tab_AbasMouseClicked
 
-    private void txt_nomeIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nomeIngressoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nomeIngressoActionPerformed
-
-    private void txt_nomeIngressoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nomeIngressoKeyTyped
-        // TODO add your handling code here:
-        int totalCaracter = 45;
-        
-        if(txt_nome.getText().length() >= totalCaracter){
-            JOptionPane.showMessageDialog(null,"Nome Excedeu o limite de caracteres");
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_nomeIngressoKeyTyped
-
-    private void txt_cidadeIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cidadeIngressoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_cidadeIngressoActionPerformed
-
-    private void txt_cidadeIngressoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cidadeIngressoKeyTyped
-        // TODO add your handling code here:
-        int totalCaracter = 45;
-        
-        if(txt_nome.getText().length() >= totalCaracter){
-            JOptionPane.showMessageDialog(null,"Excedeu o limite de caracteres");
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_cidadeIngressoKeyTyped
-
-    private void txt_PaisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PaisKeyTyped
-        // TODO add your handling code here:
-        int totalCaracter = 45;
-        
-        if(txt_nome.getText().length() >= totalCaracter){
-            JOptionPane.showMessageDialog(null,"Excedeu o limite de caracteres");
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_PaisKeyTyped
-
-    private void btn_AdicionarIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AdicionarIngressoActionPerformed
-        // TODO add your handling code here:
-             if(txt_nomeIngresso.getText().equals("")){
-             JOptionPane.showMessageDialog(null, "Digite o nome do ingresso");
-         } if(txt_precoIngresso.getText().equals("")){
-             txt_precoIngresso.setText("10.0");
-         } if(txt_Pais.getText().equals("")){
-             JOptionPane.showMessageDialog(null, "Digite a cidade do ingresso");
-         } if(txt_cidadeIngresso.getText().equals("")){
-             JOptionPane.showMessageDialog(null, "Digite o endereço do ingresso");
-         }if(Float.parseFloat(txt_precoIngresso.getText()) < 10.00){
-             JOptionPane.showMessageDialog(null, "Digite um valor maior que 10.00 R$");
-         }
-         else if(txt_descricaoIngresso.getText().equals("")){
-             JOptionPane.showMessageDialog(null, "Digite a descrição do ingresso");
-         }else{
-            Connection connection;
-            
-            connection = ConexaoBanco.criaConexao();//criando conexão 
-            //criando objeto da classe autodromo para ser passada como objeto e em seguida ser mandada para o banco de dados
-            Ingresso i = new Ingresso(txt_nomeIngresso.getText(), cmb_dataIngresso.getText(),txt_cidadeIngresso.getText(),txt_Pais.getText(),Float.parseFloat(txt_precoIngresso.getText()),txt_descricaoIngresso.getText(),Integer.parseInt(txt_ArquibancadaIngresso.getText()));
-            
-            
-            //inserindo dados no banco de dados
-            BDIngresso.InserirIngresso(i, connection);
-            readJTableIngresso();
-            
-                    txt_nomeIngresso.setText("");
-                    txt_idIngresso.setText("");
-                    txt_Pais.setText("");
-                    txt_cidadeIngresso.setText("");
-                    txt_precoIngresso.setText("");
-                    txt_descricaoIngresso.setText("");
-            
-            
-             try {
-                 connection.close();
-             } catch (SQLException ex) {
-                 Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-             }
-         }
-    }//GEN-LAST:event_btn_AdicionarIngressoActionPerformed
-
-    private void btn_alterarIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterarIngressoActionPerformed
-        // TODO add your handling code here:
-       if(txt_descricaoIngresso.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite a descrição ");
-                 
-              } 
-        if(txt_nomeIngresso.getText().equals("") && txt_idIngresso.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Digite um nome ou um id para alterar");
-        }
-        if(!txt_idIngresso.getText().equals("")){
-             if(txt_precoIngresso.getText().equals("")){
-             JOptionPane.showMessageDialog(null, "Digite o preco do ingresso");
-                }
-                if(txt_nomeIngresso.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite o nome");
-              } if(txt_Pais.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite o pais ");
-              } if(txt_cidadeIngresso.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite a cidade ");
-              } if(txt_precoIngresso.getText().equals("")){
-                  txt_precoIngresso.setText("10.00");
-              }if(Float.parseFloat(txt_precoIngresso.getText()) < 10.00){
-                     txt_precoIngresso.setText("10.00");
-              }
-              else if(txt_ArquibancadaIngresso.getText().equals("")){
-                 JOptionPane.showMessageDialog(null, "Digite uma arquibancada");
-              }
-              else{
-                   Connection c;
-                try{
-                    c = ConexaoBanco.criaConexao();
-
-                    BDIngresso.alterarId(Integer.parseInt(txt_idIngresso.getText()),txt_nomeIngresso.getText(),cmb_Data.getText(),txt_cidadeIngresso.getText(),
-                            txt_Pais.getText(),Float.parseFloat(txt_precoIngresso.getText()),txt_descricaoIngresso.getText(),Integer.parseInt(txt_ArquibancadaIngresso.getText()), c );
-
-
-                    c.close();//fechando conexão
-                    readJTableIngresso();
-                    txt_nomeIngresso.setText("");
-                    txt_idIngresso.setText("");
-                    txt_Pais.setText("");
-                    txt_cidadeIngresso.setText("");
-                    txt_precoIngresso.setText("");
-                    txt_descricaoIngresso.setText("");
-                }catch(Exception ex){
-                        System.out.println(ex.getMessage());
-                } 
-              }
-        }
-        //
-        if(txt_descricaoIngresso.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite a descrição ");
-              }
-        if(!txt_nomeIngresso.getText().equals("")){
-             if(txt_precoIngresso.getText().equals("")){
-             JOptionPane.showMessageDialog(null, "Digite o preco do ingresso");
-                    }
-                if(txt_Pais.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite o pais ");
-              } if(txt_cidadeIngresso.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite a cidade");
-              } if(txt_precoIngresso.getText().equals("")){
-                  txt_precoIngresso.setText("10.00");
-              } if(Float.parseFloat(txt_precoIngresso.getText()) < 10.00){
-                   txt_precoIngresso.setText("10.00");
-              }
-              if(txt_ArquibancadaIngresso.getText().equals("")){
-                 JOptionPane.showMessageDialog(null, "Digite uma arquibancada");
-              }
-              else if(txt_descricaoIngresso.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite a descrição ");
-              }else{
-                   
-                try{
-                  
-                    Connection c;
-                    
-                    c = ConexaoBanco.criaConexao();
-                      
-                  BDIngresso.alterar(txt_nomeIngresso.getText(),cmb_Data.getText(),txt_cidadeIngresso.getText(),
-                            txt_Pais.getText(),Float.parseFloat(txt_precoIngresso.getText()),txt_descricaoIngresso.getText(),Integer.parseInt(txt_ArquibancadaIngresso.getText()), c );
-
-
-
-                    c.close();//fechando conexão
-                    readJTableIngresso();
-                    txt_nomeIngresso.setText("");
-                    txt_idIngresso.setText("");
-                    txt_Pais.setText("");
-                    txt_cidadeIngresso.setText("");
-                    txt_precoIngresso.setText("");
-                    txt_descricaoIngresso.setText("");
-                }catch(Exception ex){
-                        System.out.println("cancelado");
-                } 
-              }
-        }
-    }//GEN-LAST:event_btn_alterarIngressoActionPerformed
-
-    private void btn_excluirIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirIngressoActionPerformed
-        // TODO add your handling code here:
-         if(txt_nomeIngresso.getText().equals("") && txt_idIngresso.getText().equals("")){//deletar pelo nome do circuito
-            JOptionPane.showMessageDialog(null, "Digite o nome ou o id que deseja excluir:");
-        }if(!txt_nomeIngresso.getText().equals("")) {
-              Connection connection = null;
-            try {
-              
-                connection = ConexaoBanco.criaConexao();
-            
-                BDIngresso.deletar(txt_nomeIngresso.getText(), connection);
-                   readJTableIngresso();
-                   txt_idIngresso.setText("");
-                   txt_nomeIngresso.setText("");
-                 
-            } catch (SQLException ex) {
-               JOptionPane.showMessageDialog(null, "Erro ao deletar");
-            }finally{
-                  try {
-                      connection.close();
-                  } catch (SQLException ex) {
-                      Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-                  }
-            }
-          
-        }else if(!txt_idIngresso.getText().equals("")){//caso queira deletar pelo id do circuito
-             try {
-                Connection connection;
-                connection = ConexaoBanco.criaConexao();
-            
-                BDIngresso.deletarId(txt_idIngresso.getText(), connection);
-                  readJTableIngresso();
-                
-                   txt_idIngresso.setText("");
-                   txt_nomeIngresso.setText("");
-                   
-            } catch (SQLException ex) {
-               JOptionPane.showMessageDialog(null, "Erro ao deletar");
-            }
-            
-        }
-    }//GEN-LAST:event_btn_excluirIngressoActionPerformed
-
-    private void btn_pesquisarIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisarIngressoActionPerformed
-        // TODO add your handling code here:
-         PreparedStatement ps;
-         Connection connection = null;
-        if(txt_nomeIngresso.getText().equals("")&&txt_idIngresso.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Digite um nome ou um id para consultar");
-        }
-        if(!txt_nomeIngresso.getText().equals("")){
-            
-            ResultSet rs = null;
-            try {
-               
-                connection = ConexaoBanco.criaConexao();
-               rs =  BDIngresso.consultarNome(txt_nomeIngresso.getText(), connection);
-               DefaultTableModel modelo =(DefaultTableModel) JTIngresso.getModel();
-               modelo.setNumRows(0);
-               
-               while(rs.next()){
-                 
-                   //passando os dados para dentro da tabela 
-                   
-                    
-                    modelo.addRow(new Object[]{rs.getInt("id_ingresso"),//i.getId_ingresso(),
-                                       rs.getString("nome"),  //i.getNome(),
-                                        rs.getString("data_evento"),// i.getData(),
-                                        rs.getString("cidade"),// i.getCidade(),
-                                         rs.getString("pais"),//i.getPais(),
-                                         rs.getFloat("preco"),//i.getPreco(),
-                                        rs.getString("descricao"), //i.getDescricao(),
-                                        rs.getInt("arquibancada_id_arquibancada") //i.getArquibancada()
-              });
-               }
-                   txt_idIngresso.setText("");
-                   txt_nomeIngresso.setText("");
-                  
-            } catch (SQLException ex) {
-                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
-                try {
-                    connection.close();
-                    rs.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               
-
-            }
-        }else if(!txt_idIngresso.getText().equals("")){
-             ResultSet rs = null;
-            try {
-               
-                connection = ConexaoBanco.criaConexao();
-                rs =  BDIngresso.consultar(txt_idIngresso.getText(), connection);
-                //colocando dados dentro da tabela visual
-                DefaultTableModel modelo =(DefaultTableModel) JTIngresso.getModel();
-               modelo.setNumRows(0);
-               while(rs.next()){
-                  modelo.addRow(new Object[]{rs.getInt("id_ingresso"),//i.getId_ingresso(),
-                                       rs.getString("nome"),  //i.getNome(),
-                                        rs.getString("data_evento"),// i.getData(),
-                                        rs.getString("cidade"),// i.getCidade(),
-                                         rs.getString("pais"),//i.getPais(),
-                                         rs.getFloat("preco"),//i.getPreco(),
-                                        rs.getString("descricao"), //i.getDescricao(),
-                                        rs.getInt("arquibancada_id_arquibancada") //i.getArquibancada()
-              });
-               }
-                   txt_idIngresso.setText("");
-                   txt_nomeIngresso.setText("");
-                   
-                   
-                   
-            } catch (SQLException ex) {
-                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
-                try {
-                    connection.close();
-                    rs.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               
-             }
-        
-        }
-       
-    }//GEN-LAST:event_btn_pesquisarIngressoActionPerformed
-
-    private void btn_listarIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listarIngressoActionPerformed
-        // TODO add your handling code here:
-        readJTableIngresso();
-    }//GEN-LAST:event_btn_listarIngressoActionPerformed
-
     private void txt_idKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_idKeyTyped
         // TODO add your handling code here:
          String caracteres="0987654321";
@@ -1968,47 +2247,6 @@ public class Tela extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Digitar apenas numeros");
         }
     }//GEN-LAST:event_txt_idKeyTyped
-
-    private void txt_idIngressoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_idIngressoKeyTyped
-        // TODO add your handling code here:
-         String caracteres="0987654321";
-        if(!caracteres.contains(evt.getKeyChar()+"")){
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "Digitar apenas numeros");
-        }
-    }//GEN-LAST:event_txt_idIngressoKeyTyped
-
-    private void txt_precoIngressoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_precoIngressoKeyTyped
-        // TODO add your handling code here:
-         String caracteres="0987654321.";
-         int total =10;
-        if(!caracteres.contains(evt.getKeyChar()+"")){
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "Digitar apenas numeros");
-        }
-        if(txt_precoIngresso.getText().length()>=total){
-             JOptionPane.showMessageDialog(null, "excedeu limite de caracteres");
-             evt.consume();
-        }
-    }//GEN-LAST:event_txt_precoIngressoKeyTyped
-
-    private void txt_descricaoIngressoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descricaoIngressoKeyTyped
-        // TODO add your handling code here:
-         int total =300;
-         if(txt_descricaoIngresso.getText().length()>=total){
-             JOptionPane.showMessageDialog(null, "excedeu limite de caracteres");
-             evt.consume();
-        }
-    }//GEN-LAST:event_txt_descricaoIngressoKeyTyped
-
-    private void txt_ArquibancadaIngressoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ArquibancadaIngressoKeyTyped
-        // TODO add your handling code here:
-         String caracteres="0987654321";
-         if(!caracteres.contains(evt.getKeyChar()+"")){
-            evt.consume();
-            JOptionPane.showMessageDialog(null, "Digitar apenas numeros");
-        }
-    }//GEN-LAST:event_txt_ArquibancadaIngressoKeyTyped
 
     private void btnAdicionar_ArqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionar_ArqActionPerformed
         // TODO add your handling code here:
@@ -2041,177 +2279,133 @@ public class Tela extends javax.swing.JFrame {
 
     private void btnAlterar_ArqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar_ArqActionPerformed
         // TODO add your handling code here:
-         if(txt_idArquibancada.getText().equals("") && txt_setor.getText().equals("")){
-             JOptionPane.showMessageDialog(null, "Digite o setor ou o id que deseja Alterar:");
-           
-        }if(!txt_idArquibancada.getText().equals("")){
-           
-            if(txt_setor.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Digite um setor");  
-            }
-            else if(txt_totalAssentos.getText().equals("")){
-                  JOptionPane.showMessageDialog(null, "Digite total Assentos");  
-            }
-            else{
-                Connection c;
+        if(rb_setorArquibancada.isSelected()){
+            if(!txt_setor.getText().equals("") && !txt_idArquibancada.getText().equals("")){
+                 Connection c;
                 try{
                     c = ConexaoBanco.criaConexao();
 
-                    BDArquibancada.alterarId(txt_idArquibancada.getText(), txt_setor.getText(), Integer.parseInt(txt_totalAssentos.getText()), c);
+                    BDArquibancada.alterarSetor(txt_setor.getText(), Integer.parseInt(txt_idArquibancada.getText()), c);
 
 
                     c.close();//fechando conexão
                     readJTableArquibancada();
-                    txt_idArquibancada.setText("");
-                    txt_setor.setText("");
-                    txt_totalAssentos.setText("");
-                }catch(Exception ex){
+                     }catch(Exception ex){
                         System.out.println(ex.getMessage());
                 } 
-            }  
-            
-        }
-        else if(!txt_setor.getText().equals("")){
-            
-            if(txt_totalAssentos.equals("")){
-                JOptionPane.showMessageDialog(null, "Digite um setor");  
+            }else{
+                JOptionPane.showMessageDialog(null, "Digite o setor e id válido:");
+                txt_setor.requestFocus();
             }
-            else{
-                Connection c;
+        }
+          if(rb_TotalAssentosArquibancada.isSelected()){
+            if(!txt_setor.getText().equals("") && !txt_totalAssentos.getText().equals("")){
+                 Connection c;
                 try{
                     c = ConexaoBanco.criaConexao();
 
-                   BDArquibancada.alterar(txt_setor.getText(),txt_totalAssentos.getText(), c);
+                    BDArquibancada.alterarTotalAssentos(txt_setor.getText(), Integer.parseInt(txt_totalAssentos.getText()), c);
 
 
                     c.close();//fechando conexão
                     readJTableArquibancada();
-                   txt_setor.setText("");
-                   txt_totalAssentos.setText("");
-                   
-                }catch(Exception ex){
+                     }catch(Exception ex){
                         System.out.println(ex.getMessage());
                 } 
-            }  
+            }else{
+                JOptionPane.showMessageDialog(null, "Digite o setor e total de assentos válido:");
+                txt_totalAssentos.requestFocus();
+            }
         }
+
     }//GEN-LAST:event_btnAlterar_ArqActionPerformed
 
     private void btnExcluir_ArqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluir_ArqActionPerformed
         // TODO add your handling code here:
-        if(txt_setor.getText().equals("") && txt_idArquibancada.getText().equals("")){//deletar pelo nome do circuito
-            JOptionPane.showMessageDialog(null, "Digite o setor ou o id que deseja excluir:");
-        }if(!txt_setor.getText().equals("")) {
-              Connection connection = null;
-            try {
-              
+        if(rb_nomeArquibancadaExcluir.isSelected()){
+            if(!txt_setor.getText().equals("")){
+                 try {
+                Connection connection = null;
                 connection = ConexaoBanco.criaConexao();
             
                 BDArquibancada.deletar(txt_setor.getText(), connection);
                 readJTableArquibancada();
                 //limpa o campo
                   txt_setor.setText("");
+                   connection.close();
             } catch (SQLException ex) {
                JOptionPane.showMessageDialog(null, "Erro ao deletar");
-            }finally{
-                  try {
-                      connection.close();
-                  } catch (SQLException ex) {
-                      Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-                  }
+            }   
+            }else{
+                JOptionPane.showMessageDialog(null, "Entre com o setor:");
+                txt_setor.requestFocus();
             }
-          
-        }else if(!txt_idArquibancada.getText().equals("")){//caso queira deletar pelo id do circuito
-             try {
-                Connection connection;
+        }
+        if(rb_ArquibancadaId.isSelected()){
+            if(!txt_idArquibancada.getText().equals("")){
+                 try {
+                Connection connection = null;
                 connection = ConexaoBanco.criaConexao();
             
                 BDArquibancada.deletarId(txt_idArquibancada.getText(), connection);
                 readJTableArquibancada();
-                
+                //limpa o campo
                   txt_idArquibancada.setText("");
+                   connection.close();
             } catch (SQLException ex) {
                JOptionPane.showMessageDialog(null, "Erro ao deletar");
+            }   
+            }else{
+                JOptionPane.showMessageDialog(null, "Entre com o id para ação:");
+                txt_idArquibancada.requestFocus();
             }
-            
         }
     }//GEN-LAST:event_btnExcluir_ArqActionPerformed
 
     private void btnPresquisar_ArqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPresquisar_ArqActionPerformed
         // TODO add your handling code here:
-        PreparedStatement ps;
-         Connection connection = null;
-        if(txt_setor.getText().equals("")&&txt_idArquibancada.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Digite um setor ou um id para consultar");
-        }
-        if(!txt_setor.getText().equals("")){
-            
-            ResultSet rs = null;
-            try {
-               
-                connection = ConexaoBanco.criaConexao();
-               rs =  BDArquibancada.consultarNome(txt_setor.getText(), connection);
-               DefaultTableModel modelo =(DefaultTableModel) JTArquibancada.getModel();
-               modelo.setNumRows(0);
-               
-               while(rs.next()){
-                 
-                   //passando os dados para dentro da tabela 
-                   
-                    
-                    modelo.addRow(new Object[]{
-                        rs.getString("id_arquibancada"),
-                         rs.getString("setor"),
-                        rs.getString("totalAssentos"),
-                         
-                    });
-                    
-               }
-               txt_setor.setText("");
-                  
-            } catch (SQLException ex) {
-                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
-                try {
-                    connection.close();
-                    rs.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               
-
-            }
-        }else if(!txt_idArquibancada.getText().equals("")){
-             ResultSet rs = null;
-            try {
-               
-                connection = ConexaoBanco.criaConexao();
-                rs =  BDArquibancada.consultar(txt_idArquibancada.getText(), connection);
-                //colocando dados dentro da tabela visual
-                DefaultTableModel modelo =(DefaultTableModel) JTArquibancada.getModel();
-               modelo.setNumRows(0);
-               while(rs.next()){
-                  modelo.addRow(new Object[]{
-                          rs.getString("id_arquibancada"),
-                          rs.getString("setor"),
-                          rs.getString("totalAssentos"),
-                    });
-               }
-               txt_idArquibancada.setText("");
-                   
-                   
-            } catch (SQLException ex) {
-                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
-                try {
-                    connection.close();
-                    rs.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               
-             }
         
-        }
+        if(rb_nomeArquibancadaPesq.isSelected()){
+              if(!txt_setor.getText().equals("")){
+                
+                 Connection connection = null;
+                 ResultSet rs = null;
+                try {
+               
+                     connection = ConexaoBanco.criaConexao();
+                     rs =  BDArquibancada.consultarNome(txt_setor.getText(), connection);
+                     JTablePesquisaArquibancada(rs);
+                     rs.close();
+              
+                  }catch (SQLException ex) {
+                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        }else{
+                  JOptionPane.showMessageDialog(null, "Setor inválido");
+                  txt_setor.requestFocus();
+              }
+     }
+        if(rb_ArquibancadaidPesquisar.isSelected()){
+             if(!txt_idArquibancada.getText().equals("")){
+
+             Connection connection = null;
+             ResultSet rs = null;
+                try {
+
+                 connection = ConexaoBanco.criaConexao();
+                 rs =  BDArquibancada.consultar(txt_idArquibancada.getText(), connection);
+                 JTablePesquisaArquibancada(rs);
+                 rs.close();
+
+            }catch (SQLException ex) {
+            Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        }else{
+                  JOptionPane.showMessageDialog(null, "id ação inválido");
+                  txt_idArquibancada.requestFocus();
+              }
+    }
+       
     }//GEN-LAST:event_btnPresquisar_ArqActionPerformed
 
     private void btn_listar_ArqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listar_ArqActionPerformed
@@ -2251,13 +2445,402 @@ public class Tela extends javax.swing.JFrame {
             evt.consume();
             JOptionPane.showMessageDialog(null, "Digitar apenas numeros");
         }
-         int totalCaracter = 11;
+         int totalCaracter = 5;
         
         if(txt_totalAssentos.getText().length() >= totalCaracter){
             JOptionPane.showMessageDialog(null,"Excedeu o limite de caracteres");
             evt.consume();
         }
     }//GEN-LAST:event_txt_totalAssentosKeyTyped
+
+    private void btn_alterarIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterarIngressoActionPerformed
+       //TODO add your handling code here:
+       
+       if(rb_nomeIngresso.isSelected()){
+           if(!txt_nomeIngresso.getText().equals("") && !txt_idIngresso.getText().equals("")){
+               Connection connection;
+               connection = ConexaoBanco.criaConexao();
+               BDIngresso.alterarNome(Integer.parseInt(txt_idIngresso.getText()),txt_nomeIngresso.getText(), connection);
+           }
+           else{
+             JOptionPane.showMessageDialog(null, "Nome ou Id para ação inválido");
+             txt_idIngresso.requestFocus();
+           }
+        }if(rb_dataIngresso.isSelected()){
+           if(!txt_dataIngresso.getText().equals("") && !txt_nomeIngresso.getText().equals("")){
+               Connection connection;
+               connection = ConexaoBanco.criaConexao();
+               BDIngresso.alterarData(txt_nomeIngresso.getText(), txt_dataIngresso.getText(), connection);
+           }
+           else{
+             JOptionPane.showMessageDialog(null, "Nome ou data inválido");
+             txt_dataIngresso.requestFocus();
+           }
+       }if(rb_CidadeIngresso.isSelected()){
+           if(!txt_cidadeIngresso.getText().equals("") && !txt_nomeIngresso.getText().equals("")){
+               Connection connection;
+               connection = ConexaoBanco.criaConexao();
+               BDIngresso.alterarCidade(txt_nomeIngresso.getText(),txt_cidadeIngresso.getText(), connection);
+           }
+           else{
+            JOptionPane.showMessageDialog(null, "Nome ou cidade inválida");
+            txt_cidadeIngresso.requestFocus();
+           }
+       }
+       if(rb_paisIngresso.isSelected()){
+           if(!txt_Pais.getText().equals("") && !txt_nomeIngresso.getText().equals("")){
+               Connection connection;
+               connection = ConexaoBanco.criaConexao();
+               BDIngresso.alterarPais(txt_nomeIngresso.getText(),txt_Pais.getText(), connection);
+           }
+           else{
+            JOptionPane.showMessageDialog(null, "Nome ou pais inválido");
+            txt_Pais.requestFocus();
+           }
+       }
+         if(rb_precoIngresso.isSelected()){
+           if(!txt_precoIngresso.getText().equals("") && !txt_nomeIngresso.getText().equals("")){
+               if(Float.parseFloat(txt_precoIngresso.getText()) < 10.0){
+                   txt_precoIngresso.setText("10.00");
+               }
+               Connection connection;
+               connection = ConexaoBanco.criaConexao();
+               BDIngresso.alterarPreco(txt_nomeIngresso.getText(),Float.parseFloat(txt_precoIngresso.getText()), connection);
+           }
+           else{
+            JOptionPane.showMessageDialog(null, "Nome ou preço inválido");
+            txt_precoIngresso.requestFocus();
+           }
+       } 
+         if(rb_descricao.isSelected()){
+           if(!txt_descricaoIngresso.getText().equals("") && !txt_nomeIngresso.getText().equals("")){
+               Connection connection;
+               connection = ConexaoBanco.criaConexao();
+               BDIngresso.alterarDescricao(txt_nomeIngresso.getText(),txt_descricaoIngresso.getText(), connection);
+           }
+           else{
+            JOptionPane.showMessageDialog(null, "Nome ou descrição inválido");
+            txt_descricaoIngresso.requestFocus();
+           }
+       } if(rb_idArquibancadaIngresso.isSelected()){
+           if(!cb_Arquibancadas.getSelectedItem().equals("") && !txt_nomeIngresso.getText().equals("")){
+               Connection connection;
+               connection = ConexaoBanco.criaConexao();
+               BDIngresso.alterarIdArquibancada(txt_nomeIngresso.getText(),cb_Arquibancadas.getSelectedItem().toString(), connection);
+           }
+           else{
+            JOptionPane.showMessageDialog(null, "Nome ou id Arquibancada inválido");
+            txt_descricaoIngresso.requestFocus();
+           }
+       }
+        
+        
+          
+          readJTableIngresso();
+       
+       
+      
+//            else{
+//                Connection c;
+//                try{
+//                    c = ConexaoBanco.criaConexao();
+//
+//                    BDIngresso.alterarId(Integer.parseInt(txt_idIngresso.getText()),txt_nomeIngresso.getText(),txt_dataIngresso.getText(),txt_cidadeIngresso.getText(),
+//                        txt_Pais.getText(),Float.parseFloat(txt_precoIngresso.getText()),txt_descricaoIngresso.getText(),Integer.parseInt(txt_ArquibancadaIngresso.getText()), c );
+//
+//                    c.close();//fechando conexão
+//                    readJTableIngresso();
+//                    txt_nomeIngresso.setText("");
+//                    txt_idIngresso.setText("");
+//                    txt_Pais.setText("");
+//                    txt_cidadeIngresso.setText("");
+//                    txt_precoIngresso.setText("");
+//                    txt_descricaoIngresso.setText("");
+//                }catch(Exception ex){
+//                    System.out.println(ex.getMessage());
+//                }
+//            }
+//        }
+       
+    }//GEN-LAST:event_btn_alterarIngressoActionPerformed
+
+    private void btn_excluirIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirIngressoActionPerformed
+    
+        if(rd_nomeIngressoExcluir.isSelected()){
+            if(!txt_nomeIngresso.getText().equals("")){
+                Connection connection;
+                try {
+                    connection = ConexaoBanco.criaConexao();
+                    BDIngresso.deletar(txt_nomeIngresso.getText(), connection);
+                    readJTableIngresso();
+                } catch (SQLException ex) {
+                    System.out.println("Erro ao delatar");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"Digite o nome para excluir");
+                txt_nomeIngresso.requestFocus();
+            }
+        }
+        if(rb_IngressoId.isSelected()){
+             if(!txt_idIngresso.getText().equals("")){
+                Connection connection;
+                try {
+                    connection = ConexaoBanco.criaConexao();
+                    BDIngresso.deletarId(txt_idIngresso.getText(), connection);
+                    readJTableIngresso();
+                } catch (SQLException ex) {
+                    System.out.println("Erro ao delatar");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"Digite o id para ação");
+                txt_idIngresso.requestFocus();
+            }
+            
+        }        
+  
+    }//GEN-LAST:event_btn_excluirIngressoActionPerformed
+
+    private void txt_descricaoIngressoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descricaoIngressoKeyTyped
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_txt_descricaoIngressoKeyTyped
+
+    private void txt_precoIngressoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_precoIngressoKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321.";
+        int total =10;
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Digitar apenas numeros");
+        }
+        if(txt_precoIngresso.getText().length()>=total){
+            JOptionPane.showMessageDialog(null, "excedeu limite de caracteres");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_precoIngressoKeyTyped
+
+    private void txt_PaisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PaisKeyTyped
+        // TODO add your handling code here:
+        int totalCaracter = 45;
+
+        if(txt_nome.getText().length() >= totalCaracter){
+            JOptionPane.showMessageDialog(null,"Excedeu o limite de caracteres");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_PaisKeyTyped
+
+    private void txt_cidadeIngressoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cidadeIngressoKeyTyped
+        // TODO add your handling code here:
+        int totalCaracter = 45;
+
+        if(txt_nome.getText().length() >= totalCaracter){
+            JOptionPane.showMessageDialog(null,"Excedeu o limite de caracteres");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_cidadeIngressoKeyTyped
+
+    private void txt_cidadeIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cidadeIngressoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_cidadeIngressoActionPerformed
+
+    private void txt_nomeIngressoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nomeIngressoKeyTyped
+        // TODO add your handling code here:
+        int totalCaracter = 300;
+
+        if(txt_nome.getText().length() >= totalCaracter){
+            JOptionPane.showMessageDialog(null,"Nome Excedeu o limite de caracteres");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_nomeIngressoKeyTyped
+
+    private void txt_nomeIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nomeIngressoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nomeIngressoActionPerformed
+
+    private void btn_listarIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listarIngressoActionPerformed
+        // TODO add your handling code here:
+        readJTableIngresso();
+    }//GEN-LAST:event_btn_listarIngressoActionPerformed
+
+    private void txt_idIngressoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_idIngressoKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Digitar apenas numeros");
+        }
+    }//GEN-LAST:event_txt_idIngressoKeyTyped
+
+    private void btn_pesquisarIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisarIngressoActionPerformed
+        // TODO add your handling code here:
+        
+        if(rb_nomeIngressoPesq.isSelected()){//conferindo se esta marcado  radio button
+            if(!txt_nomeIngresso.getText().equals("")){//cado seja diferente de vazio ira listar o dados escolhido
+            
+                Connection connection = null;
+                        ResultSet rs = null;
+            try {
+
+                connection = ConexaoBanco.criaConexao();//criando conexao
+                rs =  BDIngresso.consultarNome(txt_nomeIngresso.getText(), connection);//usando o método consultarNome(), para procurar um nome no banco *nome passado como paramentro
+                JTableInserirPesquisa(rs);//chamando a função que vai escrever
+                                          //no JTable os dados retornados da pesquisa
+                                            
+                txt_nomeIngresso.setText("");
+
+            } catch (SQLException ex) {//listagem de erro
+                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{//fechando conexões
+                try {
+                    connection.close();
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+            }else{//caso o campo de texto nome esteja vazio
+                JOptionPane.showMessageDialog(null, "Digite o nome do circuito");
+            }
+        }
+        else if(rb_IngressoidPesquisar.isSelected()){//conferindo se esta marcado  radio button
+            if(!txt_idIngresso.getText().equals("")){//cado seja diferente de vazio ira listar o dados escolhido
+            
+                Connection connection = null;
+                        ResultSet rs = null;
+            try {
+
+                connection = ConexaoBanco.criaConexao();//criando conexao
+                rs =  BDIngresso.consultar(txt_idIngresso.getText(), connection);//usando o método consultarNome(), para procurar um nome no banco *nome passado como paramentro
+                JTableInserirPesquisa(rs);//chamando a função que vai escrever
+                                          //no JTable os dados retornados da pesquisa
+                                            
+                txt_idIngresso.setText("");
+
+            } catch (SQLException ex) {//listagem de erro
+                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{//fechando conexões
+                try {
+                    connection.close();
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+            }else{//caso o campo de texto id esteja vazio
+                JOptionPane.showMessageDialog(null, "Digite o id para ação do circuito");
+            }
+        }
+
+    }//GEN-LAST:event_btn_pesquisarIngressoActionPerformed
+
+    private void btn_AdicionarIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AdicionarIngressoActionPerformed
+        // TODO add your handling code here:
+        if(txt_nomeIngresso.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o nome do ingresso");
+        } if(txt_precoIngresso.getText().equals("")){
+            txt_precoIngresso.setText("10.0");
+        } if(txt_Pais.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite a cidade do ingresso");
+        } if(txt_cidadeIngresso.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o endereço do ingresso");
+        }if(Float.parseFloat(txt_precoIngresso.getText()) < 10.00){
+            JOptionPane.showMessageDialog(null, "Digite um valor maior que 10.00 R$");
+        }if(cb_Arquibancadas.getSelectedItem().equals("")){
+            JOptionPane.showMessageDialog(null, "Selecione uma arquibancada válida ");
+        }
+        else if(txt_descricaoIngresso.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Digite a descrição do ingresso");
+        }else{
+            Connection connection;
+
+            connection = ConexaoBanco.criaConexao();//criando conexão
+            //criando objeto da classe autodromo para ser passada como objeto e em seguida ser mandada para o banco de dados
+            Ingresso i = new Ingresso(txt_nomeIngresso.getText(), txt_dataIngresso.getText(),txt_cidadeIngresso.getText(),txt_Pais.getText(),Float.parseFloat(txt_precoIngresso.getText()),txt_descricaoIngresso.getText(),Integer.parseInt(cb_Arquibancadas.getSelectedItem().toString()));
+           try {
+              SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+              java.sql.Date dataConvertida = new java.sql.Date(format.parse(txt_dataIngresso.getText()).getTime());  
+            //inserindo dados no banco de dados
+            //BDIngresso.InserirIngresso(i, connection);
+            
+            CallableStatement cs;//chama alguma função no banco
+            cs = connection.prepareCall("{call  inserir_ingresso(?,?,?,?,?,?,?)}");
+            cs.setString(1, txt_nomeIngresso.getText());
+            cs.setString(2, dataConvertida.toString());
+            cs.setString(3,txt_cidadeIngresso.getText());
+            cs.setString(4,txt_Pais.getText() );
+            cs.setFloat(5, Float.parseFloat(txt_precoIngresso.getText()));
+            cs.setString(6, txt_descricaoIngresso.getText());
+            cs.setInt(7,Integer.parseInt(cb_Arquibancadas.getSelectedItem().toString()));
+            
+            cs.execute();
+            readJTableIngresso();
+
+            txt_nomeIngresso.setText("");
+            txt_idIngresso.setText("");
+            txt_Pais.setText("");
+            txt_dataIngresso.setText("");
+            txt_cidadeIngresso.setText("");
+            txt_precoIngresso.setText("");
+            txt_descricaoIngresso.setText("");
+
+       
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btn_AdicionarIngressoActionPerformed
+
+    private void txt_idAutodromoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_idAutodromoKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(!caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Digitar apenas numeros");
+        }
+    }//GEN-LAST:event_txt_idAutodromoKeyTyped
+
+    private void txt_pathImgKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_pathImgKeyTyped
+        // TODO add your handling code here:
+         int totalCaracter = 300;
+
+        if(txt_nome.getText().length() >= totalCaracter){
+            JOptionPane.showMessageDialog(null,"Excedeu o limite de caracteres");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_pathImgKeyTyped
+
+    private void btn_imagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_imagemActionPerformed
+        // TODO add your handling code here:
+        //criando um evento que quando for clicado abrirá uma "página" para escolher-mos a imagem desejada
+        
+        JFileChooser fileChooser = new JFileChooser();//instânciando e criando objeto
+        fileChooser.setDialogTitle("Escolha sua imagem:");//titulo da página
+        
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);//escolher arquivos
+        
+        //fazendo filtro para arquivos
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem","jpg","png");
+        fileChooser.setFileFilter(filter);
+        int retorno = fileChooser.showOpenDialog(this);
+        
+        if(retorno == JFileChooser.APPROVE_OPTION){
+        File file = fileChooser.getSelectedFile();
+        
+        txt_pathImg.setText(file.getPath());
+        
+        }
+         if(retorno == JFileChooser.CANCEL_OPTION){
+             System.out.println("Cancelado");
+        
+        }
+        
+        
+    }//GEN-LAST:event_btn_imagemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2297,6 +2880,9 @@ public class Tela extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTArquibancada;
     private javax.swing.JTable JTAutodromo;
+    private javax.swing.JTable JTAutodromo1;
+    private javax.swing.JTable JTAutodromo2;
+    private javax.swing.JTable JTAutodromo3;
     private javax.swing.JTable JTIngresso;
     private javax.swing.JTable JTcircuito;
     private javax.swing.JButton btnAdicionar;
@@ -2308,19 +2894,53 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JButton btnPresquisar;
     private javax.swing.JButton btnPresquisar_Arq;
     private javax.swing.JButton btn_AdicionarAutodromo;
+    private javax.swing.JButton btn_AdicionarAutodromo1;
+    private javax.swing.JButton btn_AdicionarAutodromo2;
+    private javax.swing.JButton btn_AdicionarAutodromo3;
     private javax.swing.JButton btn_AdicionarIngresso;
     private javax.swing.JButton btn_alterarAutodromo;
+    private javax.swing.JButton btn_alterarAutodromo1;
+    private javax.swing.JButton btn_alterarAutodromo2;
+    private javax.swing.JButton btn_alterarAutodromo3;
     private javax.swing.JButton btn_alterarIngresso;
+    private javax.swing.JButton btn_alterarIngresso1;
+    private javax.swing.JButton btn_alterarIngresso2;
+    private javax.swing.JButton btn_alterarIngresso3;
     private javax.swing.JButton btn_excluirAutodromo;
+    private javax.swing.JButton btn_excluirAutodromo1;
+    private javax.swing.JButton btn_excluirAutodromo2;
+    private javax.swing.JButton btn_excluirAutodromo3;
     private javax.swing.JButton btn_excluirIngresso;
+    private javax.swing.JButton btn_excluirIngresso1;
+    private javax.swing.JButton btn_excluirIngresso2;
+    private javax.swing.JButton btn_excluirIngresso3;
+    private javax.swing.JButton btn_excluirIngresso4;
+    private javax.swing.JButton btn_imagem;
     private javax.swing.JButton btn_listar;
     private javax.swing.JButton btn_listarAutodromo;
+    private javax.swing.JButton btn_listarAutodromo1;
+    private javax.swing.JButton btn_listarAutodromo2;
+    private javax.swing.JButton btn_listarAutodromo3;
     private javax.swing.JButton btn_listarIngresso;
     private javax.swing.JButton btn_listar_Arq;
     private javax.swing.JButton btn_pesquisarAutodromo;
+    private javax.swing.JButton btn_pesquisarAutodromo1;
+    private javax.swing.JButton btn_pesquisarAutodromo2;
+    private javax.swing.JButton btn_pesquisarAutodromo3;
     private javax.swing.JButton btn_pesquisarIngresso;
-    private datechooser.beans.DateChooserCombo cmb_Data;
-    private datechooser.beans.DateChooserCombo cmb_dataIngresso;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup10;
+    private javax.swing.ButtonGroup buttonGroup11;
+    private javax.swing.ButtonGroup buttonGroup12;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.ButtonGroup buttonGroup5;
+    private javax.swing.ButtonGroup buttonGroup6;
+    private javax.swing.ButtonGroup buttonGroup7;
+    private javax.swing.ButtonGroup buttonGroup8;
+    private javax.swing.ButtonGroup buttonGroup9;
+    private javax.swing.JComboBox<Object> cb_Arquibancadas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2332,49 +2952,181 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
+    private javax.swing.JPanel jPanel28;
+    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel30;
+    private javax.swing.JPanel jPanel31;
+    private javax.swing.JPanel jPanel32;
+    private javax.swing.JPanel jPanel33;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JRadioButton rb_ArquibancadaId;
+    private javax.swing.JRadioButton rb_ArquibancadaidPesquisar;
+    private javax.swing.JRadioButton rb_AutodromoidPesquisar;
+    private javax.swing.JRadioButton rb_CidadeAutodromo;
+    private javax.swing.JRadioButton rb_CidadeIngresso;
+    private javax.swing.JRadioButton rb_CidadeIngresso1;
+    private javax.swing.JRadioButton rb_CidadeIngresso2;
+    private javax.swing.JRadioButton rb_CidadeIngresso3;
+    private javax.swing.JRadioButton rb_CircuitoidPesquisar;
+    private javax.swing.JRadioButton rb_IngressoId;
+    private javax.swing.JRadioButton rb_IngressoId1;
+    private javax.swing.JRadioButton rb_IngressoId2;
+    private javax.swing.JRadioButton rb_IngressoId3;
+    private javax.swing.JRadioButton rb_IngressoId4;
+    private javax.swing.JRadioButton rb_IngressoIdAutodromo;
+    private javax.swing.JRadioButton rb_IngressoIdCircuito;
+    private javax.swing.JRadioButton rb_IngressoidPesquisar;
+    private javax.swing.JRadioButton rb_TotalAssentosArquibancada;
+    private javax.swing.JRadioButton rb_dataCircuito;
+    private javax.swing.JRadioButton rb_dataIngresso;
+    private javax.swing.JRadioButton rb_dataIngresso1;
+    private javax.swing.JRadioButton rb_dataIngresso2;
+    private javax.swing.JRadioButton rb_dataIngresso3;
+    private javax.swing.JRadioButton rb_descricao;
+    private javax.swing.JRadioButton rb_descricao1;
+    private javax.swing.JRadioButton rb_descricao2;
+    private javax.swing.JRadioButton rb_descricao3;
+    private javax.swing.JRadioButton rb_descricaoAutodromo;
+    private javax.swing.JRadioButton rb_descricaoCircuito;
+    private javax.swing.JRadioButton rb_enderecoAutodromo;
+    private javax.swing.JRadioButton rb_idArquibancadaIngresso;
+    private javax.swing.JRadioButton rb_idArquibancadaIngresso1;
+    private javax.swing.JRadioButton rb_idArquibancadaIngresso2;
+    private javax.swing.JRadioButton rb_idArquibancadaIngresso3;
+    private javax.swing.JRadioButton rb_imagemCircuito;
+    private javax.swing.JRadioButton rb_nomeArquibancadaExcluir;
+    private javax.swing.JRadioButton rb_nomeArquibancadaPesq;
+    private javax.swing.JRadioButton rb_nomeAutodromo;
+    private javax.swing.JRadioButton rb_nomeCircuito;
+    private javax.swing.JRadioButton rb_nomeIngresso;
+    private javax.swing.JRadioButton rb_nomeIngresso1;
+    private javax.swing.JRadioButton rb_nomeIngresso2;
+    private javax.swing.JRadioButton rb_nomeIngresso3;
+    private javax.swing.JRadioButton rb_nomeIngressoPesq;
+    private javax.swing.JRadioButton rb_nomePesquisaAutodromo;
+    private javax.swing.JRadioButton rb_nomePesquisaCircuito;
+    private javax.swing.JRadioButton rb_paisAutodromo;
+    private javax.swing.JRadioButton rb_paisIngresso;
+    private javax.swing.JRadioButton rb_paisIngresso1;
+    private javax.swing.JRadioButton rb_paisIngresso2;
+    private javax.swing.JRadioButton rb_paisIngresso3;
+    private javax.swing.JRadioButton rb_precoIngresso;
+    private javax.swing.JRadioButton rb_precoIngresso1;
+    private javax.swing.JRadioButton rb_precoIngresso2;
+    private javax.swing.JRadioButton rb_precoIngresso3;
+    private javax.swing.JRadioButton rb_setorArquibancada;
+    private javax.swing.JRadioButton rd_nomeAutodromoExcluir;
+    private javax.swing.JRadioButton rd_nomeCircuitoExcluir;
+    private javax.swing.JRadioButton rd_nomeIngressoExcluir;
+    private javax.swing.JRadioButton rd_nomeIngressoExcluir1;
+    private javax.swing.JRadioButton rd_nomeIngressoExcluir2;
+    private javax.swing.JRadioButton rd_nomeIngressoExcluir3;
+    private javax.swing.JRadioButton rd_nomeIngressoExcluir4;
     private javax.swing.JTabbedPane tab_Abas;
-    private javax.swing.JTextField txt_ArquibancadaIngresso;
+    private javax.swing.JTabbedPane tab_Abas1;
+    private javax.swing.JTabbedPane tab_Abas2;
+    private javax.swing.JTabbedPane tab_Abas3;
     private javax.swing.JTextField txt_Descricao;
     private javax.swing.JTextField txt_Pais;
-    private javax.swing.JTextField txt_TotalCorredores;
     private javax.swing.JTextField txt_cidadeAutodromo;
+    private javax.swing.JTextField txt_cidadeAutodromo1;
+    private javax.swing.JTextField txt_cidadeAutodromo2;
+    private javax.swing.JTextField txt_cidadeAutodromo3;
     private javax.swing.JTextField txt_cidadeIngresso;
+    private javax.swing.JFormattedTextField txt_dataCircuito;
+    private javax.swing.JFormattedTextField txt_dataIngresso;
     private javax.swing.JTextField txt_descricaoAutodromo;
+    private javax.swing.JTextField txt_descricaoAutodromo1;
+    private javax.swing.JTextField txt_descricaoAutodromo2;
+    private javax.swing.JTextField txt_descricaoAutodromo3;
     private javax.swing.JTextField txt_descricaoIngresso;
     private javax.swing.JTextField txt_enderecoAutodromo;
+    private javax.swing.JTextField txt_enderecoAutodromo1;
+    private javax.swing.JTextField txt_enderecoAutodromo2;
+    private javax.swing.JTextField txt_enderecoAutodromo3;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_idArquibancada;
     private javax.swing.JTextField txt_idAutodromo;
+    private javax.swing.JTextField txt_idAutodromo1;
+    private javax.swing.JTextField txt_idAutodromo2;
+    private javax.swing.JTextField txt_idAutodromo3;
     private javax.swing.JTextField txt_idIngresso;
     private javax.swing.JTextField txt_nome;
     private javax.swing.JTextField txt_nomeAutodromo;
+    private javax.swing.JTextField txt_nomeAutodromo1;
+    private javax.swing.JTextField txt_nomeAutodromo2;
+    private javax.swing.JTextField txt_nomeAutodromo3;
     private javax.swing.JTextField txt_nomeIngresso;
     private javax.swing.JTextField txt_paisAutodromo;
+    private javax.swing.JTextField txt_paisAutodromo1;
+    private javax.swing.JTextField txt_paisAutodromo2;
+    private javax.swing.JTextField txt_paisAutodromo3;
+    private javax.swing.JTextField txt_pathImg;
     private javax.swing.JTextField txt_precoIngresso;
     private javax.swing.JTextField txt_setor;
     private javax.swing.JTextField txt_totalAssentos;

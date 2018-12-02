@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  * @author Protegido
  */
 public class BDArquibancada {
-     public static ArrayList<Arquibancada> ListarArquibancada(Connection c){
+    public static ArrayList<Arquibancada> ListarArquibancada(Connection c){
         ArrayList<Arquibancada> listaArquibancada = new ArrayList<Arquibancada>();
         PreparedStatement ps = null;
          ResultSet rs = null ;
@@ -50,7 +50,6 @@ public class BDArquibancada {
         }
            return listaArquibancada;
         }
-    
     public static boolean InserirArquibancada(Arquibancada a,Connection cn){
         
         //inserindo circuitos no banco de dados
@@ -78,8 +77,7 @@ public class BDArquibancada {
             Logger.getLogger(Inserindo.class.getName()).log(Level.SEVERE, null, ex);
         }       
                 return false;
-    }
-     
+    }     
     public static void alterarId(String id,String setor,int totalAssentos, Connection c )throws SQLException{
        String sql =  "UPDATE arquibancada SET setor =?,totalAssentos =? where id_arquibancada=?";
        PreparedStatement ps = c.prepareStatement(sql);
@@ -93,6 +91,28 @@ public class BDArquibancada {
        
        
     }
+    public static void alterarTotalAssentos(String setor,int totalAssentos, Connection c )throws SQLException{
+       String sql =  "UPDATE arquibancada SET totalAssentos =? where setor=?";
+       PreparedStatement ps = c.prepareStatement(sql);
+       ps.setInt(1,totalAssentos);
+       ps.setString(2, setor);
+    
+       ps.execute();
+       ps.close();
+       
+       
+    }
+    public static void alterarSetor(String setor,int id, Connection c )throws SQLException{
+       String sql =  "UPDATE arquibancada SET setor =? where id_arquibancada=?";
+       PreparedStatement ps = c.prepareStatement(sql);
+       ps.setString(1, setor);
+       ps.setInt(2,id);
+    
+       ps.execute();
+       ps.close();
+       
+       
+    }
     public static void alterar(String setor,String totalAssento, Connection c )throws SQLException{
        String sql =  "UPDATE arquibancada SET totalAssentos = ? where setor=?";
        PreparedStatement ps = c.prepareStatement(sql);
@@ -101,8 +121,7 @@ public class BDArquibancada {
        
        ps.execute();
        ps.close();
-    }
-        
+    }     
     public static void deletar(String setor, Connection c )throws SQLException{
        String sql =  "DELETE FROM arquibancada where setor=?";
        PreparedStatement cmd = c.prepareStatement(sql);
@@ -131,5 +150,17 @@ public class BDArquibancada {
        PreparedStatement ps = c.prepareStatement(sql);
        ps.setString(1, '%' +  setor + '%');
        return ps.executeQuery();
+    }  
+    public static ResultSet retornaArquibancada(Connection c){
+        
+         try {
+             PreparedStatement ps = c.prepareStatement("select id_arquibancada from arquibancada");
+             
+             return ps.executeQuery();
+             
+         } catch (SQLException ex) {
+             Logger.getLogger(BDArquibancada.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         return null;
     }
 }

@@ -13,22 +13,18 @@ public class Circuito {
     private int total_corredoes;
     private String data;
     private String descricao;
-    private byte[] img;
+    private String img;
     
     //construtores
     
-     public Circuito(String id_circuito,int  total_corredoes,String data,String descricao,byte[] img){
+     public Circuito(String id_circuito,int  total_corredoes,String data,String descricao,String img){
         this.nome_circuito = id_circuito;
         this.total_corredoes = total_corredoes;
         this.data = data;
         this.descricao = descricao;
         this.img = img;
     }
-     
-    public Circuito(String id_circuito,int  total_corredoes,String data,String descricao){
-    
-    this(id_circuito,total_corredoes,data,descricao,null);
-    }
+   
     public Circuito(){
         this("",0,"","",null);
     }
@@ -66,7 +62,7 @@ public class Circuito {
     /**
      * @return the img
      */
-    public byte[] getImg() {
+    public String getImg() {
         return img;
     }
 

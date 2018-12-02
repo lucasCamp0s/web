@@ -94,6 +94,134 @@ public class BDIngresso {
                 return false;
     }
      
+    public static void alterarData(String nome,String data, Connection c){
+         String sql = "UPDATE ingresso SET data_evento=? where nome=?";
+         //converto entrada da data
+          PreparedStatement cmd;
+        try {
+         //convertendo String data e tipo data para inserir no banco
+         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+          java.sql.Date data1 = null;    
+          
+            data1 = new java.sql.Date(format.parse(data).getTime());
+           
+            cmd = c.prepareStatement(sql);
+            cmd.setString(1,data1.toString());
+            cmd.setString(2,nome);
+            
+            cmd.execute();
+            c.close();
+            cmd.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BDIngresso.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(BDIngresso.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public static void alterarNome(int id,String nome, Connection c){
+         String sql = "UPDATE ingresso SET nome=? where Id_ingresso=?";
+        
+          PreparedStatement cmd;
+        try {
+            cmd = c.prepareStatement(sql);
+            cmd.setString(1,nome);
+            cmd.setString(2,id+"");
+            
+            cmd.execute();
+            c.close();
+            cmd.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BDIngresso.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    public static void alterarCidade(String nome,String cidade, Connection c){
+         String sql = "UPDATE ingresso SET cidade=? where nome=?";
+         //converto entrada da data
+          PreparedStatement cmd;
+        try {
+         
+            cmd = c.prepareStatement(sql);
+            cmd.setString(1,cidade);
+            cmd.setString(2,nome);
+            
+            cmd.execute();
+            c.close();
+            cmd.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BDIngresso.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    public static void alterarPais(String nome,String pais, Connection c){
+         String sql = "UPDATE ingresso SET pais=? where nome=?";
+         //converto entrada da data
+          PreparedStatement cmd;
+        try {
+         
+            cmd = c.prepareStatement(sql);
+            cmd.setString(1,pais);
+            cmd.setString(2,nome);
+            
+            cmd.execute();
+            c.close();
+            cmd.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BDIngresso.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    
+    public static void alterarPreco(String nome,float preco, Connection c){
+         String sql = "UPDATE ingresso SET preco=? where nome=?";
+         //converto entrada da data
+          PreparedStatement cmd;
+        try {
+         
+            cmd = c.prepareStatement(sql);
+            cmd.setString(1,preco+"");
+            cmd.setString(2,nome);
+            
+            cmd.execute();
+            c.close();
+            cmd.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BDIngresso.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+   
+    public static void alterarDescricao(String nome,String descricao, Connection c){
+         String sql = "UPDATE ingresso SET descricao=? where nome=?";
+         //converto entrada da data
+          PreparedStatement cmd;
+        try {
+         
+            cmd = c.prepareStatement(sql);
+            cmd.setString(1,descricao);
+            cmd.setString(2,nome);
+            
+            cmd.execute();
+            c.close();
+            cmd.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BDIngresso.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    public static void alterarIdArquibancada(String nome,String arquibancada, Connection c){
+         String sql = "UPDATE ingresso SET arquibancada_id_arquibancada=? where nome=?";
+         //converto entrada da data
+          PreparedStatement cmd;
+        try {
+         
+            cmd = c.prepareStatement(sql);
+            cmd.setString(1,arquibancada);
+            cmd.setString(2,nome);
+            
+            cmd.execute();
+            c.close();
+            cmd.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BDIngresso.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    
     public static void alterarId(int id,String nome,String data,String cidade,String pais,Float preco,String descricao,int arquibancada, Connection c  )throws SQLException{
        String sql = "UPDATE ingresso SET nome=?,data_evento=?,cidade=?,pais=?,preco=?,descricao=? where id_ingresso=?";
        PreparedStatement cmd = c.prepareStatement(sql);
@@ -171,5 +299,5 @@ public class BDIngresso {
        return cmd.executeQuery();
     }
 
-    
+ 
 }

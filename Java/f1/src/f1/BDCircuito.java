@@ -25,14 +25,12 @@ import javax.swing.JOptionPane;
  *
  * @author Lucas Campos
  */
-public class BDCircuito {
-    
+public class BDCircuito { 
   /*
     *@param c
     *@param cn
     */
    
-    
     public static List<Circuito> ListarCircuito(Connection c){
         ArrayList<Circuito> listaCircuito = new ArrayList<Circuito>();
         PreparedStatement ps = null;
@@ -42,7 +40,7 @@ public class BDCircuito {
             rs = ps.executeQuery();
             
            while(rs.next()){
-               Circuito cc = new Circuito(rs.getString("nome_circuito"), rs.getInt("total_corredores"), rs.getDate("data").toString(), rs.getString("descricao"), rs.getBytes("imagem"));
+               Circuito cc = new Circuito(rs.getString("nome_circuito"), rs.getInt("total_corredores"), rs.getDate("data").toString(), rs.getString("descricao"), rs.getString("imagem"));
                cc.setId(rs.getInt("id_circuito"));
                listaCircuito.add(cc);
                
@@ -63,7 +61,6 @@ public class BDCircuito {
         }
            return listaCircuito;
         }
-    
     public static boolean InserirCircuito(Circuito c,Connection cn){
         
         //inserindo circuitos no banco de dados
@@ -89,7 +86,7 @@ public class BDCircuito {
              
             ps.setString(3, data.toString());
             ps.setString(4, c.getDescricao());
-            ps.setBytes(5, c.getImg());
+            ps.setString(5, c.getImg());
             if(ps.executeUpdate()!=0){
                 System.out.println("Cadastrado com sucesso");
                 cn.close();
@@ -103,8 +100,7 @@ public class BDCircuito {
         
                  
                 return false;
-    }
-     
+    }  
     public static void alterarId(String id,String nome,String totalCorredores,String data,String descricao, Connection c )throws SQLException{
        String sql =  "UPDATE circuito SET nome_circuito =?,total_corredores =?,data=?,descricao=? where id_circuito=?";
        PreparedStatement cmd = c.prepareStatement(sql);
@@ -131,9 +127,9 @@ public class BDCircuito {
     public static void alterar(String nome,String totalcorredores,String descricao,String data, Connection c )throws SQLException{
        String sql =  "UPDATE circuito SET descricao=?,data=?,total_corredores=? where nome_circuito=?";
        PreparedStatement cmd = c.prepareStatement(sql);
-       cmd.setString(1,descricao);
+         cmd.setString(1,descricao);
          SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-          java.sql.Date data1 = null;    
+         java.sql.Date data1 = null;    
         try {
             data1 = new java.sql.Date(format.parse(data).getTime());
         } catch (ParseException ex) {
@@ -146,7 +142,53 @@ public class BDCircuito {
        cmd.execute();
        cmd.close();
     }
-        
+    public static void alterarNome(String id,String nome, Connection c )throws SQLException{
+       String sql =  "UPDATE circuito SET nome_circuito =? where id_circuito=?";
+       PreparedStatement cmd = c.prepareStatement(sql);
+       cmd.setString(1,nome);
+       cmd.setString(2,id);
+       
+       cmd.execute();
+       cmd.close(); 
+    }
+    public static void alterarData(String nome,String data, Connection c )throws SQLException{
+            //convertendo data
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+         java.sql.Date data1 = null;    
+        try {
+            data1 = new java.sql.Date(format.parse(data).getTime());
+        } catch (ParseException ex) {
+            Logger.getLogger(BDCircuito.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       //atualizando
+       String sql =  "UPDATE circuito SET data =? where nome_circuito=?";
+       PreparedStatement cmd = c.prepareStatement(sql);
+       cmd.setString(1,data1.toString());
+       cmd.setString(2,nome);
+       
+       cmd.execute();
+       cmd.close(); 
+    }
+    public static void alterarImgem(String nome,String imagem, Connection c )throws SQLException{
+       //atualizando
+       String sql =  "UPDATE circuito SET imagem =? where nome_circuito=?";
+       PreparedStatement cmd = c.prepareStatement(sql);
+       cmd.setString(1,imagem);
+       cmd.setString(2,nome);
+       
+       cmd.execute();
+       cmd.close(); 
+    }
+    public static void alterarDescricao(String nome,String descricao, Connection c )throws SQLException{ 
+       //atualizando
+       String sql =  "UPDATE circuito SET descricao =? where nome_circuito=?";
+       PreparedStatement cmd = c.prepareStatement(sql);
+       cmd.setString(1,descricao);
+       cmd.setString(2,nome);
+       
+       cmd.execute();
+       cmd.close(); 
+    }  
     public static void deletar(String nome, Connection c )throws SQLException{
        String sql =  "DELETE FROM circuito where nome_circuito=?";
        PreparedStatement cmd = c.prepareStatement(sql);

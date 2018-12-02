@@ -13,24 +13,23 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author aluno
+ * @author Protegido
  */
 public class ConexaoBanco {
-    
     public static Connection criaConexao(){
         
         Connection connection = null;
-        String servidor="10.87.100.6:3306";
+        String servidor="venus";
         String dataBase = "formula1";
-        String user = "aluno";
-        String senha="Senai1234";
+        String user = "BD18306";
+        String senha="BD18306";
         String url="jdbc:mysql://"+servidor+"/"+dataBase;
         
         
        
         try {
-            //String drivername="com.mysql.cj.jdbc.Driver";
-            //Class.forName(drivername);
+            String drivername="com.mysql.jdbc.Driver";
+            Class.forName(drivername);
         
             //criando conexao
             connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/" +
@@ -54,10 +53,15 @@ public class ConexaoBanco {
        
         } catch (SQLException ex) {
             System.err.println("erro com sql");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ConexaoBanco.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    
-    
-    
+   
+   
+    public static void main(String[] args) {
+        ConexaoBanco.criaConexao();
+     
+    }
 }

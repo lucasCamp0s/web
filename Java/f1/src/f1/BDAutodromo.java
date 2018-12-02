@@ -115,6 +115,51 @@ public class BDAutodromo {
        ps.execute();
        ps.close();
     }
+     public static void alterarNome(int id,String nome, Connection c )throws SQLException{
+       String sql =  "UPDATE autodromo SET nome=? where id_autodromo=?";
+       PreparedStatement ps = c.prepareStatement(sql);
+       ps.setString(1,nome);
+       ps.setInt(2, id);
+      
+       ps.execute();
+       ps.close();
+    }
+    public static void alterarEndereco(String nome,String endereco, Connection c )throws SQLException{
+       String sql =  "UPDATE autodromo SET endereco=? where nome=?";
+       PreparedStatement ps = c.prepareStatement(sql);
+       ps.setString(1,endereco);
+       ps.setString(2, nome);
+      
+       ps.execute();
+       ps.close();
+    }
+    public static void alterarCidade(String nome,String cidade,Connection c )throws SQLException{
+       String sql =  "UPDATE autodromo SET cidade=? where nome=?";
+       PreparedStatement ps = c.prepareStatement(sql);
+       ps.setString(1,cidade);
+       ps.setString(2, nome);
+      
+       ps.execute();
+       ps.close();
+    }
+    public static void alterarPais(String nome,String pais,Connection c )throws SQLException{
+       String sql =  "UPDATE autodromo SET pais=? where nome=?";
+       PreparedStatement ps = c.prepareStatement(sql);
+       ps.setString(1,pais);
+       ps.setString(2, nome);
+      
+       ps.execute();
+       ps.close();
+    }
+    public static void alterarDescricao(String nome,String descricao,Connection c )throws SQLException{
+       String sql =  "UPDATE autodromo SET descricao=? where nome=?";
+       PreparedStatement ps = c.prepareStatement(sql);
+       ps.setString(1,descricao);
+       ps.setString(2, nome);
+      
+       ps.execute();
+       ps.close();
+    }
         
     public static void deletar(String nome, Connection c )throws SQLException{
        String sql =  "DELETE FROM autodromo where nome=?";
