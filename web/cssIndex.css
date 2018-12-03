@@ -222,5 +222,25 @@ body{
     background-color:black;
     color:#336600;
 }
+.texto{
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.texto h4{
+    color: #336600;
+    font-weight: bolder;
+   border-bottom: 5px solid #336600;
+   width: 255px;
+   
+}
+#tabelaResult{
+    width:75%;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
+
+
 
 

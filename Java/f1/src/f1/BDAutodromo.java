@@ -35,7 +35,7 @@ public class BDAutodromo {
             rs = ps.executeQuery();
             
            while(rs.next()){
-               Autodromo a = new Autodromo(rs.getString("nome"),rs.getString("endereco"),rs.getString("cidade"),rs.getString("pais"),rs.getString("descricao"));
+               Autodromo a = new Autodromo(rs.getString("nome"),rs.getString("endereco"),rs.getString("cidade"),rs.getString("pais"),rs.getString("descricao"),rs.getString("imagem"));
                a.setId_autodromo(rs.getInt("id_autodromo"));
                listaAutodromo.add(a);
                
@@ -64,7 +64,7 @@ public class BDAutodromo {
         cn = ConexaoBanco.criaConexao();
         
         //comando para inserir no banco
-        String comandoSql = "insert into autodromo values(null,?,?,?,?,?);";
+        String comandoSql = "insert into autodromo values(null,?,?,?,?,?,?);";
         
         PreparedStatement ps;
           
@@ -77,6 +77,8 @@ public class BDAutodromo {
             ps.setString(3, a.getCidade());
             ps.setString(4,a.getPais());
             ps.setString(5, a.getDescricao());
+            ps.setString(6, a.getImagem());
+            
             if(ps.executeUpdate()!=0){
                 System.out.println("Cadastrado com sucesso");
                 cn.close();
@@ -120,6 +122,15 @@ public class BDAutodromo {
        PreparedStatement ps = c.prepareStatement(sql);
        ps.setString(1,nome);
        ps.setInt(2, id);
+      
+       ps.execute();
+       ps.close();
+    }
+      public static void alterarImagem(String nome,String img, Connection c )throws SQLException{
+       String sql =  "UPDATE autodromo SET imagem=? where nome=?";
+       PreparedStatement ps = c.prepareStatement(sql);
+       ps.setString(1,img);
+       ps.setString(2, nome);
       
        ps.execute();
        ps.close();

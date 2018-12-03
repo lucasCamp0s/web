@@ -16,17 +16,20 @@ public class Autodromo {
     private String cidade;
     private String pais;
     private String descricao;
+    private String imagem;
     
     
-    public Autodromo(String nome,String endereco,String cidade,String pais,String descricao){
+    
+    public Autodromo(String nome,String endereco,String cidade,String pais,String descricao,String imagem){
         this.nome = nome;
         this.endereco = endereco;
         this.cidade = cidade;
         this.pais = pais;
         this.descricao = descricao;
+        this.imagem = imagem;
     }
     public Autodromo(){
-        this("","","","","");
+        this("","","","","","");
     }
 
     /**
@@ -76,6 +79,13 @@ public class Autodromo {
      */
     public String getDescricao() {
         return descricao;
+    }
+
+    /**
+     * @return the imagem
+     */
+    public String getImagem() {
+        return imagem;
     }
     
     

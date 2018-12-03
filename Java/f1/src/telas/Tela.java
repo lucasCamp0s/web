@@ -87,9 +87,9 @@ public class Tela extends javax.swing.JFrame {
         JTAutodromo = new javax.swing.JTable();
         btn_AdicionarAutodromo = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        btn_listarAutodromo = new javax.swing.JButton();
+        btn_imgCaminho = new javax.swing.JButton();
         txt_enderecoAutodromo = new javax.swing.JTextField();
-        txt_descricaoAutodromo = new javax.swing.JTextField();
+        txt_imgAutodromo = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jPanel25 = new javax.swing.JPanel();
         rb_IngressoIdAutodromo = new javax.swing.JRadioButton();
@@ -102,11 +102,16 @@ public class Tela extends javax.swing.JFrame {
         rb_paisAutodromo = new javax.swing.JRadioButton();
         rb_descricaoAutodromo = new javax.swing.JRadioButton();
         btn_alterarAutodromo = new javax.swing.JButton();
+        rb_imagemPais = new javax.swing.JRadioButton();
         jPanel27 = new javax.swing.JPanel();
         rb_AutodromoidPesquisar = new javax.swing.JRadioButton();
         rb_nomePesquisaAutodromo = new javax.swing.JRadioButton();
         btn_pesquisarAutodromo = new javax.swing.JButton();
         txt_idAutodromo = new javax.swing.JTextField();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        txt_descricaoAutodromo4 = new javax.swing.JTextField();
+        btn_listarAutodromo4 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -270,11 +275,11 @@ public class Tela extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id_Autodromo", "nome_Autodromo", "Endereco", "Cidade", "Pais", "Descrição"
+                "Id_Autodromo", "nome_Autodromo", "Endereco", "Cidade", "Pais", "Descrição", "Imagem"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -293,20 +298,20 @@ public class Tela extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btn_AdicionarAutodromo);
-        btn_AdicionarAutodromo.setBounds(683, 210, 120, 30);
+        btn_AdicionarAutodromo.setBounds(680, 290, 120, 30);
 
         jLabel15.setText("Id para Ações");
         jPanel4.add(jLabel15);
-        jLabel15.setBounds(1150, 210, 90, 27);
+        jLabel15.setBounds(1150, 290, 90, 27);
 
-        btn_listarAutodromo.setText("Listar");
-        btn_listarAutodromo.addActionListener(new java.awt.event.ActionListener() {
+        btn_imgCaminho.setText("Imagem");
+        btn_imgCaminho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_listarAutodromoActionPerformed(evt);
+                btn_imgCaminhoActionPerformed(evt);
             }
         });
-        jPanel4.add(btn_listarAutodromo);
-        btn_listarAutodromo.setBounds(858, 210, 120, 30);
+        jPanel4.add(btn_imgCaminho);
+        btn_imgCaminho.setBounds(1200, 220, 120, 30);
 
         txt_enderecoAutodromo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -316,17 +321,17 @@ public class Tela extends javax.swing.JFrame {
         jPanel4.add(txt_enderecoAutodromo);
         txt_enderecoAutodromo.setBounds(980, 60, 340, 30);
 
-        txt_descricaoAutodromo.addKeyListener(new java.awt.event.KeyAdapter() {
+        txt_imgAutodromo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_descricaoAutodromoKeyTyped(evt);
+                txt_imgAutodromoKeyTyped(evt);
             }
         });
-        jPanel4.add(txt_descricaoAutodromo);
-        txt_descricaoAutodromo.setBounds(980, 170, 340, 30);
+        jPanel4.add(txt_imgAutodromo);
+        txt_imgAutodromo.setBounds(830, 220, 340, 30);
 
-        jLabel16.setText("Descrição");
+        jLabel16.setText("Bandeira Pais");
         jPanel4.add(jLabel16);
-        jLabel16.setBounds(680, 180, 79, 14);
+        jLabel16.setBounds(680, 230, 79, 14);
 
         jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Excluir", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel25.setInheritsPopupMenu(true);
@@ -367,13 +372,13 @@ public class Tela extends javax.swing.JFrame {
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rb_IngressoIdAutodromo)
                     .addComponent(rd_nomeAutodromoExcluir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addComponent(btn_excluirAutodromo)
                 .addGap(20, 20, 20))
         );
 
         jPanel4.add(jPanel25);
-        jPanel25.setBounds(675, 277, 179, 333);
+        jPanel25.setBounds(675, 380, 179, 230);
 
         jPanel26.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alterar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel26.setInheritsPopupMenu(true);
@@ -401,6 +406,9 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup5.add(rb_imagemPais);
+        rb_imagemPais.setText("Imagem");
+
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
         jPanel26Layout.setHorizontalGroup(
@@ -409,23 +417,20 @@ public class Tela extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel26Layout.createSequentialGroup()
-                        .addComponent(btn_alterarAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 45, Short.MAX_VALUE))
-                    .addGroup(jPanel26Layout.createSequentialGroup()
-                        .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rb_descricaoAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rb_paisAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel26Layout.createSequentialGroup()
                         .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel26Layout.createSequentialGroup()
                                 .addComponent(rb_nomeAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(rb_CidadeAutodromo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel26Layout.createSequentialGroup()
-                                .addComponent(rb_enderecoAutodromo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                            .addComponent(rb_enderecoAutodromo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rb_imagemPais, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_alterarAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rb_descricaoAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rb_paisAutodromo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 45, Short.MAX_VALUE))))
         );
         jPanel26Layout.setVerticalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -440,13 +445,15 @@ public class Tela extends javax.swing.JFrame {
                 .addComponent(rb_paisAutodromo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rb_descricaoAutodromo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb_imagemPais)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(btn_alterarAutodromo)
                 .addGap(24, 24, 24))
         );
 
         jPanel4.add(jPanel26);
-        jPanel26.setBounds(872, 277, 203, 333);
+        jPanel26.setBounds(872, 380, 203, 230);
 
         jPanel27.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel27.setInheritsPopupMenu(true);
@@ -494,7 +501,7 @@ public class Tela extends javax.swing.JFrame {
         );
 
         jPanel4.add(jPanel27);
-        jPanel27.setBounds(1093, 277, 195, 333);
+        jPanel27.setBounds(1093, 380, 195, 230);
 
         txt_idAutodromo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -502,7 +509,32 @@ public class Tela extends javax.swing.JFrame {
             }
         });
         jPanel4.add(txt_idAutodromo);
-        txt_idAutodromo.setBounds(1260, 210, 63, 30);
+        txt_idAutodromo.setBounds(1260, 290, 63, 30);
+
+        jLabel42.setText("Descrição");
+        jPanel4.add(jLabel42);
+        jLabel42.setBounds(680, 180, 79, 14);
+
+        jLabel43.setText("Descrição");
+        jPanel4.add(jLabel43);
+        jLabel43.setBounds(680, 180, 79, 14);
+
+        txt_descricaoAutodromo4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_descricaoAutodromo4KeyTyped(evt);
+            }
+        });
+        jPanel4.add(txt_descricaoAutodromo4);
+        txt_descricaoAutodromo4.setBounds(980, 170, 340, 30);
+
+        btn_listarAutodromo4.setText("Listar");
+        btn_listarAutodromo4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listarAutodromo4ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btn_listarAutodromo4);
+        btn_listarAutodromo4.setBounds(840, 290, 120, 30);
 
         jPanel2.add(jPanel4);
         jPanel4.setBounds(30, 0, 1351, 628);
@@ -1560,7 +1592,8 @@ public class Tela extends javax.swing.JFrame {
                                          a.getEndereco(),
                                          a.getCidade(),
                                          a.getPais(),
-                                         a.getDescricao()});
+                                         a.getDescricao(),
+                                         a.getImagem()});
           }
           
     }
@@ -1679,7 +1712,8 @@ public class Tela extends javax.swing.JFrame {
                     rs.getString("endereco"),
                     rs.getString("cidade"),
                     rs.getString("pais"),
-                    rs.getString("descricao")
+                    rs.getString("descricao"),
+                    rs.getString("imagem")
                 });
                 
                 
@@ -2003,14 +2037,17 @@ public class Tela extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null, "Digite a cidade do autódromo");
          } if(txt_enderecoAutodromo.getText().equals("")){
              JOptionPane.showMessageDialog(null, "Digite o endereço do autódromo");
-         } else if(txt_descricaoAutodromo.getText().equals("")){
+         } if(txt_imgAutodromo.getText().equals("")){
+             JOptionPane.showMessageDialog(null, "entre  com imagem");
+         }  
+         else if(txt_descricaoAutodromo4.getText().equals("")){
              JOptionPane.showMessageDialog(null, "Digite a descrição do autódromo");
          }else{
             Connection connection;
             
             connection = ConexaoBanco.criaConexao();//criando conexão 
             //criando objeto da classe autodromo para ser passada como objeto e em seguida ser mandada para o banco de dados
-            Autodromo a = new Autodromo(txt_nomeAutodromo.getText(),txt_enderecoAutodromo.getText(),txt_cidadeAutodromo.getText(),txt_paisAutodromo.getText(),txt_descricaoAutodromo.getText());
+            Autodromo a = new Autodromo(txt_nomeAutodromo.getText(),txt_enderecoAutodromo.getText(),txt_cidadeAutodromo.getText(),txt_paisAutodromo.getText(),txt_descricaoAutodromo4.getText(),txt_imgAutodromo.getText());
             
             //inserindo dados no banco de dados
             BDAutodromo.InserirAutodromo(a, connection);
@@ -2020,7 +2057,7 @@ public class Tela extends javax.swing.JFrame {
             txt_paisAutodromo.setText("");
             txt_cidadeAutodromo.setText("");
             txt_enderecoAutodromo.setText("");
-            txt_descricaoAutodromo.setText("");
+            txt_imgAutodromo.setText("");
             
             
              try {
@@ -2103,11 +2140,11 @@ public class Tela extends javax.swing.JFrame {
 
     }
     if(rb_descricaoAutodromo.isSelected()){
-      if(!txt_nomeAutodromo.getText().equals("") && !txt_descricaoAutodromo.getText().equals("")){
+      if(!txt_nomeAutodromo.getText().equals("") && !txt_descricaoAutodromo4.getText().equals("")){
      Connection c;
      c = ConexaoBanco.criaConexao();
       try {
-       BDAutodromo.alterarDescricao(txt_nomeAutodromo.getText(),txt_descricaoAutodromo.getText(), c);
+       BDAutodromo.alterarDescricao(txt_nomeAutodromo.getText(),txt_descricaoAutodromo4.getText(), c);
 
     c.close();//fechando conexão
     readJTableAutodromo();
@@ -2116,10 +2153,28 @@ public class Tela extends javax.swing.JFrame {
     }
  }else{
    JOptionPane.showMessageDialog(null,"nome ou descriçao inválido");
-   txt_descricaoAutodromo.requestFocus();
-  }
+   txt_imgAutodromo.requestFocus();
+  }//
+      
 
- }
+ }//
+    if(rb_imagemPais.isSelected()){
+             if(!txt_nomeAutodromo.getText().equals("") && !txt_imgAutodromo.getText().equals("")){
+                 Connection c;
+                 c = ConexaoBanco.criaConexao();
+                 try {
+                     BDAutodromo.alterarImagem(txt_nomeAutodromo.getText(),txt_imgAutodromo.getText(), c);
+                    
+                     c.close();//fechando conexão
+                     readJTableAutodromo();
+                 } catch (SQLException ex) {
+                     Logger.getLogger(Tela.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+        }else{
+                 JOptionPane.showMessageDialog(null,"nome ou imagem inválida");
+                 txt_enderecoAutodromo.requestFocus();
+             }   
+        }
 
     }//GEN-LAST:event_btn_alterarAutodromoActionPerformed
 
@@ -2212,10 +2267,32 @@ public class Tela extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_pesquisarAutodromoActionPerformed
 
-    private void btn_listarAutodromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listarAutodromoActionPerformed
+    private void btn_imgCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_imgCaminhoActionPerformed
         // TODO add your handling code here:
-        readJTableAutodromo();
-    }//GEN-LAST:event_btn_listarAutodromoActionPerformed
+        //criando um evento que quando for clicado abrirá uma "página" para escolher-mos a imagem desejada
+        
+        JFileChooser fileChooser = new JFileChooser();//instânciando e criando objeto
+        fileChooser.setDialogTitle("Escolha sua imagem:");//titulo da página
+        
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);//escolher arquivos
+        
+        //fazendo filtro para arquivos
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem","jpg","png");
+        fileChooser.setFileFilter(filter);
+        int retorno = fileChooser.showOpenDialog(this);
+        
+        if(retorno == JFileChooser.APPROVE_OPTION){
+        File file = fileChooser.getSelectedFile();
+        
+        txt_imgAutodromo.setText(file.getPath());
+        
+        }
+         if(retorno == JFileChooser.CANCEL_OPTION){
+             System.out.println("Cancelado");
+        
+        }
+        
+    }//GEN-LAST:event_btn_imgCaminhoActionPerformed
 
     private void txt_enderecoAutodromoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_enderecoAutodromoKeyTyped
         // TODO add your handling code here:
@@ -2226,14 +2303,14 @@ public class Tela extends javax.swing.JFrame {
            }
     }//GEN-LAST:event_txt_enderecoAutodromoKeyTyped
 
-    private void txt_descricaoAutodromoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descricaoAutodromoKeyTyped
+    private void txt_imgAutodromoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_imgAutodromoKeyTyped
         // TODO add your handling code here:
           int totalchar=200;
-           if(txt_descricaoAutodromo.getText().length()>=totalchar){
+           if(txt_imgAutodromo.getText().length()>=totalchar){
                JOptionPane.showMessageDialog(null, "Excedeu o limite de caracteres");
                evt.consume();//nao deixa digitar
            }
-    }//GEN-LAST:event_txt_descricaoAutodromoKeyTyped
+    }//GEN-LAST:event_txt_imgAutodromoKeyTyped
 
     private void tab_AbasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_AbasMouseClicked
     
@@ -2842,6 +2919,15 @@ public class Tela extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_imagemActionPerformed
 
+    private void txt_descricaoAutodromo4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_descricaoAutodromo4KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_descricaoAutodromo4KeyTyped
+
+    private void btn_listarAutodromo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listarAutodromo4ActionPerformed
+        // TODO add your handling code here:
+        readJTableAutodromo();
+    }//GEN-LAST:event_btn_listarAutodromo4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2880,9 +2966,6 @@ public class Tela extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTArquibancada;
     private javax.swing.JTable JTAutodromo;
-    private javax.swing.JTable JTAutodromo1;
-    private javax.swing.JTable JTAutodromo2;
-    private javax.swing.JTable JTAutodromo3;
     private javax.swing.JTable JTIngresso;
     private javax.swing.JTable JTcircuito;
     private javax.swing.JButton btnAdicionar;
@@ -2894,39 +2977,18 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JButton btnPresquisar;
     private javax.swing.JButton btnPresquisar_Arq;
     private javax.swing.JButton btn_AdicionarAutodromo;
-    private javax.swing.JButton btn_AdicionarAutodromo1;
-    private javax.swing.JButton btn_AdicionarAutodromo2;
-    private javax.swing.JButton btn_AdicionarAutodromo3;
     private javax.swing.JButton btn_AdicionarIngresso;
     private javax.swing.JButton btn_alterarAutodromo;
-    private javax.swing.JButton btn_alterarAutodromo1;
-    private javax.swing.JButton btn_alterarAutodromo2;
-    private javax.swing.JButton btn_alterarAutodromo3;
     private javax.swing.JButton btn_alterarIngresso;
-    private javax.swing.JButton btn_alterarIngresso1;
-    private javax.swing.JButton btn_alterarIngresso2;
-    private javax.swing.JButton btn_alterarIngresso3;
     private javax.swing.JButton btn_excluirAutodromo;
-    private javax.swing.JButton btn_excluirAutodromo1;
-    private javax.swing.JButton btn_excluirAutodromo2;
-    private javax.swing.JButton btn_excluirAutodromo3;
     private javax.swing.JButton btn_excluirIngresso;
-    private javax.swing.JButton btn_excluirIngresso1;
-    private javax.swing.JButton btn_excluirIngresso2;
-    private javax.swing.JButton btn_excluirIngresso3;
-    private javax.swing.JButton btn_excluirIngresso4;
     private javax.swing.JButton btn_imagem;
+    private javax.swing.JButton btn_imgCaminho;
     private javax.swing.JButton btn_listar;
-    private javax.swing.JButton btn_listarAutodromo;
-    private javax.swing.JButton btn_listarAutodromo1;
-    private javax.swing.JButton btn_listarAutodromo2;
-    private javax.swing.JButton btn_listarAutodromo3;
+    private javax.swing.JButton btn_listarAutodromo4;
     private javax.swing.JButton btn_listarIngresso;
     private javax.swing.JButton btn_listar_Arq;
     private javax.swing.JButton btn_pesquisarAutodromo;
-    private javax.swing.JButton btn_pesquisarAutodromo1;
-    private javax.swing.JButton btn_pesquisarAutodromo2;
-    private javax.swing.JButton btn_pesquisarAutodromo3;
     private javax.swing.JButton btn_pesquisarIngresso;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup10;
@@ -2955,27 +3017,11 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2983,21 +3029,8 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
@@ -3018,114 +3051,60 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JRadioButton rb_ArquibancadaId;
     private javax.swing.JRadioButton rb_ArquibancadaidPesquisar;
     private javax.swing.JRadioButton rb_AutodromoidPesquisar;
     private javax.swing.JRadioButton rb_CidadeAutodromo;
     private javax.swing.JRadioButton rb_CidadeIngresso;
-    private javax.swing.JRadioButton rb_CidadeIngresso1;
-    private javax.swing.JRadioButton rb_CidadeIngresso2;
-    private javax.swing.JRadioButton rb_CidadeIngresso3;
     private javax.swing.JRadioButton rb_CircuitoidPesquisar;
     private javax.swing.JRadioButton rb_IngressoId;
-    private javax.swing.JRadioButton rb_IngressoId1;
-    private javax.swing.JRadioButton rb_IngressoId2;
-    private javax.swing.JRadioButton rb_IngressoId3;
-    private javax.swing.JRadioButton rb_IngressoId4;
     private javax.swing.JRadioButton rb_IngressoIdAutodromo;
     private javax.swing.JRadioButton rb_IngressoIdCircuito;
     private javax.swing.JRadioButton rb_IngressoidPesquisar;
     private javax.swing.JRadioButton rb_TotalAssentosArquibancada;
     private javax.swing.JRadioButton rb_dataCircuito;
     private javax.swing.JRadioButton rb_dataIngresso;
-    private javax.swing.JRadioButton rb_dataIngresso1;
-    private javax.swing.JRadioButton rb_dataIngresso2;
-    private javax.swing.JRadioButton rb_dataIngresso3;
     private javax.swing.JRadioButton rb_descricao;
-    private javax.swing.JRadioButton rb_descricao1;
-    private javax.swing.JRadioButton rb_descricao2;
-    private javax.swing.JRadioButton rb_descricao3;
     private javax.swing.JRadioButton rb_descricaoAutodromo;
     private javax.swing.JRadioButton rb_descricaoCircuito;
     private javax.swing.JRadioButton rb_enderecoAutodromo;
     private javax.swing.JRadioButton rb_idArquibancadaIngresso;
-    private javax.swing.JRadioButton rb_idArquibancadaIngresso1;
-    private javax.swing.JRadioButton rb_idArquibancadaIngresso2;
-    private javax.swing.JRadioButton rb_idArquibancadaIngresso3;
     private javax.swing.JRadioButton rb_imagemCircuito;
+    private javax.swing.JRadioButton rb_imagemPais;
     private javax.swing.JRadioButton rb_nomeArquibancadaExcluir;
     private javax.swing.JRadioButton rb_nomeArquibancadaPesq;
     private javax.swing.JRadioButton rb_nomeAutodromo;
     private javax.swing.JRadioButton rb_nomeCircuito;
     private javax.swing.JRadioButton rb_nomeIngresso;
-    private javax.swing.JRadioButton rb_nomeIngresso1;
-    private javax.swing.JRadioButton rb_nomeIngresso2;
-    private javax.swing.JRadioButton rb_nomeIngresso3;
     private javax.swing.JRadioButton rb_nomeIngressoPesq;
     private javax.swing.JRadioButton rb_nomePesquisaAutodromo;
     private javax.swing.JRadioButton rb_nomePesquisaCircuito;
     private javax.swing.JRadioButton rb_paisAutodromo;
     private javax.swing.JRadioButton rb_paisIngresso;
-    private javax.swing.JRadioButton rb_paisIngresso1;
-    private javax.swing.JRadioButton rb_paisIngresso2;
-    private javax.swing.JRadioButton rb_paisIngresso3;
     private javax.swing.JRadioButton rb_precoIngresso;
-    private javax.swing.JRadioButton rb_precoIngresso1;
-    private javax.swing.JRadioButton rb_precoIngresso2;
-    private javax.swing.JRadioButton rb_precoIngresso3;
     private javax.swing.JRadioButton rb_setorArquibancada;
     private javax.swing.JRadioButton rd_nomeAutodromoExcluir;
     private javax.swing.JRadioButton rd_nomeCircuitoExcluir;
     private javax.swing.JRadioButton rd_nomeIngressoExcluir;
-    private javax.swing.JRadioButton rd_nomeIngressoExcluir1;
-    private javax.swing.JRadioButton rd_nomeIngressoExcluir2;
-    private javax.swing.JRadioButton rd_nomeIngressoExcluir3;
-    private javax.swing.JRadioButton rd_nomeIngressoExcluir4;
     private javax.swing.JTabbedPane tab_Abas;
-    private javax.swing.JTabbedPane tab_Abas1;
-    private javax.swing.JTabbedPane tab_Abas2;
-    private javax.swing.JTabbedPane tab_Abas3;
     private javax.swing.JTextField txt_Descricao;
     private javax.swing.JTextField txt_Pais;
     private javax.swing.JTextField txt_cidadeAutodromo;
-    private javax.swing.JTextField txt_cidadeAutodromo1;
-    private javax.swing.JTextField txt_cidadeAutodromo2;
-    private javax.swing.JTextField txt_cidadeAutodromo3;
     private javax.swing.JTextField txt_cidadeIngresso;
     private javax.swing.JFormattedTextField txt_dataCircuito;
     private javax.swing.JFormattedTextField txt_dataIngresso;
-    private javax.swing.JTextField txt_descricaoAutodromo;
-    private javax.swing.JTextField txt_descricaoAutodromo1;
-    private javax.swing.JTextField txt_descricaoAutodromo2;
-    private javax.swing.JTextField txt_descricaoAutodromo3;
+    private javax.swing.JTextField txt_descricaoAutodromo4;
     private javax.swing.JTextField txt_descricaoIngresso;
     private javax.swing.JTextField txt_enderecoAutodromo;
-    private javax.swing.JTextField txt_enderecoAutodromo1;
-    private javax.swing.JTextField txt_enderecoAutodromo2;
-    private javax.swing.JTextField txt_enderecoAutodromo3;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_idArquibancada;
     private javax.swing.JTextField txt_idAutodromo;
-    private javax.swing.JTextField txt_idAutodromo1;
-    private javax.swing.JTextField txt_idAutodromo2;
-    private javax.swing.JTextField txt_idAutodromo3;
     private javax.swing.JTextField txt_idIngresso;
+    private javax.swing.JTextField txt_imgAutodromo;
     private javax.swing.JTextField txt_nome;
     private javax.swing.JTextField txt_nomeAutodromo;
-    private javax.swing.JTextField txt_nomeAutodromo1;
-    private javax.swing.JTextField txt_nomeAutodromo2;
-    private javax.swing.JTextField txt_nomeAutodromo3;
     private javax.swing.JTextField txt_nomeIngresso;
     private javax.swing.JTextField txt_paisAutodromo;
-    private javax.swing.JTextField txt_paisAutodromo1;
-    private javax.swing.JTextField txt_paisAutodromo2;
-    private javax.swing.JTextField txt_paisAutodromo3;
     private javax.swing.JTextField txt_pathImg;
     private javax.swing.JTextField txt_precoIngresso;
     private javax.swing.JTextField txt_setor;

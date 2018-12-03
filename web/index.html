@@ -5,8 +5,12 @@
     
         <link  href="carousel.css" rel="stylesheet">
         <link  href="bootstrap.css" rel="stylesheet">
+
+
        
-     
+       <!--Carregando JQuery da api do goolge-->
+      <!---->
+      
     </head>
     <body>
        
@@ -139,7 +143,7 @@
                         <script>
                             function countdown() {
                                 var now = new Date();
-                                var eventDate = new Date(2018, 10, 29);
+                                var eventDate = new Date(2018, 11, 4);
 
                                 var currentTiime = now.getTime();
                                 var eventTime = eventDate.getTime();
@@ -189,8 +193,48 @@
                     </li>
                 </ul>
             </div>
-         
-        </div>
-    </body>
+        </div><br><br>
+            <div class="texto"><h4>PROXÍMAS CORRIDAS</h4><hr></div>
+          
+         <br>
+        <div id="proximasCorridas"></div>
+         <!--Script para colocar as proximas corridas no site-->
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+         <script>
+             var url ="http://localhost:8000/proximasCorridas";
+            $(document).ready(function(){
+             $.getJSON(url,function(result){
+                 //listando dados
+                 var arr = result;
+                 var cont=3;  
+                 var i=0;
+                 var cont=0;
+                 var inicio = "<table  id='tabelaResult'>";
+                 var fim = "</table>";
+                 var tabela="<tr>";
+               
+             while(i < arr.length){
+                
+                 if(cont<3){
+                        tabela+="<td  id=tabelaResult1><a href=''>"+
+                       "<img src = '"+ arr[i].imagem + "'>" +
+                      "<p>" + arr[i].nome +"&nbsp" +
+                      arr[i].data +"</p>"+
+                       "</a></td>"
+                 }else{
+                     tabela+="</tr>";
+                     cont = 0;
+                     tabela +="<tr>";
+                 }
 
+                cont++;
+                i++;
+             }
+            var comandoInteiro = inicio + tabela + fim;   
+            document.getElementById("proximasCorridas").innerHTML = comandoInteiro;
+             });
+            });
+           </script>
+    </body>
+       
 </html>

@@ -190,17 +190,23 @@
                     <Component class="javax.swing.JTable" name="JTAutodromo">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="6" rowCount="0">
+                          <Table columnCount="7" rowCount="0">
                             <Column editable="false" title="Id_Autodromo" type="java.lang.Object"/>
                             <Column editable="false" title="nome_Autodromo" type="java.lang.Object"/>
                             <Column editable="false" title="Endereco" type="java.lang.Object"/>
                             <Column editable="false" title="Cidade" type="java.lang.Object"/>
                             <Column editable="false" title="Pais" type="java.lang.Object"/>
                             <Column editable="false" title="Descri&#xe7;&#xe3;o" type="java.lang.Object"/>
+                            <Column editable="false" title="Imagem" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
@@ -249,7 +255,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="683" y="210" width="120" height="30"/>
+                      <AbsoluteConstraints x="680" y="290" width="120" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -259,20 +265,20 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="1150" y="210" width="90" height="27"/>
+                      <AbsoluteConstraints x="1150" y="290" width="90" height="27"/>
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JButton" name="btn_listarAutodromo">
+                <Component class="javax.swing.JButton" name="btn_imgCaminho">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Listar"/>
+                    <Property name="text" type="java.lang.String" value="Imagem"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_listarAutodromoActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_imgCaminhoActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="858" y="210" width="120" height="30"/>
+                      <AbsoluteConstraints x="1200" y="220" width="120" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -286,23 +292,23 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txt_descricaoAutodromo">
+                <Component class="javax.swing.JTextField" name="txt_imgAutodromo">
                   <Events>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_descricaoAutodromoKeyTyped"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_imgAutodromoKeyTyped"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="980" y="170" width="340" height="30"/>
+                      <AbsoluteConstraints x="830" y="220" width="340" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel16">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o"/>
+                    <Property name="text" type="java.lang.String" value="Bandeira Pais"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="680" y="180" width="79" height="-1"/>
+                      <AbsoluteConstraints x="680" y="230" width="79" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -317,7 +323,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="675" y="277" width="-1" height="333"/>
+                      <AbsoluteConstraints x="675" y="380" width="-1" height="230"/>
                     </Constraint>
                   </Constraints>
 
@@ -349,7 +355,7 @@
                                   <Component id="rb_IngressoIdAutodromo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="rd_nomeAutodromoExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="224" max="32767" attributes="0"/>
+                              <EmptySpace pref="121" max="32767" attributes="0"/>
                               <Component id="btn_excluirAutodromo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
@@ -397,7 +403,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="872" y="277" width="203" height="333"/>
+                      <AbsoluteConstraints x="872" y="380" width="203" height="230"/>
                     </Constraint>
                   </Constraints>
 
@@ -408,29 +414,24 @@
                               <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="btn_alterarAutodromo" min="-2" pref="120" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="45" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="rb_descricaoAutodromo" min="-2" pref="112" max="-2" attributes="0"/>
-                                          <Component id="rb_paisAutodromo" min="-2" pref="93" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="rb_nomeAutodromo" min="-2" pref="93" max="-2" attributes="0"/>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                           <Component id="rb_CidadeAutodromo" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="rb_enderecoAutodromo" max="32767" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
+                                          <Component id="rb_enderecoAutodromo" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="rb_imagemPais" min="-2" pref="112" max="-2" attributes="0"/>
+                                          <Component id="btn_alterarAutodromo" min="-2" pref="120" max="-2" attributes="0"/>
+                                          <Component id="rb_descricaoAutodromo" min="-2" pref="112" max="-2" attributes="0"/>
+                                          <Component id="rb_paisAutodromo" min="-2" pref="93" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="45" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -449,7 +450,9 @@
                               <Component id="rb_paisAutodromo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="rb_descricaoAutodromo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="138" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="rb_imagemPais" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="9" max="32767" attributes="0"/>
                               <Component id="btn_alterarAutodromo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
@@ -505,6 +508,14 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_alterarAutodromoActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JRadioButton" name="rb_imagemPais">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="buttonGroup5"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Imagem"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanel27">
@@ -521,7 +532,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="1093" y="277" width="195" height="333"/>
+                      <AbsoluteConstraints x="1093" y="380" width="195" height="230"/>
                     </Constraint>
                   </Constraints>
 
@@ -593,7 +604,50 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="1260" y="210" width="63" height="30"/>
+                      <AbsoluteConstraints x="1260" y="290" width="63" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel42">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="680" y="180" width="79" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel43">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="680" y="180" width="79" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_descricaoAutodromo4">
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_descricaoAutodromo4KeyTyped"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="980" y="170" width="340" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="btn_listarAutodromo4">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Listar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_listarAutodromo4ActionPerformed"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="840" y="290" width="120" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>

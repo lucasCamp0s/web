@@ -5,8 +5,8 @@
         <group>
             <file>file:/D:/f1/src/telas/Tela.java</file>
             <file>file:/D:/f1/src/conexao/ConexaoBanco.java</file>
-            <file>file:/D:/f1/src/f1/BDArquibancada.java</file>
-            <file>file:/D:/f1/src/f1/Arquibancada.java</file>
+            <file>file:/D:/f1/src/f1/BDAutodromo.java</file>
+            <file>file:/D:/f1/src/f1/Autodromo.java</file>
         </group>
     </open-files>
 </project-private>
