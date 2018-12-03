@@ -1,0 +1,144 @@
+body,header,nav,section{display: block;}
+body{
+    background-image    : url("./Fundos/cropped-1920-1080-401815.jpg");
+    background-repeat   : no-repeat;
+    background-size     : 100%;
+    background-color    : rgb(0, 0, 0); 
+    height              : 3150px;
+    font-family         : arial,helvetica,sans-serif;
+    border              : 2px solid white; 
+    font-size           : 12px;
+}
+.menu{    
+    position    : relative;      
+    width       : 100%;
+    height      : 110px;    
+}
+.menu ul{
+    position    : absolute;
+    list-style  : none;    
+    padding     : 10px 50px;
+    margin-left : 27%;
+    display     : block;
+}
+.menu li{
+    position    : relative;
+    float       : left;
+}
+.menu li a{
+    background-color    : black;
+    color               : #fff;
+    text-decoration     : none;
+    text-align          : center;
+    padding             : 5px 20px;
+    display             : block;
+    color               : white;    
+}
+.menu li a:hover{
+    color           : red;
+    border-bottom   : 0.09px solid red;
+}
+.menu li ul{
+    position            : absolute;
+    top                 : 30px;
+    left                : -90%;
+    background-color    : black;/*Color imagem no futuro*/
+    display             : none;
+}
+.menu li:hover ul, .menu li.over ul{display: block;}
+.menu li ul li{
+    display     : block;
+    text-align  : center;
+    width       : 150px;
+}
+.divFaixaMenu{
+    position            : absolute;
+    top                 : 60px;
+    width               : 100%;
+    background-color    : black;
+    height              : 50px;
+}
+#General{
+    position        : relative;
+    height          : 2150px;
+    border          : 2px solid yellow; 
+    width           : 99.7%;     
+}
+#Compra{
+    position        : absolute;    
+    width           : 1110px;   
+    height          : 1850px;
+    left            : 100px;
+    top             : 100px;
+    border          : 2px solid blue;
+}
+#Images_Secundarians{
+    position        : absolute;
+    width           : 100px;   
+    height          : 410px;
+    border          : 2px solid red;
+}
+#LocalImage_Principal{
+    position        : absolute; 
+    width           : 710px;   
+    height          : 510px;
+    border          : 2px solid purple;
+}
+#Images_1{
+    position        : absolute;
+    width           : 96px;   
+    height          : 70px;
+    border          : 2px solid green;
+}
+#Images_1:hover{
+    border-left     : 5px solid purple;
+}
+#About{
+    position        : absolute;
+    left            : 714px;
+    width           : 373px;   
+    height          : 610px;
+    padding-top     : 20px;
+    padding-left    : 20px;  
+    border          : 2px solid gray;
+}
+#Name{    
+    position        : absolute;
+    width           : 293px;   
+    height          : 80px;
+    width           : 353px;
+    font            : 19.3px fantasy ;
+    text-shadow     : 1px 1px 3px whitesmoke; 
+    border          : 2px solid darkgray;
+}
+#Qtd_Estoq{
+    position        : absolute;
+    top             : 109px;
+    border          : 2px solid darkgray;
+    text-shadow     : 1px 1px 3px whitesmoke; 
+}
+#Price{
+    position        : absolute;
+    width           : 170px;   
+    height          : 48px;
+    top             : 159px;    
+    border          : 2px solid turquoise;
+    text-shadow     : 1px 1px 3px whitesmoke;
+    font-size       : 35px; 
+}
+#Qtd{
+    position        : absolute;
+    width           : 60px;   
+    height          : 28px;
+    top             : 220px;    
+    text-shadow     : 1px 1px 3px whitesmoke;
+    font-size       : 13px; 
+}
+#buy{
+    position        : absolute;
+    width           : 60px;   
+    height          : 28px;
+    top             : 250px;    
+    text-shadow     : 1px 1px 3px whitesmoke;
+    font-size       : 13px;
+}

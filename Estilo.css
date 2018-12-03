@@ -1,0 +1,501 @@
+body,header,nav,section{display: block;}
+body{
+    background-image    : url("./Fundos/cropped-1920-1080-401815.jpg");
+    background-repeat   : no-repeat;
+    background-size     : 100%;
+    background-color    : rgb(0, 0, 0); 
+    height              : 3150px;
+    font-family         : arial,helvetica,sans-serif;
+    font-size           : 12px;
+}
+.menu{    
+    position    : relative;      
+    width       : 100%;
+    height      : 110px;    
+}
+.menu ul{
+    position    : absolute;
+    list-style  : none;    
+    padding     : 10px 50px;
+    margin-left : 27%;
+    display     : block;
+}
+.menu li{
+    position    : relative;
+    float       : left;
+}
+.menu li a{
+    background-color    : black;
+    color               : #fff;
+    text-decoration     : none;
+    text-align          : center;
+    padding             : 5px 20px;
+    display             : block;
+    color               : white;    
+}
+.menu li a:hover{
+    color           : red;
+    border-bottom   : 0.09px solid red;
+}
+.menu li ul{
+    position            : absolute;
+    top                 : 30px;
+    left                : -90%;
+    background-color    : black;/*Color imagem no futuro*/
+    display             : none;
+}
+.menu li:hover ul, .menu li.over ul{display: block;}
+.menu li ul li{
+    display     : block;
+    text-align  : center;
+    width       : 150px;
+}
+.divFaixaMenu{
+    position            : absolute;
+    top                 : 60px;
+    width               : 100%;
+    background-color    : black;
+    height              : 50px;
+}
+#Buys{
+    /* background  : rgb(17, 22, 17);  */
+    position    : relative;    
+    top         : 220px;
+    height      : 2550px;
+    width       : 97.5%;
+    padding     : 15px;
+}
+/* Primeiro Circuito */
+#Circuit_one{
+    position            : absolute;
+    height              : 430px;
+    width               : inherit; 
+    border              : green solid 2px;
+    border-radius       : 5pt; 
+    box-shadow          : 3px 3px 6px rgb(133, 247, 121);    
+}
+#Circuit_one_Background{
+    position            : absolute;
+    height              : 430px;
+    width               : 100%;
+    border-radius       : 5pt;
+    background-image    : url("./Bandeiras/Italia.png");   
+    background-size     : 100%;
+}
+#Circuit_one_Background:hover{
+    filter          : blur(5px);
+}
+#Circuit_one_img{
+    position                : absolute;
+    height                  : 240px;
+    width                   : 400px;
+    top                     : 1px;
+    left                    : 1px; 
+    border                  : rgb(30, 33, 30) dashed 3px;
+    border-top-left-radius  : 5pt; 
+    background-repeat       : no-repeat; 
+    background-image        : url("./Circuitos/Italia.jpg");
+    background-size         : 100%;  
+}
+@font-face{
+    font-family : Italian;
+    src         : url("./Fontes/italian_breakfast/ItalianBreakfast-Regular.ttf")
+}
+#Name_Circuit_One{
+    position            : absolute;
+    height              : 120px;
+    width               : 700px;    
+    left                : 475px; 
+    font-family         : Italian;
+    float               : left;    
+    font-size           : 50px;
+    text-shadow         : 1px 1px  green; 
+    text-align          : left;
+    color               : rgb(1, 2, 1) 
+}
+#Informations_Circuit_One{
+    position            : absolute;
+    height              : 200px;
+    width               : 555px;
+    top                 : 13%;  
+    left                : 480px; 
+    font-family         : monospace;
+    font-size           : 20px;
+    line-height         : 45px;
+    text-shadow         : 1px 1px whitesmoke;
+}
+#Description_Circuit_One{
+    position            : absolute;
+    height              : 100px;
+    width               : 850px;
+    top                 : 280px;;  
+    left                : 15px;
+    line-height         : 30px;
+    font-family         : monospace;
+    font-size           : 18px;
+    text-shadow         : 1px 1px whitesmoke;
+}
+#Button_Circuit_One{
+    position        : absolute;
+    top             : 80%;
+    left            : 78%;
+    height          : 55px;
+    width           : 150px;
+    font-family     : cursive;
+    color           : rgb(4, 7,4); 
+    background-color: darkgrey;
+    border-radius   : 3pt;
+    border-style    : none;
+}
+#Button_Circuit_One:hover{
+    color           : rgb(66, 68, 66); 
+    background-color: lightgrey;
+}
+/*Segundo Circuito*/
+#Circuit_two{
+    position            : absolute;
+    top                 : 530px;     
+    height              : 430px;
+    border-radius       : 5pt;
+    width               : inherit;
+    border              : rgb(153, 29, 18) solid 2px;
+    box-shadow          : 3px 3px 6px rgb(242, 16, 39);    
+}
+#Circuit_two_Background{
+    position            : absolute;
+    height              : 430px;
+    width               : 100%;
+    border-radius       : 5pt;
+    background-image    : url("./Bandeiras/Canada.jpg");   
+    background-size     : 100%;
+}
+#Circuit_two_Background:hover{
+    filter          : blur(5px);
+}
+#Circuit_two_img{
+    position                : absolute;
+    height                  : 240px;
+    width                   : 400px;
+    top                     : 1px;
+    left                    : 1px; 
+    border                  : rgb(30, 33, 30) dashed 3px;
+    border-top-left-radius  : 5pt; 
+    background-repeat       : no-repeat; 
+    background-image        : url("./Circuitos/Canada.jpg");
+    background-size         : 100%;  
+}
+@font-face{
+    font-family : Canada;
+    src         : url("./Fontes/Canada.ttf")
+}
+#Name_Circuit_two{
+    position            : absolute;
+    height              : 120px;
+    width               : 700px;    
+    left                : 475px; 
+    font-family         : Canada;
+    float               : left;    
+    font-size           : 50px;
+    text-shadow         : 1px 1px  green; 
+    text-align          : left;
+    color               : rgb(1, 2, 1) 
+}
+#Informations_Circuit_two{
+    position            : absolute;
+    height              : 200px;
+    width               : 555px;
+    top                 : 13%;  
+    left                : 480px; 
+    font-family         : monospace;
+    font-size           : 20px;
+    line-height         : 45px;
+    text-shadow         : 1px 1px whitesmoke;
+}
+#Description_Circuit_two{
+    position            : absolute;
+    height              : 100px;
+    width               : 850px;
+    top                 : 280px;;  
+    left                : 15px;
+    line-height         : 30px;
+    font-family         : monospace;
+    font-size           : 18px;
+    text-shadow         : 1px 1px whitesmoke;
+}
+#Button_Circuit_two{
+    position        : absolute;
+    top             : 80%;
+    left            : 78%;
+    height          : 55px;
+    width           : 150px;
+    font-family     : cursive;
+    color           : rgb(4, 7,4); 
+    background-color: darkgrey;
+    border-radius   : 3pt;
+    border-style    : none;
+}
+#Button_Circuit_two:hover{
+    color           : rgb(66, 68, 66); 
+    background-color: lightgrey;
+}
+/*Terceiro Circuito*/
+#Circuit_three{
+    position            : absolute;
+    top                 : 1060px;     
+    height              : 430px;
+    width               : inherit;
+    border              : rgb(3, 58, 10) solid 2px;
+    border-radius       : 5pt; 
+}
+#Circuit_three_Background{
+    position            : absolute;
+    height              : 430px;
+    width               : 100%;
+    background-image    : url("./Bandeiras/Brasil.jpg");   
+    background-size     : 100%;
+    border-radius       : 5pt;
+    box-shadow          : 3px 3px 6px rgb(44, 135, 56)     
+}
+#Circuit_three_Background:hover{
+    filter          : blur(5px);
+}
+#Circuit_three_img{
+    position                : absolute;
+    height                  : 240px;
+    width                   : 400px;
+    top                     : 1px;
+    left                    : 1px; 
+    border                  : rgb(30, 33, 30) dashed 3px;
+    border-top-left-radius  : 5pt; 
+    background-repeat       : no-repeat; 
+    background-image        : url("./Circuitos/Brasil.jpg");
+    background-size         : 100%;  
+}
+@font-face{
+    font-family : Brasil;
+    src         : url("./Fontes/brasileirinha/Brasileirinha.ttf")
+}
+#Name_Circuit_three{
+    position            : absolute;
+    height              : 80px;
+    width               : 700px;    
+    left                : 475px; 
+    font-family         : Brasil;
+    float               : left;    
+    font-size           : 70px;
+    text-shadow         : 1px 1px  green;  
+    text-align          : left;
+    color               : rgb(1, 2, 1) 
+}
+#Informations_Circuit_three{
+    position            : absolute;
+    height              : 200px;
+    width               : 555px;
+    top                 : 13%;  
+    left                : 480px; 
+    font-family         : monospace;
+    font-size           : 20px;
+    line-height         : 45px;
+    text-shadow         : 1px 1px whitesmoke;
+}
+#Description_Circuit_three{
+    position            : absolute;
+    height              : 100px;
+    width               : 850px;
+    top                 : 280px;;  
+    left                : 15px;
+    line-height         : 30px;
+    font-family         : monospace;
+    font-size           : 18px;
+    text-shadow         : 1px 1px whitesmoke;
+}
+#Button_Circuit_three{
+    position        : absolute;
+    top             : 80%;
+    left            : 78%;
+    height          : 55px;
+    width           : 150px;
+    font-family     : cursive;
+    color           : rgb(4, 7,4); 
+    background-color: darkgrey;
+    border-radius   : 3pt;
+    border-style    : none;
+}
+#Button_Circuit_three:hover{
+    color           : rgb(66, 68, 66); 
+    background-color: lightgrey;
+}
+/* Quarto Circuito */
+#Circuit_four{
+    position            : absolute;
+    top                 : 1596px;     
+    height              : 430px;
+    width               : inherit;
+    border              : rgb(239, 228, 16) solid 2px;
+    border-radius       : 5pt; 
+    box-shadow          : 2px 2px 5px rgb(255, 249, 135);   
+}
+#Circuit_four_Background{
+    position            : absolute;
+    height              : 430px;
+    width               : 100%;
+    border-radius       : 5pt; 
+    background-image    : url("./Bandeiras/China.jpg");   
+    background-size     : 100%;
+}
+#Circuit_four_Background:hover{
+    filter          : blur(5px);
+}
+#Circuit_four_img{
+    position                : absolute;
+    height                  : 240px;
+    width                   : 400px;
+    top                     : 1px;
+    left                    : 1px; 
+    border                  : rgb(30, 33, 30) dashed 3px;
+    border-top-left-radius  : 5pt; 
+    background-repeat       : no-repeat; 
+    background-image        : url("./Circuitos/China.jpg");
+    background-size         : 100%;  
+}
+@font-face{
+    font-family : China;
+    src         : url("./Fontes/China.ttf")
+}
+#Name_Circuit_four{
+    position            : absolute;
+    height              : 80px;
+    width               : 700px;    
+    left                : 480px; 
+    font-family         : China;
+    float               : left;    
+    font-size           : 47.9px;
+    text-shadow         : 1px 1px  green;  
+    text-align          : left;
+    color               : rgb(1, 2, 1) 
+}
+#Informations_Circuit_four{
+    position            : absolute;
+    height              : 200px;
+    width               : 555px;
+    top                 : 13%;  
+    left                : 480px; 
+    font-family         : monospace;
+    font-size           : 20px;
+    line-height         : 45px;
+    text-shadow         : 1px 1px whitesmoke;
+}
+#Description_Circuit_four{
+    position            : absolute;
+    height              : 100px;
+    width               : 850px;
+    top                 : 280px;;  
+    left                : 15px;
+    line-height         : 30px;
+    font-family         : monospace;
+    font-size           : 18px;
+    text-shadow         : 1px 1px whitesmoke;
+}
+#Button_Circuit_four{
+    position        : absolute;
+    top             : 80%;
+    left            : 78%;
+    height          : 55px;
+    width           : 150px;
+    font-family     : cursive;
+    color           : rgb(4, 7,4); 
+    background-color: darkgrey;
+    border-radius   : 3pt;
+    border-style    : none;
+}
+#Button_Circuit_four:hover{
+    color           : rgb(66, 68, 66); 
+    background-color: lightgrey;
+}
+/* Quinto Circuito */
+#Circuit_five{
+    position            : absolute;
+    top                 : 2130px;     
+    height              : 430px;
+    width               : inherit;
+    border-radius       : 5pt; 
+    border              : rgb(17, 23, 56) solid 2px;
+    box-shadow          : 2px 2px 5px rgb(57, 76, 181);     
+}
+#Circuit_five_Background{
+    position            : absolute;
+    height              : 430px;
+    width               : 100%;
+    border-radius       : 5pt;
+    background-image    : url("./Bandeiras/Australia.jpg");   
+    background-size     : 100%;
+}
+#Circuit_five_Background:hover{
+    filter          : blur(5px);
+}
+#Circuit_five_img{
+    position                : absolute;
+    height                  : 240px;
+    width                   : 400px;
+    top                     : 1px;
+    left                    : 1px; 
+    border                  : rgb(30, 33, 30) dashed 3px;
+    border-top-left-radius  : 5pt; 
+    background-repeat       : no-repeat; 
+    background-image        : url("./Circuitos/Australia.jpg");
+    background-size         : 100%;  
+}
+@font-face{
+    font-family : Australia;
+    src         : url("./Fontes/Australia.otf")
+}
+#Name_Circuit_five{
+    position            : absolute;
+    height              : 80px;
+    width               : 700px;    
+    left                : 480px; 
+    font-family         : Australia;
+    float               : left;    
+    font-size           : 47.9px;
+    text-shadow         : 1px 1px  green;  
+    text-align          : left;
+    color               : rgb(1, 2, 1) 
+}
+#Informations_Circuit_five{
+    position            : absolute;
+    height              : 200px;
+    width               : 555px;
+    top                 : 13%;  
+    left                : 480px; 
+    font-family         : monospace;
+    font-size           : 20px;
+    line-height         : 45px;
+    text-shadow         : 1px 1px whitesmoke;
+}
+#Description_Circuit_five{
+    position            : absolute;
+    height              : 100px;
+    width               : 850px;
+    top                 : 280px;;  
+    left                : 15px;
+    line-height         : 30px;
+    font-family         : monospace;
+    font-size           : 18px;
+    text-shadow         : 1px 1px whitesmoke;
+}
+ #Button_Circuit_five{
+    position        : absolute;
+    top             : 80%;
+    left            : 78%;
+    height          : 55px;
+    width           : 150px;
+    font-family     : cursive;
+    color           : rgb(4, 7,4); 
+    background-color: darkgrey;
+    border-radius   : 3pt;
+    border-style    : none;
+}
+#Button_Circuit_five:hover{
+    color           : rgb(66, 68, 66); 
+    background-color: lightgrey;
+}
