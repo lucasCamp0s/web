@@ -13,24 +13,19 @@ public class Ingresso {
     private int id_ingresso;
     private String nome;
     private String data;
-    private String cidade;
-    private String pais;
     private float preco;
-    private String descricao;
     private int arquibancada;
-
+    private String descricao;
     
-    public Ingresso(String nome,String data,String cidade,String pais,float preco,String descricao,int arquibancada){
+    public Ingresso(String nome,String data,float preco,String descricao,int arquibancada){
         this.nome = nome;
-        this.data = data;
-        this.cidade=cidade;
-        this.pais=pais;       
+        this.data = data; 
         this.preco=preco;
-        this.descricao=descricao;
         this.arquibancada=arquibancada;      
+        this.descricao = descricao;
     }
     public Ingresso(){
-        this("","","","",0,"",0);
+        this("","",0,"",0);
     }
     /**
      * @return the id_ingresso
@@ -53,19 +48,7 @@ public class Ingresso {
         return data;
     }
 
-    /**
-     * @return the cidade
-     */
-    public String getCidade() {
-        return cidade;
-    }
-
-    /**
-     * @return the pais
-     */
-    public String getPais() {
-        return pais;
-    }
+  
 
     /**
      * @return the preco
@@ -74,13 +57,7 @@ public class Ingresso {
         return preco;
     }
 
-    /**
-     * @return the descricao
-     */
-    public String getDescricao() {
-        return descricao;
-    }
-
+   
     /**
      * @return the arquibancada
      */
@@ -93,6 +70,13 @@ public class Ingresso {
      */
     public String getNome() {
         return nome;
+    }
+
+    /**
+     * @return the descricao
+     */
+    public String getDescricao() {
+        return descricao;
     }
     
     

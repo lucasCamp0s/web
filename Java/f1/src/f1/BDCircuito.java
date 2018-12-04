@@ -40,7 +40,7 @@ public class BDCircuito {
             rs = ps.executeQuery();
             
            while(rs.next()){
-               Circuito cc = new Circuito(rs.getString("nome_circuito"), rs.getInt("total_corredores"), rs.getDate("data").toString(), rs.getString("descricao"), rs.getString("imagem"));
+               Circuito cc = new Circuito(rs.getString("nome_circuito"), rs.getInt("total_corredores"), rs.getString("descricao"), rs.getString("imagem"),rs.getInt("id_autodromo"));
                cc.setId(rs.getInt("id_circuito"));
                listaCircuito.add(cc);
                
@@ -68,7 +68,7 @@ public class BDCircuito {
         cn = ConexaoBanco.criaConexao();
         
         //comando para inserir no banco
-        String comandoSql = "insert into circuito values(null,?,?,?,?,?);";
+        String comandoSql = "insert into circuito values(?,?,?,?,?);";
         
         PreparedStatement ps;
           
@@ -81,12 +81,9 @@ public class BDCircuito {
             
             //convertendo de string para tipo date
        
-          SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-          java.sql.Date data = new java.sql.Date(format.parse(c.getData()).getTime());    
-             
-            ps.setString(3, data.toString());
-            ps.setString(4, c.getDescricao());
-            ps.setString(5, c.getImg());
+            ps.setString(3, c.getDescricao());
+            ps.setString(4, c.getImg());
+            ps.setInt(5,c.getId_autodromo());
             if(ps.executeUpdate()!=0){
                 System.out.println("Cadastrado com sucesso");
                 cn.close();
@@ -94,9 +91,7 @@ public class BDCircuito {
             }
         } catch (SQLException ex) {
             Logger.getLogger(Inserindo.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
-            Logger.getLogger(BDCircuito.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         
                  
                 return false;
@@ -147,6 +142,15 @@ public class BDCircuito {
        PreparedStatement cmd = c.prepareStatement(sql);
        cmd.setString(1,nome);
        cmd.setString(2,id);
+       
+       cmd.execute();
+       cmd.close(); 
+    }
+       public static void alterarAutodromo(String nome,int id_autodromo, Connection c )throws SQLException{
+       String sql =  "UPDATE circuito SET id_autodromo =? where nome_circuito=?";
+       PreparedStatement cmd = c.prepareStatement(sql);
+       cmd.setInt(1,id_autodromo);
+       cmd.setString(2,nome);
        
        cmd.execute();
        cmd.close(); 

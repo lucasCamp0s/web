@@ -11,22 +11,22 @@ public class Circuito {
     private int id;
     private String nome_circuito;
     private int total_corredoes;
-    private String data;
     private String descricao;
     private String img;
+    private int id_autodromo;
     
     //construtores
     
-     public Circuito(String id_circuito,int  total_corredoes,String data,String descricao,String img){
+     public Circuito(String id_circuito,int  total_corredoesString,String descricao,String img,int id_autodromo){
         this.nome_circuito = id_circuito;
         this.total_corredoes = total_corredoes;
-        this.data = data;
         this.descricao = descricao;
         this.img = img;
+        this.id_autodromo = id_autodromo;
     }
    
     public Circuito(){
-        this("",0,"","",null);
+        this("",0,"","",0);
     }
     
     //get
@@ -48,9 +48,7 @@ public class Circuito {
     /**
      * @return the data
      */
-    public String getData() {
-        return data;
-    }
+   
 
     /**
      * @return the descricao
@@ -79,5 +77,13 @@ public class Circuito {
     public void setId(int id) {
         this.id = id;
     }
+
+    /**
+     * @return the id_autodromo
+     */
+    public int getId_autodromo() {
+        return id_autodromo;
+    }
+    
 
 }

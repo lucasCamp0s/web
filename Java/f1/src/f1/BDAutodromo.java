@@ -64,7 +64,7 @@ public class BDAutodromo {
         cn = ConexaoBanco.criaConexao();
         
         //comando para inserir no banco
-        String comandoSql = "insert into autodromo values(null,?,?,?,?,?,?);";
+        String comandoSql = "insert into autodromo values(?,?,?,?,?,?);";
         
         PreparedStatement ps;
           

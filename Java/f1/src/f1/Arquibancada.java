@@ -14,15 +14,17 @@ public class Arquibancada {
     private int id_arquibancada;
     private String setor;
     private int assentos;
+    private int id_autodromo;
     
     
-    public Arquibancada(String setor,int assentos){
+    public Arquibancada(String setor,int assentos,int id_autodromo){
         this.assentos = assentos;
         this.setor = setor;
+        this.id_autodromo = id_autodromo;
                 
     }
     public Arquibancada(){
-        this("",0);
+        this("",0,0);
     }
 
     /**
@@ -51,6 +53,13 @@ public class Arquibancada {
      */
     public int getAssentos() {
         return assentos;
+    }
+
+    /**
+     * @return the id_autodromo
+     */
+    public int getId_autodromo() {
+        return id_autodromo;
     }
     
     

@@ -19,22 +19,23 @@ public class ConexaoBanco {
     public static Connection criaConexao(){
         
         Connection connection = null;
-        String servidor="venus";
-        String dataBase = "formula1";
+        String servidor="regulus";
+        String dataBase = "bd18306";
         String user = "BD18306";
-        String senha="BD18306";
-        String url="jdbc:mysql://"+servidor+"/"+dataBase;
-        
-        
+        String senha="Ddjc132456981016213";
+        String url="jdbc:sqlserver://"+servidor+";DatabaseName="+dataBase;        
+        url+= ";user="+user+";password="+senha;
        
         try {
-            String drivername="com.mysql.jdbc.Driver";
+            String drivername="com.microsoft.sqlserver.jdbc.SQLServerDriver";
             Class.forName(drivername);
         
             //criando conexao
-            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/" +
-			"formula1?user=root&password=" + 
-			"&useSSL=false&useTimezone=true&serverTimezone=UTC");
+//            connection = DriverManager.getConnection("jdbc:mysql://venus/" +
+//			"BD18306?user=BD18306&password=BD18306" + 
+//			"&useSSL=false&useTimezone=true&serverTimezone=UTC");
+
+            connection = DriverManager.getConnection(url);
 			
         
         

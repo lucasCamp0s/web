@@ -29,7 +29,7 @@ public class BDArquibancada {
             rs = ps.executeQuery();
             
            while(rs.next()){
-               Arquibancada a = new Arquibancada(rs.getString("setor"),rs.getInt("totalAssentos"));
+               Arquibancada a = new Arquibancada(rs.getString("setor"),rs.getInt("totalAssentos"),rs.getInt("id_autodromo"));
                a.setId_arquibancada(rs.getInt("id_arquibancada"));
                listaArquibancada.add(a);
                
@@ -57,7 +57,7 @@ public class BDArquibancada {
         cn = ConexaoBanco.criaConexao();
         
         //comando para inserir no banco
-        String comandoSql = "insert into arquibancada values(null,?,?);";
+        String comandoSql = "insert into arquibancada values(?,?,?);";
         
         PreparedStatement ps;
           
@@ -67,6 +67,7 @@ public class BDArquibancada {
                
             ps.setString(1, a.getSetor());
             ps.setInt(2, a.getAssentos()); 
+            ps.setInt(3, a.getId_autodromo()); 
           
             if(ps.executeUpdate()!=0){
                 System.out.println("Cadastrado com sucesso");
@@ -110,6 +111,19 @@ public class BDArquibancada {
     
        ps.execute();
        ps.close();
+       
+       
+    }
+    public static void alterarIdArtodromo(String setor,int id_autodromo, Connection c )throws SQLException{
+    String sql =  "UPDATE arquibancada SET id_autodromo =? where setor=?";
+    PreparedStatement ps = c.prepareStatement(sql);
+
+    ps.setInt(1,id_autodromo);
+    ps.setString(2, setor);
+
+
+    ps.execute();
+    ps.close();
        
        
     }

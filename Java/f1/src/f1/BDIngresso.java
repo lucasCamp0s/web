@@ -33,7 +33,7 @@ public class BDIngresso {
             rs = ps.executeQuery();
             
            while(rs.next()){
-               Ingresso i = new Ingresso(rs.getString("nome"),rs.getDate("data_evento").toString(), rs.getString("cidade"), rs.getString("pais"), rs.getFloat("preco"),rs.getString("descricao"), rs.getInt("arquibancada_id_arquibancada"));
+               Ingresso i = new Ingresso(rs.getString("nome"),rs.getDate("data_evento").toString(),rs.getFloat("preco"),rs.getString("descricao"),rs.getInt("arquibancada_id_arquibancada"));
                i.setId_ingresso(rs.getInt("id_ingresso"));
                listaIngresso.add(i);
                
@@ -62,7 +62,7 @@ public class BDIngresso {
         cn = ConexaoBanco.criaConexao();
         
         //comando para inserir no banco
-        String comandoSql = "insert into ingresso values(null,?,?,?,?,?,?,?);";
+        String comandoSql = "insert into ingresso values(?,?,?,?,?);";
         
         PreparedStatement ps;
           
@@ -73,14 +73,11 @@ public class BDIngresso {
           java.sql.Date data2 = new java.sql.Date(format.parse(i.getData()).getTime());    
           
           ps.setString(1,i.getNome());
-          ps.setString(2,data2.toString());
-          ps.setString(3, i.getCidade());
-            
-            //convertendo de string para tipo date  
-            ps.setString(4, i.getPais());
-            ps.setFloat(5, i.getPreco());
-            ps.setString(6, i.getDescricao());
-            ps.setInt(7,i.getArquibancada());
+          ps.setDate(2,data2);    
+            //convertendo de string para tipo date         
+            ps.setFloat(3, i.getPreco());
+            ps.setString(4, i.getDescricao());
+            ps.setInt(5,i.getArquibancada());
             if(ps.executeUpdate()!=0){
                 System.out.println("Cadastrado com sucesso");
                 cn.close();
