@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title>Circuit_one</title>
+        <link href="Estilo_Buy_Page.css" rel="stylesheet" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="classStatic.js"></script>       
+    </head>
+    <script>
+  var vars = [], hash;
+  var hashes = window.location.href.slice(window.location.href.indexOf('?')+1).split('&');
+    for(var i=0;i<hashes.length;i++){
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+
+    }
+</script>
+    <body>
+        <nav class="menu">
+            <div class="divFaixaMenu">  
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">INGRESSOS</a>
+                        <ul>
+                            <li><a href="#">COMPRAR AQUI</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">CIRCUITOS</a></li>
+                    <li><a href="#">FALE CONOSCO</a></li>
+                    <li><a href="#">GUIA DE IMPRENSA</a></li>
+                    <li><a href="#">CASHLESS</a>
+                        <ul id="submenu">
+                            <li><a href="#">RECARGA</a></li>
+                            <li><a href="#">CARDÁPIO</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <section>
+            <div id="General">
+                    <div id="Compra">
+                        <div id="LocalImage_Principal">
+                            <div id="Position_Image">
+                                <img src="" id="Image_Principal">
+                            </div>
+                        </div>                        
+                        <div id="About">
+                            <div id="Name"></div>
+                            <div id="Qtd_Estoq">Qtd Em Estoque: XXXX</div>                
+                            <div id="Price">VALOR</div>                                          
+                                <select id="Qtd">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>                            
+                            <input id="Buy" type="button" name="Btn_Comprar" value="Compra 1">                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+    <script>             
+       
+            var id = vars['id'];
+            alert(id);
+            var url = "http://localhost:8000/circuito/"+id;
+
+            $(document).ready(function(){
+                $.getJSON(url, function(result){
+                    var arr = result;
+                    var out = '';           
+                    out = arr[0].nome_circuito;
+                    document.getElementById("Name").innerHTML = out;
+                    });
+            });
+           
+    </script>
+</html>

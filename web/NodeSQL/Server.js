@@ -87,16 +87,22 @@ function execSQLQuery(sqlQry, res){
         console.log('executou!');
     });
   }
+  roteador.get('/circuito/:id?',(req,res) =>{
+      let filtro ='';
+      if(req.params.id)
+        filtro = ' where id_circuito ='+parseInt(req.params.id);
+        execSQLQuery('Select * from circuito'+ filtro,res);
+  })
 
 roteador.get('/pessoas/:id?', (req,res) =>{
     let filtro = '';
     if(req.params.id)
-        filtro = 'where cpf = '+parseInt(req.params.id); 
+        filtro = ' where cpf = '+parseInt(req.params.id); 
     execSQLQuery('Select * from pessoa '+ filtro,res);
 })
 
 // minha parte da pagina colocar no server do JackDaniels
 // criando um roteador para listar os itens da pagina index.html
 roteador.get('/proximasCorridas', (req,res) =>{
-    execSQLQuery('select * from proximasCorridas',res)
+    execSQLQuery('select * from circuito',res)
 })

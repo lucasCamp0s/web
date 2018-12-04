@@ -1,0 +1,36 @@
+body{
+   width:  99%;
+}
+table{
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.config{
+    width: 340px;
+    height: 30px;
+    border-radius: 20px;
+    border:1px solid #cecece;
+    text-align: center;
+    background-color: #f1f2f6;
+}
+textarea{
+    border-radius: 20px;
+    background-color: #f1f2f6;
+}
+#alinhaBtn{
+    margin-top: 50px;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btn{
+    width: 340px;
+    height: 30px;
+    border:1px solid #cecece;
+    border-radius: 20px;
+   
+    cursor: pointer;
+    right: 50px;
+    
+}

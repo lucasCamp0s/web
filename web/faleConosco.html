@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <link href="faleConoscoCSS.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.7.0/d3.min.js"></script>
+        <script  src="js/jquery.mask.js" ></script>
+        <script>
+        $(document).ready(function(){
+            $('#cpf').mask('000.000.000-00',{reverse: true});
+        });
+        </script>
+    </head>
+    <body>
+        <!--Criando formulario para simular um envio de fale conosco-->
+        <table>
+            <tr>
+                <td>
+                    <label>NOME</label><br>
+                    <input type="text" class="config">
+                </td>
+                <td>
+                        <label>CPF</label><br>
+                        <input type="text" class="config" id="cpf">
+                    </td>
+              
+            </tr>
+            <tr>
+                    <td>
+                        <label>EMAIL</label><br>
+                        <input type="text" class="config">
+                    </td>
+                    <td>
+                            <label>PEDIDO</label><br>
+                            <input type="text" class="config">
+                        </td>
+                  
+                </tr>
+                <tr>
+                        <td>
+                            <label>TELEFONE</label><br>
+                            <input type="text" class="config">
+                        </td>
+                        <td>
+                                <label>ASSUNTO</label><br>
+                                <input type="text" class="config">
+                            </td>
+                      
+                    </tr>
+                    <tr>
+                            <td colspan="2"> 
+                            <label>MENSAGEM</label><br>
+                          <textarea rows="12" cols="98"></textarea></td>
+                    </tr>
+        </table>
+        <div id="alinhaBtn">
+            <input type="button"value="ENVIAR MENSAGEM" class="btn">
+            
+        </div>
+    </body>
+</html>
