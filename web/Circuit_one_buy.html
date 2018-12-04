@@ -2,6 +2,7 @@
     <head>
         <title>Circuit_one</title>
         <link href="Estilo_Buy_Page.css" rel="stylesheet" type="text/css">
+        <link href="menu.css" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="classStatic.js"></script>       
     </head>
@@ -16,33 +17,14 @@
     }
 </script>
     <body>
-        <nav class="menu">
-            <div class="divFaixaMenu">  
-                <ul>
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="#">INGRESSOS</a>
-                        <ul>
-                            <li><a href="#">COMPRAR AQUI</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="">CIRCUITOS</a></li>
-                    <li><a href="#">FALE CONOSCO</a></li>
-                    <li><a href="#">GUIA DE IMPRENSA</a></li>
-                    <li><a href="#">CASHLESS</a>
-                        <ul id="submenu">
-                            <li><a href="#">RECARGA</a></li>
-                            <li><a href="#">CARDÁPIO</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+         <!-- colocando o menu no site com iframe-->
+         <iframe src="menu.html" width="100%" height="200px" scrolling="no" style="z-index:999; border: none" ></iframe>
         <section>
             <div id="General">
                     <div id="Compra">
                         <div id="LocalImage_Principal">
                             <div id="Position_Image">
-                                <img src="" id="Image_Principal">
+                               
                             </div>
                         </div>                        
                         <div id="About">
@@ -56,7 +38,8 @@
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                 </select>                            
-                            <input id="Buy" type="button" name="Btn_Comprar" value="Compra 1">                        
+                            <input id="Buy" type="button" name="Btn_Comprar" value="Compra 1"> 
+
                         </div>
                     </div>
                 </div>
@@ -66,15 +49,23 @@
     <script>             
        
             var id = vars['id'];
-            alert(id);
+           
             var url = "http://localhost:8000/circuito/"+id;
 
             $(document).ready(function(){
                 $.getJSON(url, function(result){
                     var arr = result;
-                    var out = '';           
+                    var out = '';     
+                    var img='';      
                     out = arr[0].nome_circuito;
+                    img = arr[0].imagem;
                     document.getElementById("Name").innerHTML = out;
+                    document.getElementById("Price").innerHTML = out;
+
+                    // criando a img
+                    var image = document.createElement("IMG");
+                    image.setAttribute("src",img)
+                    document.getElementById("Position_Image").appendChild(image);
                     });
             });
            
