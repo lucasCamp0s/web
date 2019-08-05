@@ -1,8 +1,51 @@
 body{
     width: 99.8%;
-    height: 3000px;
-    font-family: arial,helvetica.,sans-serif;
+    height: 2000px;
+    font-family: arial,helvetica,sans-serif;
     font-size: 12px;
+}
+.forma{
+  
+    position:absolute;
+    width:100%;
+}
+.carrinho{
+    width:40%;
+    position: relative;
+    display: block;
+    margin-top: 10px;
+    border-bottom: 50px solid #68c3a3;
+    border-left: 25px solid transparent;
+    left: 60%;
+}
+.carrinho ul{
+    position: relative;
+    list-style: none;
+    float:left;
+    padding: 10px 50px ;
+    margin-left: 40%;
+}
+.carrinho li{
+    padding: 1px 6px;
+    position: relative;
+    float: left;
+}
+.borda_img{
+    border-right:2px solid #336600;
+}
+.btn_login{
+   
+
+    background-color: #336600;
+    color: #fff;
+    border-radius: 20px;
+    border: 1px solid #336600;
+    width: 100px;
+}
+.btn_login:hover{
+    cursor: pointer;
+    background-color :#438302;
+    border: 1px solid #438302;
 }
 .menu {
     
@@ -32,7 +75,13 @@ body{
    
    
 }
-
+#divVisual {
+    position: relative;
+    top: -10px;
+    height: 808px;
+    background: url(img/fundo4.jpg);
+   
+}
 .menu li a{
     background-color: black;
     color: #fff;
@@ -40,6 +89,8 @@ body{
     text-align: center;
     padding: 5px 20px;
     display: block;
+    color:white;
+    opacity:1;
     
 }
 .menu li a:hover{
@@ -60,7 +111,9 @@ body{
     text-align: center;
     width: 150px;
 }
-.divFaixaMenu{
+  
+
+    .divFaixaMenu{
     position: relative;
     top:60px;
     width: 100%;
@@ -70,36 +123,124 @@ body{
     
 }
 
-#divVisual{
-    position: relative;
-    top:-10px;
-    height:808px;
-    background: url(img/fundo3.jpg);
-}
+
 #divGlobal{
     position: relative;
-    height: 1500px;
+    height: 1300px;
     background-image: linear-gradient(to bottom,#1a1a1a,#000000);
 }
-.contagem{
-     border-spacing: 10px;
+.contagem {
+    border-spacing: 10px;
     position: relative;
     height: 50px;
-    color: black;
+    color:black;
     font-size: 20pt;
-   
+    left: 20%;
+    font-weight:bold;
+  
+}
+    .contagem td {
+        text-align: center;
+        background-color: #cecece;
+        padding: 10px 15px;
+        border-radius: 10px;
+        height:80px;
+        width:60px;
+  
+
+    }
+.yymmdd {
+    font-size:10pt;
+    position: relative;
+    left: 20%;
     
+   
 }
-.contagem td{
+.yymmdd tr td {
     text-align: center;
-    background-color: #cecece;
-    padding: 8px 15px;
-    margin: 5px;
-    border-radius: 10px;
+    padding: 1px 12px;
+    color: white;
+  
 }
-.yymmdd tr td{
-    text-align: center;
-    padding: 1px 12px; 
+#textMonaco{
+    color: white;
+    background-color:black;
+}
+.ulContegem {
+    position: relative;
+    width: 100%;
+    color: white;
+    
+  
+   
+}
+
+.ulContegem li {
+        
+         position:relative;
+        text-align:center;
+        position: relative;
+        float: left;
+        margin-left:15%;
+        list-style:none;
+        width:30%;
+    }
+    .ulContegem li ul{
+        position:absolute;
+       
+    }
+        .ulContegem li ul li {
+            text-align: center;
+            display: block;
+            width: 350px;
+            right:200px;
+        }
+.conhecaTittle{
+    font-size:25pt;
+    color:#336600;
+}
+.circuitoTittle{
+    font-size: 35pt;
+}
+.btnVerMais{ /*config do btn*/
+    background: #336600;
+    border: 1px solid #336600;
+    border-radius: 30px;
+    width:250px;
+    height:30px;
+    color:white;
+    cursor:pointer;
+}
+#linha {
+    position:relative;
+    border-right: 2px solid #336600;
+    height: 350px;
+    width: 35%;
+}
+#tittleCont{
+    font-size:20pt;
+    background-color:black;
+    color:#336600;
+}
+.texto{
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.texto h4{
+    color: #336600;
+    font-weight: bolder;
+   border-bottom: 5px solid #336600;
+   width: 255px;
+   
+}
+#tabelaResult{
+    width:75%;
+    margin-left: auto;
+    margin-right: auto;
     color: white;
 }
+
+
+
 

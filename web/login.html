@@ -1,0 +1,142 @@
+<html>
+    <head><title></title>
+        <meta charset="utf-8">
+    <link href="cssLogin.css" rel="stylesheet" type="text/css">
+
+    <!--Criando o script caso aperte o batao de pessoa jurídica ou física-->
+    <script>
+    
+    function tipoPessoa(botao){
+
+      if(botao.id == "fisica"){
+          document.getElementById("login").style.display = "none";
+         
+        
+         
+      }
+        
+    }
+    
+    </script>
+    </head>
+    <body>
+        <!-- criando a pagina de cadastro e de login-->
+        <!-- Aqui entrará um iframe do menu-->
+<div id="login">
+        <table>
+            <ul class="cadastro">
+                <li>
+                    <h3>QUERO ME CADASTRAR</h3>
+                    
+                   <div>
+                       <ul>
+                           <li>
+                             <input type="button" value="PESSOA FÍSICA" id="fisica" class="btnConfig" onclick="tipoPessoa(this);">
+                             </li>
+                    </ul>
+                    <ul>
+                        <li>
+                         <input type="button" value="PESSOA JURÍDICA" id="jurica" class="btnConfig"  onclick="tipoPessoa(this);">
+                    </li>
+                    </ul>
+                    </div>
+                
+                </li>
+               
+               
+               
+                <li><h3>JÁ SOU CADASTRADO</h3></li>
+            </ul>
+        </table>
+</div>
+<!--CADASTRO DE PESSOA JURIDICA-->
+<div id="form_Juridica">
+    <table id="tableJuridica">
+        <tr>
+            <td ><label>NOME COMPLETO</label></td>
+            <td ><label>CPF</label></td>
+
+        </tr>
+        <tr>
+            <td><input type="text" required="required" id="nome"></td>
+            <td><input type="text" id="cpf"></td><!--colocar validacao-->
+        </tr>
+
+        <!--        -->
+
+        <tr>
+                <td><label>RG</label></td>
+                <td><label>DATA NASCIMENTO</label></td>
+                <td><label>TELEFONE</label></td>
+                <td><label>CELULAR:</label></td>
+    
+        </tr>
+        <tr>
+                <td><input type="text" required="required" id="rg"></td><!--colocar validacao-->
+                <td><input type="text" id="dataNascimento"></td><!--colocar validacao-->
+                <td><input type="text" required="required" id="telefone"></td><!--colocar validacao-->
+                <td><input type="text" id="celular"></td><!--colocar validacao-->
+         </tr>
+         
+
+            <!--     -->
+
+            <tr>
+                    <td ><label>E-MAIL</label></td>
+                    <td ><label>CONFIRMAR E-MAIL</label></td>
+              
+            </tr>
+            <tr>
+                    <td><input type="email" required="required" id="email"></td><!--colocar validacao-->
+                    <td><input type="email" id="confirmaEmail"></td><!--colocar validacao-->
+            </tr>
+
+            <!--    -->
+            <tr>
+                    <td ><label>SENHA</label></td>
+                    <td ><label>CONFIRMAR SENHA</label></td>
+              
+            </tr>
+            <tr>
+                    <td><input type="password" required="required" id="senha"></td><!--colocar validacao-->
+                    <td><input type="password" id="confirmaSenha"></td><!--colocar validacao-->
+            </tr>
+
+            <!--    -->
+            
+            <tr>
+                    <td ><label>CEP</label></td>
+                    <td ><label>ENDERECO</label></td>
+                    <td ><label>CITY</label></td>
+                    <td ><label>PAÍS</label></td>
+                
+            </tr>
+            <tr>
+                <td><input type="text" id="cep"></td><!-- validacao-->
+                <td><input type="text" id="endereco"></td><!-- validacao-->
+                <td><input type="text" id="city"></td><!-- validacao-->
+                <td><input type="text" id="pais"></td><!-- colocar um cambo-box com todos paises-->
+            </tr>
+         <!--     -->
+      
+           <!--<tr>
+               
+                <td colspan="2"><input type="button" value="VOLTAR"></td>
+                <td colspan="2"><input type="submit" value="CADASTRAR" class="btnCadastrar"></td>
+
+
+            </tr>--> 
+            <!-- final do formulario-->
+            <tr>
+                <td><input type="submit" value="enviar"></td>
+            </tr>
+
+
+
+        
+    </table>
+</div>
+<img src="C:\programacao\trabalhoFinalWeb\web\img\222207.jpg">
+    
+    </body>
+</html>

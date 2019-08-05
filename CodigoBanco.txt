@@ -1,0 +1,167 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema formula1
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema formula1
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `formula1` DEFAULT CHARACTER SET utf8 ;
+USE `formula1` ;
+
+-- -----------------------------------------------------
+-- Table `formula1`.`pessoa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `formula1`.`pessoa` (
+  `nomeCompleto` VARCHAR(60) NOT NULL,
+  `cpf` INT(11) NOT NULL,
+  `rg` VARCHAR(10) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `celular` VARCHAR(9) NULL,
+  `senha` VARCHAR(20) NOT NULL,
+  `cep` VARCHAR(10) NOT NULL,
+  `endereco` VARCHAR(200) NOT NULL,
+  `cidade` VARCHAR(45) NOT NULL,
+  `pais` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`cpf`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `formula1`.`arquibancada`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `formula1`.`arquibancada` (
+  `id_arquibancada` INT NOT NULL AUTO_INCREMENT,
+  `setor` VARCHAR(1) NOT NULL,
+  `totalAssentos` INT NOT NULL,
+  PRIMARY KEY (`id_arquibancada`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `formula1`.`ingresso`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `formula1`.`ingresso` (
+  `id_ingresso` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `data_evento` DATETIME NOT NULL,
+  `cidade` VARCHAR(45) NOT NULL,
+  `pais` VARCHAR(45) NOT NULL,
+  `preco` FLOAT(6,2) NOT NULL,
+  `descricao` VARCHAR(300) NULL,
+  `arquibancada_id_arquibancada` INT NOT NULL,
+  PRIMARY KEY (`id_ingresso`),
+  INDEX `fk_ingresso_arquibancada1_idx` (`arquibancada_id_arquibancada` ASC),
+  CONSTRAINT `fk_ingresso_arquibancada1`
+    FOREIGN KEY (`arquibancada_id_arquibancada`)
+    REFERENCES `formula1`.`arquibancada` (`id_arquibancada`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `formula1`.`ingresso_pessoa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `formula1`.`ingresso_pessoa` (
+  `id_ingressopessoa` INT NOT NULL AUTO_INCREMENT,
+  `pessoa_cpf` INT(11) NOT NULL,
+  `id_ingresso` INT NOT NULL,
+  `nmr_Assento` INT NULL,
+  `tipo_entrada` VARCHAR(7) NOT NULL,
+  PRIMARY KEY (`id_ingressopessoa`),
+  INDEX `fk_ingresso_pessoa_pessoa_idx` (`pessoa_cpf` ASC),
+  INDEX `fk_ingresso_pessoa_ingresso1_idx` (`id_ingresso` ASC),
+  CONSTRAINT `fk_ingresso_pessoa_pessoa`
+    FOREIGN KEY (`pessoa_cpf`)
+    REFERENCES `formula1`.`pessoa` (`cpf`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ingresso_pessoa_ingresso1`
+    FOREIGN KEY (`id_ingresso`)
+    REFERENCES `formula1`.`ingresso` (`id_ingresso`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `formula1`.`autodromo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `formula1`.`autodromo` (
+  `id_autodromo` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `endereco` VARCHAR(200) NOT NULL,
+  `cidade` VARCHAR(40) NOT NULL,
+  `pais` VARCHAR(20) NOT NULL,
+  `descricao` VARCHAR(200) NULL,
+  PRIMARY KEY (`id_autodromo`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `formula1`.`circuito`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `formula1`.`circuito` (
+  `id_circuito` INT NOT NULL AUTO_INCREMENT,
+  `nome_circuito` VARCHAR(25) NOT NULL,
+  `total_corredores` INT NOT NULL,
+  `data` DATETIME NOT NULL,
+  `descricao` VARCHAR(200) NOT NULL,
+  `imagem` MEDIUMBLOB NULL,
+  PRIMARY KEY (`id_circuito`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `formula1`.`autodromo_has_circuito`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `formula1`.`autodromo_has_circuito` (
+  `autodromo_id_autodromo` INT NOT NULL,
+  `circuito_id_circuito` INT NOT NULL,
+  PRIMARY KEY (`autodromo_id_autodromo`, `circuito_id_circuito`),
+  INDEX `fk_autodromo_has_circuito_circuito1_idx` (`circuito_id_circuito` ASC),
+  INDEX `fk_autodromo_has_circuito_autodromo1_idx` (`autodromo_id_autodromo` ASC),
+  CONSTRAINT `fk_autodromo_has_circuito_autodromo1`
+    FOREIGN KEY (`autodromo_id_autodromo`)
+    REFERENCES `formula1`.`autodromo` (`id_autodromo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_autodromo_has_circuito_circuito1`
+    FOREIGN KEY (`circuito_id_circuito`)
+    REFERENCES `formula1`.`circuito` (`id_circuito`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `formula1`.`arquibancada_has_autodromo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `formula1`.`arquibancada_has_autodromo` (
+  `arquibancada_id_arquibancada` INT NOT NULL,
+  `autodromo_id_autodromo` INT NOT NULL,
+  PRIMARY KEY (`arquibancada_id_arquibancada`, `autodromo_id_autodromo`),
+  INDEX `fk_arquibancada_has_autodromo_autodromo1_idx` (`autodromo_id_autodromo` ASC),
+  INDEX `fk_arquibancada_has_autodromo_arquibancada1_idx` (`arquibancada_id_arquibancada` ASC),
+  CONSTRAINT `fk_arquibancada_has_autodromo_arquibancada1`
+    FOREIGN KEY (`arquibancada_id_arquibancada`)
+    REFERENCES `formula1`.`arquibancada` (`id_arquibancada`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_arquibancada_has_autodromo_autodromo1`
+    FOREIGN KEY (`autodromo_id_autodromo`)
+    REFERENCES `formula1`.`autodromo` (`id_autodromo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
